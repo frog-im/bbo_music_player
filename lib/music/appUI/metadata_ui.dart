@@ -1,0 +1,429 @@
+// lib/music/appUI/metadata_ui.dart
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:path/path.dart' as p;
+
+import '../read_music_metadata.dart';
+import '../write_music_metadata.dart';
+
+// ⬇️ 파일 피커 관련 심볼은 myPick.dart로 이동.
+//    내부에서만 prefix로 사용하고, 외부로 re-export 하지 않음.
+import 'package:bbo_music_player/music/appUI/myPick.dart' as pick;
+
+class NoGlowScrollBehavior extends ScrollBehavior {
+  const NoGlowScrollBehavior();
+  @override
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
+  }
+}
+
+class AudioTagViewer extends StatefulWidget {
+  const AudioTagViewer({
+    super.key,
+    required this.filePath,
+    this.onShowBanner,
+  });
+
+  final String filePath; // file://, /storage/... 또는 content://
+  final void Function(MaterialBanner banner)? onShowBanner;
+
+  @override
+  State<AudioTagViewer> createState() => _AudioTagViewerState();
+}
+
+class _AudioTagViewerState extends State<AudioTagViewer> {
+  // controllers
+  late final TextEditingController _lyricsCtl;
+  final _lyricsScrollCtl = ScrollController();
+  final Map<String, TextEditingController> _fieldCtrls = {};
+  final Map<String, FocusNode> _focusNodes = {};
+
+  Map<String, String>? _tags;
+  bool _loading = false;
+  bool _saving = false;
+  String? _artworkPath;
+  String? _lastError;
+  bool _dirty = false;
+
+  static const Map<String, String> _displayToKey = {
+    'Title': 'title',
+    'Artist': 'artist',
+    'Album': 'album',
+    'Genre': 'genre',
+    'Year': 'year',
+    'Track': 'track',
+    'Disc': 'disc',
+  };
+  List<String> get _orderedKeys => _displayToKey.values.toList(growable: false);
+
+  TextEditingController _ctrlFor(String key) =>
+      _fieldCtrls.putIfAbsent(key, () => TextEditingController());
+  FocusNode _focusFor(String key) => _focusNodes.putIfAbsent(key, () => FocusNode());
+
+  @override
+  void initState() {
+    super.initState();
+    _lyricsCtl = TextEditingController();
+    _load();
+  }
+
+  @override
+  void dispose() {
+    _lyricsCtl.dispose();
+    _lyricsScrollCtl.dispose();
+    for (final c in _fieldCtrls.values) {
+      c.dispose();
+    }
+    for (final f in _focusNodes.values) {
+      f.dispose();
+    }
+    super.dispose();
+  }
+
+  Future<void> _load() async {
+    setState(() {
+      _loading = true;
+      _lastError = null;
+    });
+    try {
+      final tags = await readAudioTags(widget.filePath);
+      await Future.delayed(const Duration(milliseconds: 80));
+      if (!mounted) return;
+
+      for (final e in _displayToKey.entries) {
+        _ctrlFor(e.value).text = tags[e.value] ?? '';
+      }
+      _lyricsCtl.text = tags['lyrics'] ?? '';
+
+      setState(() {
+        _tags = Map.of(tags);
+        _artworkPath = tags['artwork_path'];
+        _loading = false;
+        _dirty = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _loading = false;
+        _lastError = '$e';
+      });
+    }
+  }
+
+  void _showBanner(MaterialBanner b) {
+    if (widget.onShowBanner != null) {
+      widget.onShowBanner!(b);
+    } else {
+      final m = ScaffoldMessenger.of(context)..removeCurrentMaterialBanner();
+      m.showMaterialBanner(b);
+    }
+  }
+
+  Future<void> _onTapPickCover() async {
+    // 이미지 확장자만 허용
+    final path = await pick.pickAudioFile(['jpg', 'jpeg', 'png', 'webp'], pick.write);
+    if (path.isEmpty || path == 'a') return;
+    setState(() {
+      _artworkPath = path;
+      _dirty = true;
+    });
+    _showBanner(
+      MaterialBanner(
+        content: Text('커버 선택됨: ${p.basename(path)}'),
+        actions: [
+          TextButton(
+            onPressed: () => ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
+            child: const Text('닫기'),
+          ),
+        ],
+        elevation: 2,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+      ),
+    );
+  }
+
+  Future<void> _clearCover() async {
+    setState(() {
+      _artworkPath = null;
+      _dirty = true;
+    });
+  }
+
+  Future<void> _save() async {
+    if (_tags == null || _saving) return;
+
+    // snapshot
+    final updated = Map<String, String>.from(_tags!);
+    for (final e in _displayToKey.entries) {
+      updated[e.value] = _ctrlFor(e.value).text;
+    }
+    updated['lyrics'] = _lyricsCtl.text;
+
+    setState(() {
+      _saving = true;
+      _lastError = null;
+    });
+
+    try {
+      final result = await saveWithUserPicker(
+        inputPath: widget.filePath,
+        tags: updated,
+        artworkPath: _artworkPath,
+        suggestedName: _suggestedName(),
+      );
+
+      if (!mounted) return;
+      setState(() {
+        _saving = false;
+        _tags = updated;
+        _dirty = false;
+      });
+
+      _showBanner(
+        MaterialBanner(
+          content: Text('저장 완료: ${result.displayName}'),
+          actions: [
+            TextButton(
+              onPressed: () => ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
+              child: const Text('닫기'),
+            ),
+          ],
+          elevation: 2,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+        ),
+      );
+    } on SaveCancelledException {
+      if (!mounted) return;
+      setState(() => _saving = false);
+      _showBanner(
+        MaterialBanner(
+          content: const Text('저장 취소됨'),
+          actions: [
+            TextButton(
+              onPressed: () => ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
+              child: const Text('닫기'),
+            ),
+          ],
+          elevation: 2,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _saving = false;
+        _lastError = '$e';
+      });
+      final onErr = Theme.of(context).colorScheme.onErrorContainer;
+      _showBanner(
+        MaterialBanner(
+          content: Text('저장 실패: $e', style: TextStyle(color: onErr)),
+          actions: [
+            TextButton(
+              onPressed: () => ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
+              child: const Text('닫기'),
+            ),
+          ],
+          elevation: 2,
+          backgroundColor: Theme.of(context).colorScheme.errorContainer,
+        ),
+      );
+    }
+  }
+
+  String _suggestedName() {
+    final ext = p.extension(widget.filePath).toLowerCase();
+    final title = _ctrlFor('title').text.trim();
+    final baseFromPath = p.basenameWithoutExtension(widget.filePath);
+    final base = (title.isNotEmpty ? title : (baseFromPath.isNotEmpty ? baseFromPath : 'audio'));
+    return '$base${ext.isNotEmpty ? ext : '.mp3'}';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final fileName = p.basename(widget.filePath);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('오디오 메타데이터 — $fileName', overflow: TextOverflow.ellipsis),
+        actions: [
+          IconButton(
+            tooltip: _dirty ? '다른 이름으로 저장' : '수정 사항 없음',
+            onPressed: (_saving || !_dirty) ? null : _save,
+            icon: _saving
+                ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
+                : const Icon(Icons.save),
+          ),
+          IconButton(
+            tooltip: '다시 읽기',
+            onPressed: _loading ? null : _load,
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
+      ),
+      body: _loading
+          ? const SafeArea(child: Center(child: CircularProgressIndicator()))
+          : SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final double lyricsTarget =
+            (constraints.maxHeight * 0.38).clamp(160.0, 360.0);
+
+            return AnimatedPadding(
+              duration: const Duration(milliseconds: 160),
+              curve: Curves.easeOut,
+              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(12),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (_lastError != null)
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.errorContainer,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text(
+                            _lastError!,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onErrorContainer,
+                            ),
+                          ),
+                        ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // 커버 카드(탭=선택, 롱탭=제거)
+                          Card(
+                            clipBehavior: Clip.antiAlias,
+                            child: InkWell(
+                              onTap: _onTapPickCover,
+                              onLongPress: _clearCover,
+                              child: SizedBox(
+                                width: 120,
+                                height: 120,
+                                child: _coverPreview(_artworkPath),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(child: _buildEditableFields()),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      // 가사: 고정 높이 + 내부 스크롤
+                      SizedBox(
+                        height: lyricsTarget,
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Scrollbar(
+                              controller: _lyricsScrollCtl,
+                              child: ScrollConfiguration(
+                                behavior: const NoGlowScrollBehavior(),
+                                child: TextField(
+                                  controller: _lyricsCtl,
+                                  scrollController: _lyricsScrollCtl,
+                                  scrollPhysics: const ClampingScrollPhysics(),
+                                  decoration: const InputDecoration(
+                                    hintText: '(없음)',
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                    border: OutlineInputBorder(),
+                                  ),
+                                  keyboardType: TextInputType.multiline,
+                                  maxLines: null,
+                                  onChanged: (_) => setState(() => _dirty = true),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEditableFields() {
+    final children = <Widget>[];
+    for (var i = 0; i < _orderedKeys.length; i++) {
+      final key = _orderedKeys[i];
+      final label = _displayToKey.entries.firstWhere((e) => e.value == key).key;
+      final next = i < _orderedKeys.length - 1 ? _focusFor(_orderedKeys[i + 1]) : null;
+      children.add(_kv(label: label, keyName: key, nextFocus: next));
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: children,
+    );
+  }
+
+  Widget _coverPreview(String? artworkPath) {
+    try {
+      if (artworkPath != null && artworkPath.isNotEmpty) {
+        final f = File(artworkPath);
+        if (f.existsSync() && f.lengthSync() > 0) {
+          return Image.file(f, width: 120, height: 120, fit: BoxFit.cover);
+        }
+      }
+    } catch (_) {}
+    return const Icon(Icons.album, size: 80, color: Colors.grey);
+  }
+
+  Widget _kv({
+    required String label,
+    required String keyName,
+    FocusNode? nextFocus,
+  }) {
+    final c = _ctrlFor(keyName);
+    final node = _focusFor(keyName);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 56,
+            child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: TextField(
+              controller: c,
+              focusNode: node,
+              textInputAction: nextFocus == null ? TextInputAction.done : TextInputAction.next,
+              onSubmitted: (_) {
+                if (nextFocus != null) {
+                  FocusScope.of(context).requestFocus(nextFocus);
+                } else {
+                  FocusScope.of(context).unfocus();
+                }
+              },
+              decoration: const InputDecoration(
+                isDense: true,
+                border: OutlineInputBorder(),
+                contentPadding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+              ),
+              style: const TextStyle(fontSize: 14),
+              onChanged: (_) => setState(() => _dirty = true),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
