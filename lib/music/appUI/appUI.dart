@@ -2,8 +2,11 @@ import 'package:bbo_music_player/music/appUI/subtitles/lyrics_overlay.dart';
 import 'package:bbo_music_player/music/appUI/subtitles/subtitle_BoxEditor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_overlay_window/flutter_overlay_window.dart';
 
+import 'package:permission_handler/permission_handler.dart';
 import 'metadata_ui.dart';
+import 'metadata_ui.dart' as pick;
 import 'myPick.dart';
 
 
@@ -28,7 +31,10 @@ class BUttonChoice extends StatelessWidget {
                 child: IconButton(
                   onPressed: () async {
                     //print("이미지 버튼 클릭");
-                    String path = await pickAudioFile(['mp3', 'wav', 'flac', 'aac', 'ogg', 'm4a'],write);
+                    final path = await PickAudioFile(
+                      ['mp3','wav','flac','aac','ogg','opus','m4a','mp4']
+                    );
+                    //String path = await PickAudioFile(['mp3', 'wav', 'flac', 'aac', 'ogg', 'm4a'],write);
                     if (path.isNotEmpty) {
                       //print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@---------------------$path'); getPath(path);
 
@@ -89,6 +95,30 @@ class BUttonChoice extends StatelessWidget {
                 ),
                 child: IconButton(
                   onPressed: () async {
+                    // 1) SYSTEM_ALERT_WINDOW 권한
+                    if (!await Permission.systemAlertWindow.isGranted) {
+                      final status = await Permission.systemAlertWindow.request();
+                      if (!status.isGranted) {
+                        if (context != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('오버레이 권한이 필요합니다. 설정에서 허용해주세요.')),
+                          );
+                        }
+                        return;
+                      }
+                    }
+
+                    // 2) OverlayWindow 권한
+                    final granted = await FlutterOverlayWindow.isPermissionGranted()
+                        || (await FlutterOverlayWindow.requestPermission() ?? false);
+                    if (!granted) {
+                      if (context != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Overlay Window 권한이 거부되었습니다.')),
+                        );
+                      }
+                      return;
+                    }
 
                     await showDialog<void>(
                       context: context,
@@ -112,7 +142,10 @@ class BUttonChoice extends StatelessWidget {
                             FilledButton(
                                 onPressed: () async {
                                   Navigator.pop(context);
-                                  String path = await pickAudioFile(['mp3', 'wav', 'flac', 'aac', 'ogg', 'm4a'],subtitles);
+                                  final path = await PickAudioFile(
+                                    ['mp3','wav','flac','aac','ogg','opus','m4a','mp4']
+                                  );
+                                  //String path = await PickAudioFile(['mp3', 'wav', 'flac', 'aac', 'ogg', 'm4a'],subtitles);
                                   if (path.isEmpty) return;
                                   // ✅ 플랫폼 분기는 내부에서 1회만: 캐싱된 구현체가 실행됨
                                   await LYricsOverlay.instance.SHow(filePath: path, context: context);

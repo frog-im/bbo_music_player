@@ -273,8 +273,8 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
   Widget _BUildPaletteToggleButton() {
     return FilledButton.tonalIcon(
       onPressed: TOgglePalette,
-      icon: Icon(_paletteOpen ? Icons.close_fullscreen : Icons.color_lens),
-      label: const Text('팔레트'),
+      icon: Icon(_paletteOpen ? Icons.close_fullscreen : Icons.expand_more),
+      label: const Text('설정'),
       style: FilledButton.styleFrom(
         visualDensity: VisualDensity.compact,
         minimumSize: const Size(10, 36),

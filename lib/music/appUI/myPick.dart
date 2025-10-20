@@ -1,26 +1,64 @@
 // lib/music/appUI/myPick.dart
 import 'package:file_picker/file_picker.dart';
+import 'package:path/path.dart' as p;
 
-/// 전역 플래그 (원 요청 유지)
-bool write = true, aImage = true;
-bool subtitles = false;
+/// 내부 공용 유틸: 확장자 허용 여부
+bool _ExtAllowed(String path, List<String> allow, {Map<String, List<String>>? alias}) {
+  final name = p.basename(path).toLowerCase();
+  final al = alias ?? {};
+  final expanded = allow.expand((e) => al[e] ?? [e]).toSet();
+  return expanded.any((e) => name.endsWith('.$e'));
+}
 
-/// 요구하신 시그니처 그대로 유지.
-/// - [extList]: 허용 확장자
-/// - [b]: 플래그( write / aImage / subtitles ) 중 하나를 전달
-Future<String> pickAudioFile(List<String> extList, bool b) async {
-  final result = await FilePicker.platform.pickFiles(
-    type: FileType.custom,
-    allowedExtensions: extList,
+/// 내부 공용: MIME 넓게 열고 → 사후 확장자 필터링 → 실패 시 커스텀 폴백
+Future<String> _PickFileCore({
+  required FileType wideType,            // FileType.audio / FileType.image / FileType.any
+  required List<String> exts,            // 허용 확장자
+  Map<String, List<String>>? alias,      // 확장자 동의어(m4a→mp4 등)
+}) async {
+  // 1) 넓게 오픈 (SAF는 MIME 기반)
+  final r1 = await FilePicker.platform.pickFiles(
+    type: wideType,
+    allowMultiple: false,
     withData: false,
   );
-
-  if (result != null && result.files.isNotEmpty) {
-    final path = result.files.single.path;
-    if (path == null || path.isEmpty) return '';
-    //print('$path^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
-    return path;
-
+  final p1 = r1?.files.singleOrNull?.path;
+  if (p1 != null && p1.isNotEmpty && _ExtAllowed(p1, exts, alias: alias)) {
+    return p1;
   }
+
+  // 2) 폴백: 커스텀 확장자 필터
+  final r2 = await FilePicker.platform.pickFiles(
+    type: FileType.custom,
+    allowedExtensions: exts,
+    allowMultiple: false,
+    withData: false,
+  );
+  final p2 = r2?.files.singleOrNull?.path;
+  if (p2 != null && p2.isNotEmpty && _ExtAllowed(p2, exts, alias: alias)) {
+    return p2;
+  }
+
   return '';
+}
+
+/// 공개: 오디오 선택 (m4a는 mp4 컨테이너이므로 mp4도 허용군 별칭으로 포함)
+Future<String> PickAudioFile(List<String> extList) async {
+  final alias = {
+    'm4a': ['m4a', 'mp4'], // 공급자에 따라 audio/mp4로만 보이는 경우 대응
+  };
+  // SAF에서 audio/* 로 넓게 열기 → 사후 확장자 필터링
+  return _PickFileCore(
+    wideType: FileType.audio,
+    exts: extList,
+    alias: alias,
+  );
+}
+
+/// 공개: 이미지 선택
+Future<String> PickImageFile(List<String> extList) async {
+  return _PickFileCore(
+    wideType: FileType.image,
+    exts: extList,
+  );
 }

@@ -16,7 +16,7 @@ const String _kY = 'overlay_box_y';
 class ANdroidLyricsOverlay implements LYricsOverlay {
   @override
   Future<void> SHow({required String filePath, BuildContext? context}) async {
-    // 1) SYSTEM_ALERT_WINDOW 권한
+    /*// 1) SYSTEM_ALERT_WINDOW 권한
     if (!await Permission.systemAlertWindow.isGranted) {
       final status = await Permission.systemAlertWindow.request();
       if (!status.isGranted) {
@@ -39,7 +39,7 @@ class ANdroidLyricsOverlay implements LYricsOverlay {
         );
       }
       return;
-    }
+    }*/
 
     // 3) 오버레이 크기(px) 계산
     final view = WidgetsBinding.instance.platformDispatcher.views.first;

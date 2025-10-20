@@ -218,7 +218,10 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
 
   Future<void> _onTapPickCover() async {
     // 이미지 확장자만 허용
-    final path = await pick.pickAudioFile(['jpg', 'jpeg', 'png', 'webp'], pick.write);
+    final path = await pick.PickImageFile(
+      ['jpg','jpeg','png','webp']
+    );
+    //final path = await pick.PickAudioFile(['jpg', 'jpeg', 'png', 'webp'], pick.write);
     if (path.isEmpty || path == 'a') return;
     setState(() {
       _artworkPath = path;
