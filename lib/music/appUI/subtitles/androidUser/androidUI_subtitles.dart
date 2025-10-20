@@ -1,8 +1,15 @@
+// lib/.../androidLyricsOverlayApp.dart (예시 파일명)
+
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-// ② 오버레이 전용 네비게이터 키
-final GlobalKey<NavigatorState> overlayNavigatorKey = GlobalKey<NavigatorState>();
+import '../iphoneUser/subtitles_ios.dart'; // ✅ 추가
+
+// 안내 문구를 첫 페이지로 넣기 위한 상수
+const String _kHintText = '* 두 번 터치하면 오버레이가 종료됩니다.';
+const String _kHintBottomText = "* 페이지를 슬라이드해서 넘깁니다.";
 
 class AndroidLyricsOverlayApp extends StatefulWidget {
   const AndroidLyricsOverlayApp({super.key});
@@ -12,23 +19,52 @@ class AndroidLyricsOverlayApp extends StatefulWidget {
 }
 
 class _AndroidLyricsOverlayAppState extends State<AndroidLyricsOverlayApp> {
-  // 배너/다이얼로그 안내용
-  final GlobalKey<ScaffoldMessengerState> _messengerKey = GlobalKey<ScaffoldMessengerState>();
-
-  bool _hintShown = false; // 힌트 1회만
   final PageController _pc = PageController();
 
   List<LIstPage> _pages = const [];
 
+  // ▼ 닫기 가드 (중복 닫기 방지)
+  bool _closingGuard = false;
+
+  // ▼ overlay 이벤트 구독 핸들
+  StreamSubscription<dynamic>? _ovlSub;
+
+  // ✅ 저장된 폰트 사이즈
+  double _fontSize = 22.0;
+
   @override
   void initState() {
     super.initState();
-    FlutterOverlayWindow.overlayListener.listen((event) {
+
+    // 첫 프레임 직후 가드 리셋
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _closingGuard = false;
+    });
+
+    // ✅ 진입 시 폰트 로드
+    LOadFontPrefs();
+
+    // 오버레이 이벤트로 가사 수신 + "활성화 신호"로 가드 리셋
+    _ovlSub = FlutterOverlayWindow.overlayListener.listen((event) {
+      // overlay 재오픈 시점마다 닫기 가드 해제
+      _closingGuard = false;
+
+      // ✅ 이벤트 수신 때마다 최신 폰트 재로드(사용자가 방금 저장했을 수 있으니)
+      LOadFontPrefs();
+
       final text = (event ?? '').toString();
       final normalized = _NOrmalizeNewlines(text);
-      final pages = SPaginateLyrics(normalized);
+      final lyricPages = SPaginateLyrics(normalized);
 
-      setState(() => _pages = pages);
+      // 첫 페이지에 안내 문구 삽입
+      final combined = <LIstPage>[
+        const LIstPage(top: _kHintText, bottom: _kHintBottomText),
+        ...lyricPages,
+      ];
+
+      if (!mounted) return;
+      setState(() => _pages = combined);
       if (_pc.hasClients) _pc.jumpToPage(0);
     });
   }
@@ -36,130 +72,87 @@ class _AndroidLyricsOverlayAppState extends State<AndroidLyricsOverlayApp> {
   @override
   void dispose() {
     _pc.dispose();
+    _ovlSub?.cancel();
+    _ovlSub = null;
     super.dispose();
+  }
+
+  // ✅ 저장된 폰트 사이즈 로드
+  Future<void> LOadFontPrefs() async {
+    try {
+      final sp = await SharedPreferences.getInstance();
+      final f = sp.getDouble('overlay_text_font'); // 편집기와 동일 키
+      if (!mounted) return;
+      setState(() {
+        // 합리적인 가드 범위
+        final v = (f ?? 22.0);
+        _fontSize = v.clamp(8.0, 96.0).toDouble();
+      });
+    } catch (_) {
+      // 실패 시 기본값 유지
+    }
+  }
+
+  // ▼ 더블 탭 → 그냥 닫기
+  void _onDoubleTapClose() {
+    _closeOverlaySafely();
+  }
+
+  // ▼ 중복 호출/레이스 컨디션 방지용 안전 닫기(+실패 시 가드 복구)
+  Future<void> _closeOverlaySafely() async {
+    if (_closingGuard) return;
+    _closingGuard = true;
+    try {
+      final result = await FlutterOverlayWindow.closeOverlay();
+      if (result != true) {
+        _closingGuard = false;
+      }
+    } catch (_) {
+      _closingGuard = false;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      navigatorKey: overlayNavigatorKey,             // ② 적용
-      scaffoldMessengerKey: _messengerKey,
       home: Builder(
         builder: (ctx) {
-          // 첫 프레임 이후 1회만 작은 다이얼로그 표시
-          if (!_hintShown) {
-            WidgetsBinding.instance.addPostFrameCallback((_) async {
-              if (!mounted || _hintShown) return;
-              _hintShown = true;
-
-              await SHowMiniDialog(
-                message: '두 번 터치하면 오버레이가 종료됩니다.',
-                duration: const Duration(milliseconds: 1600),
-                alignment: Alignment.topCenter,
-                margin: const EdgeInsets.only(top: 12),
-              );
-            });
-          }
-
-          final size = MediaQuery.of(ctx).size;
-          final w = size.width * 0.6;
-          final h = size.height * 0.12; // 2줄 가사용
-
           return Scaffold(
             backgroundColor: Colors.transparent,
             body: Center(
               child: GestureDetector(
-                onDoubleTap: FlutterOverlayWindow.closeOverlay,
+                onDoubleTap: _onDoubleTapClose,
                 child: Card(
                   color: const Color.fromRGBO(0, 0, 0, .5),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   clipBehavior: Clip.antiAlias,
-                  child: SizedBox(
-                    width: w,
-                    height: h,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                      child: _pages.isEmpty
-                          ? const _EmptyContent()
-                          : PageView.builder(
-                        controller: _pc,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: _pages.length,
-                        itemBuilder: (context, index) {
-                          final p = _pages[index];
-                          return BUildTwoLineCard(top: p.top, bottom: p.bottom);
-                        },
-                      ),
+                 // child: Padding(
+                    //padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    child: _pages.isEmpty
+                        ? const _EmptyContent()
+                        : PageView.builder(
+                      controller: _pc,
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: _pages.length,
+                      itemBuilder: (context, index) {
+                        final p = _pages[index];
+                        return BUildTwoLineCard(
+                          top: p.top,
+                          bottom: p.bottom,
+                          fontSize: _fontSize, // ✅ 적용
+                        );
+                      },
                     ),
                   ),
                 ),
               ),
-            ),
+           // ),
           );
         },
       ),
     );
   }
-}
-
-/// ------ 작은 다이얼로그(토스트 느낌) 헬퍼 ------
-/// navigatorKey의 컨텍스트로 showGeneralDialog 호출
-Future<void> SHowMiniDialog({
-  required String message,
-  Duration duration = const Duration(milliseconds: 1500),
-  Alignment alignment = Alignment.topCenter,
-  EdgeInsets margin = const EdgeInsets.all(12),
-}) async {
-  final ctx = overlayNavigatorKey.currentState?.overlay?.context
-      ?? overlayNavigatorKey.currentContext;
-  if (ctx == null) return; // 아직 프레임 미완성 등
-
-  final future = showGeneralDialog<void>(
-    context: ctx,
-    barrierLabel: 'mini',                // barrierDismissible=true면 라벨 필수
-    barrierDismissible: true,
-    barrierColor: Colors.transparent,
-    transitionDuration: const Duration(milliseconds: 160),
-    useRootNavigator: true,
-    pageBuilder: (_, __, ___) {
-      return SafeArea(
-        child: Align(
-          alignment: alignment,
-          child: Material(
-            color: Colors.transparent,
-            child: Container(
-              margin: margin,
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              decoration: BoxDecoration(
-                color: Colors.black87,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.info, size: 18, color: Colors.white70),
-                  const SizedBox(width: 8),
-                  Flexible(
-                    child: Text(
-                      message,
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
-                      overflow: TextOverflow.fade,
-                      softWrap: false,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
-    },
-  );
-
-  await Future.any([future, Future.delayed(duration)]);
-  final nav = Navigator.of(ctx, rootNavigator: true);
-  if (nav.canPop()) nav.maybePop();
 }
 
 /// 두 줄 페이지 모델
@@ -202,22 +195,4 @@ List<LIstPage> SPaginateLyrics(String s) {
     pages.add(LIstPage(top: top, bottom: bottom));
   }
   return pages;
-}
-
-/// 두 줄 표시 카드
-Widget BUildTwoLineCard({required String top, required String bottom}) {
-  const base = TextStyle(
-    color: Colors.white,
-    fontSize: 22,
-    height: 1.22,
-    fontWeight: FontWeight.w800,
-  );
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Text(top, maxLines: 1, overflow: TextOverflow.ellipsis, style: base),
-      const SizedBox(height: 6),
-      Text(bottom, maxLines: 1, overflow: TextOverflow.ellipsis, style: base),
-    ],
-  );
 }

@@ -1,10 +1,13 @@
 // lib/music/appUI/subtitles/ios_user/subtitles_ios.dart
 // iOS 대체 구현: 내부 WebView + 상단 주소창(고정) + 하단 가사 오버레이(두 줄 PageView)
+// 광고 제거 버전 + 박스 크기(가로 75%, 세로 10%)를 FlutterView.physicalSize 기반으로 계산
+// y 위치 = 저장된 y + 박스 높이의 절반(h/2)
 
 import 'dart:io';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../read_music_metadata.dart' as meta;
 import '../lyrics_overlay.dart';
@@ -24,7 +27,7 @@ class IOsLyricsOverlay implements LYricsOverlay {
       MaterialPageRoute(
         fullscreenDialog: true,
         builder: (_) => IOSWebViewLyricsScreen(
-          initialUrl: 'about:blank', // 초기 빈 화면
+          initialUrl: 'about:blank',
           lyricsText: normalized,
         ),
       ),
@@ -32,11 +35,9 @@ class IOsLyricsOverlay implements LYricsOverlay {
     return normalized;
   }
 
-  // 개행/공백 정리
   String _NOrmalizeNewlines(String s) =>
       s.replaceAll('\r\n', '\n').replaceAll('\r', '\n').trim();
 
-  // 가사 해석기: 메타 태그 → sidecar(.lrc/.txt)
   Future<String?> REsolveLyrics(String filePath) async {
     try {
       final tags = await meta.readAudioTags(filePath, extractArtwork: false);
@@ -64,7 +65,7 @@ class IOsLyricsOverlay implements LYricsOverlay {
   }
 }
 
-// ───────────────── 화면: WebView + 상단 주소창(고정) + 하단 가사 오버레이 ─────────────────
+// ───────────────── 화면: WebView + 상단 주소창(고정) + 가사 오버레이 ─────────────────
 
 class IOSWebViewLyricsScreen extends StatefulWidget {
   final String initialUrl;
@@ -93,6 +94,14 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
   bool _canFwd = false;
   int _progress = 0;
 
+  // 저장 로드용 상태 (좌표, 폰트)
+  static const _kX = 'overlay_box_x';
+  static const _kY = 'overlay_box_y';
+  static const _kFont = 'overlay_text_font';
+
+  Offset _pos = Offset.zero; // 저장값 없으면 (0,0)
+  double _fontSize = 22;     // 기본 폰트
+
   @override
   void initState() {
     super.initState();
@@ -114,10 +123,12 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
           onNavigationRequest: (req) => NavigationDecision.navigate,
         ),
       )
-      ..loadRequest(Uri.parse(widget.initialUrl)); // 초기 페이지
+      ..loadRequest(Uri.parse(widget.initialUrl));
 
     final normalized = _NOrmalizeNewlines(widget.lyricsText);
     _pages = SPaginateLyrics(normalized);
+
+    LOadPrefs(); // SP 로드
   }
 
   @override
@@ -128,7 +139,20 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
     super.dispose();
   }
 
-  // 주소 입력 → 로드
+  Future<void> LOadPrefs() async {
+    try {
+      final sp = await SharedPreferences.getInstance();
+      final x = sp.getDouble(_kX) ?? 0.0;
+      final y = sp.getDouble(_kY) ?? 0.0;
+      final f = sp.getDouble(_kFont);
+      if (!mounted) return;
+      setState(() {
+        _pos = Offset(x, y);
+        if (f != null) _fontSize = f;
+      });
+    } catch (_) {}
+  }
+
   Future<void> LOadFromAddressBar([String? text]) async {
     final raw = (text ?? _addr.text).trim();
     if (raw.isEmpty) return;
@@ -137,7 +161,6 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
     _addrFocus.unfocus();
   }
 
-  // 현재 URL을 주소창에 반영
   Future<void> UPdateUrlField([String? url]) async {
     String? u = url;
     u ??= await _wc.currentUrl();
@@ -149,7 +172,6 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
     });
   }
 
-  // 뒤/앞으로 가능 여부 갱신
   Future<void> REfreshNavState() async {
     final b = await _wc.canGoBack();
     final f = await _wc.canGoForward();
@@ -160,7 +182,6 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
     });
   }
 
-  // 주소 정규화: 스킴 없으면 https 붙이기
   String _NOrmalizeUrl(String input) {
     final hasScheme =
     RegExp(r'^[a-zA-Z][a-zA-Z0-9+\-.]*://').hasMatch(input);
@@ -168,26 +189,31 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
     return 'https://$input';
   }
 
+  Offset CLampOffset({
+    required Offset pos,
+    required Size areaSize,
+    required Size boxSize,
+  }) {
+    final double maxX =
+    (areaSize.width - boxSize.width).clamp(0.0, double.infinity).toDouble();
+    final double maxY =
+    (areaSize.height - boxSize.height).clamp(0.0, double.infinity).toDouble();
+    final double x = pos.dx.clamp(0.0, maxX).toDouble();
+    final double y = pos.dy.clamp(0.0, maxY).toDouble();
+    return Offset(x, y);
+  }
+
   @override
   Widget build(BuildContext context) {
-    // 화면 크기
-    final size = MediaQuery.of(context).size;
-    final w = size.width * 0.6;
+    // FlutterView 기준: 물리 픽셀(px) → DPR로 나눠 논리 픽셀(dp)
+    final view = WidgetsBinding.instance.platformDispatcher.views.first;
+    final double widthDp  = (view.physicalSize.width  * 0.75) / view.devicePixelRatio;
+    final double heightDp = (view.physicalSize.height * 0.10) / view.devicePixelRatio;
 
-    // 접근성 텍스트 스케일 반영 최소 필요 높이
-    const double kFontSize = 22;
-    const double kLineHeight = 1.22;
-    const double kVPadding = 16; // vertical 8 + 8
-    const double kSpacing = 6;
-    final double tScale =
-        MediaQuery.maybeTextScalerOf(context)?.scale(1) ??
-            MediaQuery.textScaleFactorOf(context);
-    final double minTextBlockHeight =
-        (kFontSize * kLineHeight * tScale) * 2 + kSpacing;
-    final double minCardHeight = minTextBlockHeight + kVPadding;
-    final double h = math.max(size.height * 0.12, minCardHeight);
+    // 카드 크기 고정: 정확히 75% × 10%
+    final double w = widthDp;
+    final double h = heightDp;
 
-    // 브라우저식 뒤로가기: 히스토리 있으면 goBack, 없으면 pop
     return WillPopScope(
       onWillPop: () async {
         if (await _wc.canGoBack()) {
@@ -199,11 +225,10 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
       },
       child: Scaffold(
         backgroundColor: Colors.black,
-        body: SafeArea( // 노치/상태바 침범 방지
-          // ───────── Stack 대신 Column으로 상단 바를 “영역 분리” ─────────
+        body: SafeArea(
           child: Column(
             children: [
-              // 상단 주소창: 좌우 8, 위 8 마진으로 고정 배치
+              // 상단 주소창
               Padding(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
                 child: _BuildAddressBar(
@@ -217,7 +242,7 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
                       await _wc.goBack();
                       await REfreshNavState();
                     } else {
-                      if (context.mounted) Navigator.of(context).maybePop();
+                      Navigator.of(context).maybePop();
                     }
                   },
                   onForward: () async {
@@ -232,56 +257,68 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
                 ),
               ),
 
-              // WebView는 남은 영역을 모두 차지
+              // WebView + 오버레이
               Expanded(
-                // 하단 가사 카드는 WebView 위에만 겹치도록 Stack
-                child: Stack(
-                  children: [
-                    // 1) WebView (상단 바와 “분리된” 영역)
-                    const Positioned.fill(
-                      child: _WebViewFiller(),
-                    ),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final areaSize = constraints.biggest;
+                    final cardSize = Size(w, h);
 
-                    // 2) 하단 가사 오버레이 카드
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 24,
-                      child: Center(
-                        child: Card(
-                          color: const Color.fromRGBO(0, 0, 0, .55),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          clipBehavior: Clip.antiAlias,
-                          child: SizedBox(
-                            width: w,
-                            height: h,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 8),
-                              child: _pages.isEmpty
-                                  ? const _EmptyContent()
-                                  : PageView.builder(
-                                controller: _pc,
-                                physics:
-                                const BouncingScrollPhysics(),
-                                itemCount: _pages.length,
-                                itemBuilder: (_, i) {
-                                  final p = _pages[i];
-                                  // 극단적 환경 대비: 자동 축소
-                                  return FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: BUildTwoLineCard(
-                                        top: p.top, bottom: p.bottom),
-                                  );
-                                },
+                    // ★ 변경 핵심: y에 박스 높이의 절반(h/2)을 더해서 사용
+                    final savedWithHalfH = Offset(_pos.dx, _pos.dy/* + h */);
+                    final posToUse = CLampOffset(
+                      pos: savedWithHalfH,
+                      areaSize: areaSize,
+                      boxSize: cardSize,
+                    );
+
+                    return Stack(
+                      children: [
+                        // 1) WebView
+                        const Positioned.fill(child: _WebViewFiller()),
+
+                        // 2) 가사 오버레이 카드 (저장된 y + h/2 적용)
+                        Positioned(
+                          left: posToUse.dx,
+                          top: posToUse.dy,
+                          width: w,
+                          height: h,
+                          child: Center(
+                            child: Card(
+                              color: const Color.fromRGBO(0, 0, 0, .55),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              clipBehavior: Clip.antiAlias,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 8,
+                                ),
+                                child: _pages.isEmpty
+                                    ? const _EmptyContent()
+                                    : PageView.builder(
+                                  controller: _pc,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: _pages.length,
+                                  itemBuilder: (_, i) {
+                                    final p = _pages[i];
+                                    return FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: BUildTwoLineCard(
+                                        top: p.top,
+                                        bottom: p.bottom,
+                                        fontSize: _fontSize,
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ],
+                      ],
+                    );
+                  },
                 ),
               ),
             ],
@@ -292,16 +329,17 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
   }
 }
 
-// WebView를 Expanded/Stack 안에서 깔끔히 채우는 래퍼
+// WebView를 Expanded/Stack 안에서 채우는 래퍼
 class _WebViewFiller extends StatelessWidget {
   const _WebViewFiller();
 
   @override
   Widget build(BuildContext context) {
-    // 상위 State의 컨트롤러에 접근하려면 Inherited/Callback을 쓰지만,
-    // 여기서는 간단히 Builder로 다시 얻는다.
-    final state = context.findAncestorStateOfType<_IOSWebViewLyricsScreenState>();
-    return state == null ? const SizedBox.shrink() : WebViewWidget(controller: state._wc);
+    final state =
+    context.findAncestorStateOfType<_IOSWebViewLyricsScreenState>();
+    return state == null
+        ? const SizedBox.shrink()
+        : WebViewWidget(controller: state._wc);
   }
 }
 
@@ -334,7 +372,7 @@ class _BuildAddressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 6, // 살짝 떠 보이게
+      elevation: 6,
       color: Colors.transparent,
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -346,7 +384,6 @@ class _BuildAddressBar extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // 버튼들 + 주소 입력
               Row(
                 children: [
                   IconButton(
@@ -372,11 +409,9 @@ class _BuildAddressBar extends StatelessWidget {
                   const SizedBox(width: 6),
                   Expanded(
                     child: Container(
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
-                        color:
-                        const Color.fromRGBO(255, 255, 255, .12),
+                        color: const Color.fromRGBO(255, 255, 255, .12),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: TextField(
@@ -391,8 +426,7 @@ class _BuildAddressBar extends StatelessWidget {
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: '주소 입력 또는 붙여넣기',
-                          hintStyle:
-                          TextStyle(color: Colors.white54),
+                          hintStyle: TextStyle(color: Colors.white54),
                         ),
                         onSubmitted: onGo,
                       ),
@@ -407,14 +441,11 @@ class _BuildAddressBar extends StatelessWidget {
                   ),
                 ],
               ),
-
-              // 진행 표시(선택)
               if (progress > 0 && progress < 100)
                 Padding(
-                  padding:
-                  const EdgeInsets.only(top: 6, left: 4, right: 4),
+                  padding: const EdgeInsets.only(top: 6, left: 4, right: 4),
                   child: LinearProgressIndicator(
-                    value: progress / 1.0 / 100.0,
+                    value: progress / 100.0,
                     color: Colors.white,
                     backgroundColor: Colors.white12,
                     minHeight: 2,
@@ -462,15 +493,21 @@ List<LIstPage> SPaginateLyrics(String s) {
   final out = <LIstPage>[];
   for (int i = 0; i < lines.length; i += 2) {
     out.add(LIstPage(
-        top: lines[i], bottom: i + 1 < lines.length ? lines[i + 1] : ''));
+      top: lines[i],
+      bottom: i + 1 < lines.length ? lines[i + 1] : '',
+    ));
   }
   return out;
 }
 
-Widget BUildTwoLineCard({required String top, required String bottom}) {
-  const base = TextStyle(
+Widget BUildTwoLineCard({
+  required String top,
+  required String bottom,
+  double fontSize = 22,
+}) {
+  final base = TextStyle(
     color: Colors.white,
-    fontSize: 22,
+    fontSize: fontSize,
     height: 1.22,
     fontWeight: FontWeight.w800,
   );

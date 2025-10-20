@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 
+// ▼ 추가
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import '../read_music_metadata.dart';
 import '../write_music_metadata.dart';
 
@@ -46,6 +49,11 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
   String? _lastError;
   bool _dirty = false;
 
+  // ▼ Interstitial 상태
+  InterstitialAd? _interstitialAd;
+  bool _interstitialReady = false;
+  bool _interstitialLoading = false;
+
   static const Map<String, String> _displayToKey = {
     'Title': 'title',
     'Artist': 'artist',
@@ -66,6 +74,9 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
     super.initState();
     _lyricsCtl = TextEditingController();
     _load();
+
+    // ▼ 전면 광고 사전 로드
+    _loadInterstitial(); // AdMob 플러그인 표준 로딩 방식. :contentReference[oaicite:2]{index=2}
   }
 
   @override
@@ -78,7 +89,92 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
     for (final f in _focusNodes.values) {
       f.dispose();
     }
+    _interstitialAd?.dispose();
+    _interstitialAd = null;
     super.dispose();
+  }
+
+  /// ▼ Interstitial 로드
+  void _loadInterstitial() {
+    if (_interstitialLoading || _interstitialReady) return;
+    _interstitialLoading = true;
+
+    final adUnitId = _getInterstitialTestUnitId(); // 개발 단계: 테스트 단위 ID. 배포 시 교체. :contentReference[oaicite:3]{index=3}
+    if (adUnitId.isEmpty) {
+      _interstitialLoading = false;
+      return;
+    }
+
+    InterstitialAd.load(
+      adUnitId: adUnitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          _interstitialAd = ad;
+          _interstitialReady = true;
+          _interstitialLoading = false;
+
+          // 풀스크린 콜백: 닫히면 저장 실행 후 다음 광고 프리로드
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              _interstitialAd = null;
+              _interstitialReady = false;
+              _interstitialLoading = false;
+              _save();            // 광고 닫힘 → 저장 실행
+              _loadInterstitial(); // 다음번 대비
+            },
+            onAdFailedToShowFullScreenContent: (ad, error) {
+              ad.dispose();
+              _interstitialAd = null;
+              _interstitialReady = false;
+              _interstitialLoading = false;
+              _save();            // 실패 → 바로 저장
+              _loadInterstitial();
+            },
+          );
+          setState(() {});
+        },
+        onAdFailedToLoad: (error) {
+          _interstitialAd = null;
+          _interstitialReady = false;
+          _interstitialLoading = false;
+          // 로드 실패는 조용히 무시. 다음 클릭에 다시 로드 시도 가능.
+          // 참고: 로드/표시 패턴은 공식 가이드를 따름. :contentReference[oaicite:4]{index=4}
+        },
+      ),
+    );
+  }
+
+  /// ▼ 저장 아이콘 클릭 시: 광고 우선 노출, 닫히면 저장. 준비 안 됐으면 즉시 저장.
+  void _onSavePressed() {
+    if (_saving) return;
+    if (_interstitialReady && _interstitialAd != null) {
+      try {
+        _interstitialAd!.show(); // show() 직후 콜백에서 저장을 이어감. :contentReference[oaicite:5]{index=5}
+      } catch (_) {
+        // 예외 시 폴백
+        _interstitialAd?.dispose();
+        _interstitialAd = null;
+        _interstitialReady = false;
+        _save();
+        _loadInterstitial();
+      }
+    } else {
+      _save();            // 광고 미준비 → 즉시 저장
+      _loadInterstitial(); // 다음번 대비
+    }
+  }
+
+  /// 플랫폼별 테스트 Interstitial 단위 ID (개발 전용)
+  String _getInterstitialTestUnitId() {
+    // Google 제공 데모 단위 ID. 실제 배포 전 교체 필수.
+    // Android Interstitial: ca-app-pub-3940256099942544/1033173712
+    // iOS Interstitial    : ca-app-pub-3940256099942544/4411468910
+    // 문서: Enable test ads / iOS/Android. :contentReference[oaicite:6]{index=6}
+    if (Platform.isAndroid) return 'ca-app-pub-3940256099942544/1033173712';
+    if (Platform.isIOS) return 'ca-app-pub-3940256099942544/4411468910';
+    return '';
   }
 
   Future<void> _load() async {
@@ -250,7 +346,8 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
         actions: [
           IconButton(
             tooltip: _dirty ? '다른 이름으로 저장' : '수정 사항 없음',
-            onPressed: (_saving || !_dirty) ? null : _save,
+            // ▼ 기존: _save → 변경: _onSavePressed (광고 → 저장 플로우)
+            onPressed: (_saving || !_dirty) ? null : _onSavePressed,
             icon: _saving
                 ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
                 : const Icon(Icons.save),

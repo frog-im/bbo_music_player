@@ -1,4 +1,6 @@
+// main.dart
 import 'dart:io' show Platform;
+import 'dart:async'; // ← Timer 폴백용
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_overlay_window/flutter_overlay_window.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 // 기존 앱 임포트
+import 'music/admob/ad_orchestrator.dart';
 import 'music/admob/main_admob_top__bottom.dart';
 import 'music/appUI/appUI.dart';
 import 'music/appUI/metadata_ui.dart';
@@ -25,7 +28,7 @@ bool Overlaylock = false;
 @pragma('vm:entry-point')
 void overlayMain() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(AndroidLyricsOverlayApp());
+  runApp(const AndroidLyricsOverlayApp());
 }
 
 Future<void> main() async {
@@ -34,6 +37,9 @@ Future<void> main() async {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   // AdMob 초기화
   await MobileAds.instance.initialize();
+  if (Platform.isAndroid) {
+    await ADOrchestrator.instance.INit();
+  }
   // 웹/앱 구분
   final bool isWeb = kIsWeb;
   runApp(MYapp(isWeb));
@@ -52,12 +58,12 @@ class _MAinAppState extends State<MYapp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // ✅ 핵심 수정: MaterialApp 아래 컨텍스트를 얻기 위해 Builder 한 겹
+      // ✅ 핵심: MaterialApp 아래 컨텍스트를 얻기 위해 Builder 한 겹
       home: Builder(
         builder: (innerCtx) {
           return PopScope<Object?>(
             canPop: false,
-            // Flutter 3.22+ 에서 권장. 낮은 버전은 onPopInvoked 사용
+            // Flutter 3.22+ 권장 API
             onPopInvokedWithResult: (didPop, result) async {
               if (didPop) return;
 
@@ -67,33 +73,27 @@ class _MAinAppState extends State<MYapp> {
                 SystemNavigator.pop();
               }
             },
-
-
-                child:widget.classification
-              // 웹 전용(임시)
-                  ? const Scaffold(backgroundColor: Colors.black)
-              // 앱 전용
-                  : Scaffold(
-                //backgroundColor: const Color.fromRGBO(255, 251, 241, .9),
-                  body: Container (
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/backgroundImage.png'),
-                        fit: BoxFit.cover, // 화면 전체 채우기
-                      ),
-                    ),
-                    child:Column(
-                      children: [
-                        const Banner320x50_top(),
-                        Expanded(child: Center(child: BUttonChoice())),
-                        const Banner320x50_bottom(),
-                      ],
-                    ),
-                  )
-
+            child: widget.classification
+            // 웹 전용(임시)
+                ? const Scaffold(backgroundColor: Colors.black)
+            // 앱 전용
+                : Scaffold(
+              body: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/backgroundimage.png'),
+                    fit: BoxFit.cover, // 화면 전체 채우기
+                  ),
+                ),
+                child: Column(
+                  children:  [
+                    Banner320x50_top(),
+                    Expanded(child: Center(child: BUttonChoice())),
+                    Banner320x50_bottom(),
+                  ],
+                ),
               ),
-
-
+            ),
           );
         },
       ),
@@ -125,14 +125,31 @@ class _ExitDialogWithAdState extends State<_ExitDialogWithAd> {
   BannerAd? _ad;
   bool _loaded = false;
 
+  // ▼ 광고 노출(=impression) 이후에만 닫기 허용
+  bool _canExit = false;
+
+  // ▼ 광고가 영영 안 뜰 경우 대비 폴백(갇힘 방지)
+  Timer? _gateFallbackTimer;
+
   @override
   void initState() {
     super.initState();
     _LOadBanner();
+
+    // 광고가 실패하거나 너무 오래 걸리는 경우 대비 (3초 폴백)
+    _gateFallbackTimer = Timer(const Duration(seconds: 3), () {
+      if (!mounted) return;
+      if (!_canExit) {
+        setState(() => _canExit = true);
+      }
+    });
   }
 
   @override
   void dispose() {
+    _gateFallbackTimer?.cancel();
+    _gateFallbackTimer = null;
+
     _ad?.dispose();
     super.dispose();
   }
@@ -147,10 +164,25 @@ class _ExitDialogWithAdState extends State<_ExitDialogWithAd> {
       adUnitId: adUnitId,
       request: const AdRequest(),
       listener: BannerAdListener(
-        onAdLoaded: (ad) => setState(() => _loaded = true),
+        // 로드 완료 = 메모리에 올라옴. 아직 "보여졌다"는 아님.
+        onAdLoaded: (ad) {
+          if (!mounted) return;
+          setState(() => _loaded = true);
+          // 여기서는 _canExit를 켜지 않음. 실제 화면 노출(impression)까지 대기.
+        },
+        // 실제 노출 콜백. 여기서 종료 버튼 활성화.
+        onAdImpression: (ad) {
+          if (!mounted) return;
+          setState(() => _canExit = true);
+        },
         onAdFailedToLoad: (ad, err) {
           ad.dispose();
-          setState(() => _loaded = false);
+          if (!mounted) return;
+          setState(() {
+            _loaded = false;
+            // 실패 시 즉시 허용(사용자 가둬두지 않기)
+            _canExit = true;
+          });
         },
       ),
     );
@@ -212,9 +244,12 @@ class _ExitDialogWithAdState extends State<_ExitDialogWithAd> {
                   const SizedBox(width: 12),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () => Navigator.of(context).pop(true),
+                      onPressed: _canExit ? () => Navigator.of(context).pop(true) : null,
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                      child: const Text('종료',style: TextStyle(color: Color.fromRGBO(252, 238, 255, 1))),
+                      child: Text(
+                        _canExit ? '종료' : '광고 로딩 중...',
+                        style: const TextStyle(color: Color.fromRGBO(252, 238, 255, 1)),
+                      ),
                     ),
                   ),
                 ],
@@ -232,7 +267,8 @@ class _AdPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SizedBox(
-      width: 300, height: 250,
+      width: 300,
+      height: 250,
       child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
     );
   }

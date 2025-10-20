@@ -1,4 +1,5 @@
 import 'package:bbo_music_player/music/appUI/subtitles/lyrics_overlay.dart';
+import 'package:bbo_music_player/music/appUI/subtitles/subtitle_BoxEditor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,17 +11,17 @@ class BUttonChoice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        //padding: const EdgeInsets.all(20),
-      padding: EdgeInsetsGeometry.only(bottom: 20,top: 20),
+      //padding: const EdgeInsets.all(20),
+        padding: EdgeInsetsGeometry.only(bottom: 20,top: 20),
         // child: Card(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Card(
-              elevation: 10,
+                elevation: 10,
                 clipBehavior: Clip.antiAlias,
                 shape: RoundedRectangleBorder(
-                  
+
                   //borderRadius: BorderRadius.circular(36),
                     borderRadius: BorderRadiusGeometry.only(topLeft: Radius.circular(210))
                 ),
@@ -74,11 +75,11 @@ class BUttonChoice extends StatelessWidget {
                     'assets/buttonImage/button1.png',
                     fit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width /** 0.5*/,
-                    height: MediaQuery.of(context).size.width * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.25,
                   ),
                 )
             ),
-            SizedBox(height: 17),
+            //SizedBox(height: 1.7),
             Card(
                 elevation: 10,
                 clipBehavior: Clip.antiAlias,
@@ -88,11 +89,39 @@ class BUttonChoice extends StatelessWidget {
                 ),
                 child: IconButton(
                   onPressed: () async {
-                    String path = await pickAudioFile(['mp3', 'wav', 'flac', 'aac', 'ogg', 'm4a'],subtitles);
 
-                    if (path.isEmpty) return;
-                    // ✅ 플랫폼 분기는 내부에서 1회만: 캐싱된 구현체가 실행됨
-                    await LYricsOverlay.instance.SHow(filePath: path, context: context);
+                    await showDialog<void>(
+                      context: context,
+                      builder: (_) {
+                        return AlertDialog(
+                          title: const Text('어떤 동작을 실행할까요?'),
+                          content: const Text('둘 중 하나를 선택하면 즉시 실행됩니다.'),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => const Scaffold(
+                                        body: OverlayBoxEditor(),
+                                      ),
+                                    ),
+                                  );
+                                }, child: const Text('사이즈 위치 설정')),
+
+                            FilledButton(
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                  String path = await pickAudioFile(['mp3', 'wav', 'flac', 'aac', 'ogg', 'm4a'],subtitles);
+                                  if (path.isEmpty) return;
+                                  // ✅ 플랫폼 분기는 내부에서 1회만: 캐싱된 구현체가 실행됨
+                                  await LYricsOverlay.instance.SHow(filePath: path, context: context);
+                                }, child: const Text('자막 불러오기')),
+                          ],
+                        );
+                      },
+                    );
+
 
                   },
                   padding: EdgeInsets.zero,
@@ -100,7 +129,7 @@ class BUttonChoice extends StatelessWidget {
                     'assets/buttonImage/button2.png',
                     fit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width /** 0.5*/,
-                    height: MediaQuery.of(context).size.width * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.17,
                   ),
                 )
             ),
