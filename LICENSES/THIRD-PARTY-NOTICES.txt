@@ -1,0 +1,19 @@
+﻿FFmpeg is licensed under LGPL-2.1-or-later as used here.
+A copy of the license is provided in COPYING.LGPL.
+
+ffmpeg-kit (android-min) license and notices are provided in:
+  - ffmpeg-kit-LICENSE
+
+Source code offer is described in:
+  ../WHERE-TO-GET-SOURCE.txt
+
+FFmpeg
+  Copyright (c) FFmpeg developers
+  License: LGPL (see open-source/ffmpeg/LICENSES/COPYING.LGPLv2.1 and COPYING.LGPLv3)
+  Build configuration: see open-source/ffmpeg/ffmpeg-config.txt
+  Source availability: see open-source/ffmpeg/WHERE-TO-GET-SOURCE.txt
+
+ffmpeg-kit
+  Copyright (c) arthenica
+  License: see open-source/ffmpeg/LICENSES/ffmpeg-kit-LICENSE
+

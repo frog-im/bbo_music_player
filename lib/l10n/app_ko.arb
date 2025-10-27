@@ -1,0 +1,176 @@
+{
+  "@@locale": "ko",
+
+  "exitDialogTitle": "앱을 종료하시겠습니까?",
+  "@exitDialogTitle": { "description": "앱 종료 확인 다이얼로그 제목" },
+
+  "adLabel": "광고",
+  "@adLabel": { "description": "광고 컨테이너 상단 라벨" },
+
+  "cancel": "취소",
+  "@cancel": { "description": "다이얼로그 취소 버튼 텍스트" },
+
+  "exit": "종료",
+  "@exit": { "description": "다이얼로그 확정/종료 버튼 텍스트" },
+
+  "adLoading": "광고 로딩 중...",
+  "@adLoading": { "description": "광고 로딩 동안 비활성 버튼 텍스트" },
+
+  "audioMetadataTitle": "오디오 메타데이터 — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "상단 AppBar 제목",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "다른 이름으로 저장",
+  "@tooltipSaveAs": { "description": "저장 아이콘 툴팁(수정사항 있을 때)" },
+
+  "tooltipNoChanges": "수정 사항 없음",
+  "@tooltipNoChanges": { "description": "저장 아이콘 툴팁(수정사항 없을 때)" },
+
+  "tooltipReload": "다시 읽기",
+  "@tooltipReload": { "description": "새로고침 아이콘 툴팁" },
+
+  "bannerCoverSelected": "커버 선택됨: {fileName}",
+  "@bannerCoverSelected": {
+    "description": "커버 선택 후 안내 배너",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "닫기",
+  "@btnClose": { "description": "배너 버튼: 닫기" },
+
+  "saveDone": "저장 완료: {displayName}",
+  "@saveDone": {
+    "description": "저장 성공 배너 본문",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "저장 취소됨",
+  "@saveCancelled": { "description": "저장 취소 배너 본문" },
+
+  "saveFailed": "저장 실패: {error}",
+  "@saveFailed": {
+    "description": "저장 실패 배너 본문",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "(없음)",
+  "@hintNone": { "description": "가사 입력 힌트 텍스트(없을 때)" },
+
+  "metaLabelTitle": "Title",
+  "@metaLabelTitle": { "description": "메타 라벨: 제목" },
+
+  "metaLabelArtist": "Artist",
+  "@metaLabelArtist": { "description": "메타 라벨: 아티스트" },
+
+  "metaLabelAlbum": "Album",
+  "@metaLabelAlbum": { "description": "메타 라벨: 앨범" },
+
+  "metaLabelGenre": "Genre",
+  "@metaLabelGenre": { "description": "메타 라벨: 장르" },
+
+  "metaLabelYear": "Year",
+  "@metaLabelYear": { "description": "메타 라벨: 연도" },
+
+  "metaLabelTrack": "Track",
+  "@metaLabelTrack": { "description": "메타 라벨: 트랙 번호" },
+
+  "metaLabelDisc": "Disc",
+  "@metaLabelDisc": { "description": "메타 라벨: 디스크 번호" },
+
+  "chooseActionTitle": "어떤 동작을 실행할까요?",
+    "@chooseActionTitle": { "description": "오버레이/편집 동작 선택 다이얼로그 제목" },
+
+    "chooseActionBody": "둘 중 하나를 선택하면 즉시 실행됩니다.",
+    "@chooseActionBody": { "description": "오버레이/편집 동작 선택 다이얼로그 본문" },
+
+    "actionEditOverlay": "사이즈 위치 설정",
+    "@actionEditOverlay": { "description": "오버레이 편집 화면으로 이동 버튼" },
+
+    "actionLoadSubtitles": "자막 불러오기",
+    "@actionLoadSubtitles": { "description": "자막 오버레이 실행 버튼" },
+
+    "overlayPermissionNeeded": "오버레이 권한이 필요합니다. 설정에서 허용해주세요.",
+    "@overlayPermissionNeeded": { "description": "SYSTEM_ALERT_WINDOW 권한 필요 스낵바" },
+
+    "overlayWindowDenied": "Overlay Window 권한이 거부되었습니다.",
+    "@overlayWindowDenied": { "description": "FlutterOverlayWindow 권한 거부 스낵바" },
+
+    "overlaySampleShort": "짧은 글일 경우",
+      "@overlaySampleShort": { "description": "자막 상단 샘플 텍스트" },
+
+      "overlaySampleLong": "해당 자막이 긴 글일 경우입니다",
+      "@overlaySampleLong": { "description": "자막 하단 샘플 텍스트" },
+
+      "fontPickerTitle": "폰트 크기 선택",
+      "@fontPickerTitle": { "description": "폰트 크기 선택 모달 제목" },
+
+      "commonCancel": "취소",
+      "@commonCancel": { "description": "공통: 취소" },
+
+      "commonOk": "확인",
+      "@commonOk": { "description": "공통: 확인" },
+
+      "commonSave": "저장",
+      "@commonSave": { "description": "공통: 저장" },
+
+      "commonChange": "변경",
+      "@commonChange": { "description": "공통: 변경" },
+
+      "commonSettings": "설정",
+      "@commonSettings": { "description": "공통: 설정 라벨" },
+
+      "paletteFontLabel": "폰트 {size}",
+      "@paletteFontLabel": {
+        "description": "팔레트: 현재 폰트 크기 표시",
+        "placeholders": { "size": {} }
+      },
+
+      "paletteLockCenterX": "X축 중앙 고정",
+      "@paletteLockCenterX": { "description": "팔레트: X축 중앙 고정 스위치 라벨" },
+
+      "calibFixHint": "오차없애기(오버레이 고정)",
+      "@calibFixHint": { "description": "보정 1단계 설명" },
+
+      "calibMergeHint": "겹치기(Δ 큐에 저장)",
+      "@calibMergeHint": { "description": "보정 2단계 설명" },
+
+      "calibFix": "오차없애기",
+      "@calibFix": { "description": "보정 1단계 버튼" },
+
+      "calibMerge": "겹치기",
+      "@calibMerge": { "description": "보정 2단계 버튼" },
+
+      "saveApplyDelta": "보정값 적용 후 저장",
+      "@saveApplyDelta": { "description": "팔레트: 저장 라벨" },
+
+      "hudCenterSuffix": "(X중앙 고정)",
+      "@hudCenterSuffix": { "description": "HUD: 중앙 고정 표기" },
+
+      "webBack": "뒤로",
+        "@webBack": { "description": "웹 주소창 툴바: 뒤로" },
+
+        "webForward": "앞으로",
+        "@webForward": { "description": "웹 주소창 툴바: 앞으로" },
+
+        "webReload": "새로고침",
+        "@webReload": { "description": "웹 주소창 툴바: 새로고침" },
+
+        "webClose": "닫기",
+        "@webClose": { "description": "웹 주소창 툴바: 닫기" },
+
+        "webAddressHint": "주소 입력 또는 붙여넣기",
+        "@webAddressHint": { "description": "주소 입력 필드 힌트" },
+
+        "emptyLyrics": "가사를 받지 못했습니다.",
+        "@emptyLyrics": { "description": "가사 없음 안내" },
+
+        "overlayHintDoubleTap": "* 두 번 터치하면 오버레이가 종료됩니다.",
+          "@overlayHintDoubleTap": { "description": "오버레이 첫 페이지 상단 안내" },
+
+          "overlayHintSwipe": "* 페이지를 슬라이드해서 넘깁니다.",
+          "@overlayHintSwipe": { "description": "오버레이 첫 페이지 하단 안내" }
+
+
+}

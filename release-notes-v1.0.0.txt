@@ -1,0 +1,5 @@
+﻿Open-source bundle for v1.0.0
+
+---
+This software uses code of FFmpeg licensed under the LGPLv2.1.
+Source code and build info: https://github.com/frog-im/bbo_music_player/releases/tag/v1.0.0

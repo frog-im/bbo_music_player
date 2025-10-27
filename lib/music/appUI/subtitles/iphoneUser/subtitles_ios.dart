@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// 로컬라이제이션 경로: 프로젝트 생성 위치에 맞춤
+import 'package:bbo_music_player/l10n/app_localizations.dart';
+
 import '../../../read_music_metadata.dart' as meta;
 import '../lyrics_overlay.dart';
 
@@ -264,8 +267,8 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
                     final areaSize = constraints.biggest;
                     final cardSize = Size(w, h);
 
-                    // ★ 변경 핵심: y에 박스 높이의 절반(h/2)을 더해서 사용
-                    final savedWithHalfH = Offset(_pos.dx, _pos.dy/* + h */);
+                    // ★ 메모: 필요 시 y에 h/2를 더해 적용
+                    final savedWithHalfH = Offset(_pos.dx, _pos.dy /* + h/2 */);
                     final posToUse = CLampOffset(
                       pos: savedWithHalfH,
                       areaSize: areaSize,
@@ -277,7 +280,7 @@ class _IOSWebViewLyricsScreenState extends State<IOSWebViewLyricsScreen> {
                         // 1) WebView
                         const Positioned.fill(child: _WebViewFiller()),
 
-                        // 2) 가사 오버레이 카드 (저장된 y + h/2 적용)
+                        // 2) 가사 오버레이 카드
                         Positioned(
                           left: posToUse.dx,
                           top: posToUse.dy,
@@ -371,6 +374,8 @@ class _BuildAddressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+
     return Material(
       elevation: 6,
       color: Colors.transparent,
@@ -391,20 +396,20 @@ class _BuildAddressBar extends StatelessWidget {
                     icon: Icon(Icons.arrow_back_ios_new,
                         size: 18,
                         color: canBack ? Colors.white : Colors.white38),
-                    tooltip: '뒤로',
+                    tooltip: t.webBack,
                   ),
                   IconButton(
                     onPressed: onForward,
                     icon: Icon(Icons.arrow_forward_ios,
                         size: 18,
                         color: canFwd ? Colors.white : Colors.white38),
-                    tooltip: '앞으로',
+                    tooltip: t.webForward,
                   ),
                   IconButton(
                     onPressed: onReload,
                     icon: const Icon(Icons.refresh,
                         size: 18, color: Colors.white),
-                    tooltip: '새로고침',
+                    tooltip: t.webReload,
                   ),
                   const SizedBox(width: 6),
                   Expanded(
@@ -423,10 +428,10 @@ class _BuildAddressBar extends StatelessWidget {
                         enableSuggestions: false,
                         style: const TextStyle(color: Colors.white),
                         cursorColor: Colors.white70,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: '주소 입력 또는 붙여넣기',
-                          hintStyle: TextStyle(color: Colors.white54),
+                          hintText: t.webAddressHint,
+                          hintStyle: const TextStyle(color: Colors.white54),
                         ),
                         onSubmitted: onGo,
                       ),
@@ -437,7 +442,7 @@ class _BuildAddressBar extends StatelessWidget {
                     onPressed: onClose,
                     icon: const Icon(Icons.close,
                         size: 18, color: Colors.white70),
-                    tooltip: '닫기',
+                    tooltip: t.webClose,
                   ),
                 ],
               ),
@@ -471,10 +476,11 @@ class _EmptyContent extends StatelessWidget {
   const _EmptyContent();
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      '가사를 받지 못했습니다.',
+    final t = AppLocalizations.of(context)!;
+    return Text(
+      t.emptyLyrics,
       textAlign: TextAlign.center,
-      style: TextStyle(color: Colors.white70, fontSize: 12),
+      style: const TextStyle(color: Colors.white70, fontSize: 12),
     );
   }
 }

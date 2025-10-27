@@ -1,0 +1,12 @@
+﻿We provide the complete corresponding source for FFmpeg and ffmpeg-kit used
+in this app for at least 3 years from the release date.
+
+Download location:
+- https://github.com/frog-im/bbo_music_player/releases/tag/v1.0.0
+
+Includes:
+- FFmpeg source tarball matching the configure line in ffmpeg-config.txt
+- ffmpeg-kit-android (min) source archive matching the package version in BUILD-INFO.txt
+- BUILD-INFO.txt, REPRODUCE.md
+
+Release: https://github.com/frog-im/bbo_music_player/releases/tag/v1.0.0

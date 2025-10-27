@@ -3,14 +3,20 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 
-// ▼ 추가
+// 광고
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+// l10n
+
+
+import 'package:bbo_music_player/l10n/app_localizations.dart';
 
 import '../read_music_metadata.dart';
 import '../write_music_metadata.dart';
 
-// ⬇️ 파일 피커 관련 심볼은 myPick.dart로 이동.
-//    내부에서만 prefix로 사용하고, 외부로 re-export 하지 않음.
+
+
+// 파일 피커 심볼
 import 'package:bbo_music_player/music/appUI/myPick.dart' as pick;
 
 class NoGlowScrollBehavior extends ScrollBehavior {
@@ -49,21 +55,21 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
   String? _lastError;
   bool _dirty = false;
 
-  // ▼ Interstitial 상태
+  // Interstitial 상태
   InterstitialAd? _interstitialAd;
   bool _interstitialReady = false;
   bool _interstitialLoading = false;
 
-  static const Map<String, String> _displayToKey = {
-    'Title': 'title',
-    'Artist': 'artist',
-    'Album': 'album',
-    'Genre': 'genre',
-    'Year': 'year',
-    'Track': 'track',
-    'Disc': 'disc',
-  };
-  List<String> get _orderedKeys => _displayToKey.values.toList(growable: false);
+  // 메타 키 순서
+  static const List<String> _orderedKeys = <String>[
+    'title',
+    'artist',
+    'album',
+    'genre',
+    'year',
+    'track',
+    'disc',
+  ];
 
   TextEditingController _ctrlFor(String key) =>
       _fieldCtrls.putIfAbsent(key, () => TextEditingController());
@@ -75,8 +81,8 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
     _lyricsCtl = TextEditingController();
     _load();
 
-    // ▼ 전면 광고 사전 로드
-    _loadInterstitial(); // AdMob 플러그인 표준 로딩 방식. :contentReference[oaicite:2]{index=2}
+    // 전면 광고 사전 로드
+    _loadInterstitial();
   }
 
   @override
@@ -94,12 +100,12 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
     super.dispose();
   }
 
-  /// ▼ Interstitial 로드
+  /// Interstitial 로드
   void _loadInterstitial() {
     if (_interstitialLoading || _interstitialReady) return;
     _interstitialLoading = true;
 
-    final adUnitId = _getInterstitialTestUnitId(); // 개발 단계: 테스트 단위 ID. 배포 시 교체. :contentReference[oaicite:3]{index=3}
+    final adUnitId = _getInterstitialTestUnitId(); // 개발 단계: 테스트 단위 ID. 배포 시 교체.
     if (adUnitId.isEmpty) {
       _interstitialLoading = false;
       return;
@@ -140,20 +146,18 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
           _interstitialReady = false;
           _interstitialLoading = false;
           // 로드 실패는 조용히 무시. 다음 클릭에 다시 로드 시도 가능.
-          // 참고: 로드/표시 패턴은 공식 가이드를 따름. :contentReference[oaicite:4]{index=4}
         },
       ),
     );
   }
 
-  /// ▼ 저장 아이콘 클릭 시: 광고 우선 노출, 닫히면 저장. 준비 안 됐으면 즉시 저장.
+  /// 저장 아이콘 클릭 시: 광고 우선 노출, 닫히면 저장. 준비 안 됐으면 즉시 저장.
   void _onSavePressed() {
     if (_saving) return;
     if (_interstitialReady && _interstitialAd != null) {
       try {
-        _interstitialAd!.show(); // show() 직후 콜백에서 저장을 이어감. :contentReference[oaicite:5]{index=5}
+        _interstitialAd!.show(); // show() 직후 콜백에서 저장을 이어감.
       } catch (_) {
-        // 예외 시 폴백
         _interstitialAd?.dispose();
         _interstitialAd = null;
         _interstitialReady = false;
@@ -169,9 +173,8 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
   /// 플랫폼별 테스트 Interstitial 단위 ID (개발 전용)
   String _getInterstitialTestUnitId() {
     // Google 제공 데모 단위 ID. 실제 배포 전 교체 필수.
-    // Android Interstitial: ca-app-pub-3940256099942544/1033173712
-    // iOS Interstitial    : ca-app-pub-3940256099942544/4411468910
-    // 문서: Enable test ads / iOS/Android. :contentReference[oaicite:6]{index=6}
+    // Android: ca-app-pub-3940256099942544/1033173712
+    // iOS    : ca-app-pub-3940256099942544/4411468910
     if (Platform.isAndroid) return 'ca-app-pub-3940256099942544/1033173712';
     if (Platform.isIOS) return 'ca-app-pub-3940256099942544/4411468910';
     return '';
@@ -187,8 +190,8 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
       await Future.delayed(const Duration(milliseconds: 80));
       if (!mounted) return;
 
-      for (final e in _displayToKey.entries) {
-        _ctrlFor(e.value).text = tags[e.value] ?? '';
+      for (final key in _orderedKeys) {
+        _ctrlFor(key).text = tags[key] ?? '';
       }
       _lyricsCtl.text = tags['lyrics'] ?? '';
 
@@ -217,23 +220,22 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
   }
 
   Future<void> _onTapPickCover() async {
-    // 이미지 확장자만 허용
-    final path = await pick.PickImageFile(
-      ['jpg','jpeg','png','webp']
-    );
-    //final path = await pick.PickAudioFile(['jpg', 'jpeg', 'png', 'webp'], pick.write);
+    final path = await pick.PickImageFile(['jpg', 'jpeg', 'png', 'webp']);
     if (path.isEmpty || path == 'a') return;
+
     setState(() {
       _artworkPath = path;
       _dirty = true;
     });
+
+    final t = AppLocalizations.of(context)!;
     _showBanner(
       MaterialBanner(
-        content: Text('커버 선택됨: ${p.basename(path)}'),
+        content: Text(t.bannerCoverSelected(p.basename(path))),
         actions: [
           TextButton(
             onPressed: () => ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
-            child: const Text('닫기'),
+            child: Text(t.btnClose),
           ),
         ],
         elevation: 2,
@@ -254,8 +256,8 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
 
     // snapshot
     final updated = Map<String, String>.from(_tags!);
-    for (final e in _displayToKey.entries) {
-      updated[e.value] = _ctrlFor(e.value).text;
+    for (final key in _orderedKeys) {
+      updated[key] = _ctrlFor(key).text;
     }
     updated['lyrics'] = _lyricsCtl.text;
 
@@ -263,6 +265,8 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
       _saving = true;
       _lastError = null;
     });
+
+    final t = AppLocalizations.of(context)!;
 
     try {
       final result = await saveWithUserPicker(
@@ -281,11 +285,11 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
 
       _showBanner(
         MaterialBanner(
-          content: Text('저장 완료: ${result.displayName}'),
+          content: Text(t.saveDone(result.displayName)),
           actions: [
             TextButton(
               onPressed: () => ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
-              child: const Text('닫기'),
+              child: Text(t.btnClose),
             ),
           ],
           elevation: 2,
@@ -297,11 +301,11 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
       setState(() => _saving = false);
       _showBanner(
         MaterialBanner(
-          content: const Text('저장 취소됨'),
+          content: Text(t.saveCancelled),
           actions: [
             TextButton(
               onPressed: () => ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
-              child: const Text('닫기'),
+              child: Text(t.btnClose),
             ),
           ],
           elevation: 2,
@@ -317,11 +321,11 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
       final onErr = Theme.of(context).colorScheme.onErrorContainer;
       _showBanner(
         MaterialBanner(
-          content: Text('저장 실패: $e', style: TextStyle(color: onErr)),
+          content: Text(t.saveFailed('$e'), style: TextStyle(color: onErr)),
           actions: [
             TextButton(
               onPressed: () => ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
-              child: const Text('닫기'),
+              child: Text(t.btnClose),
             ),
           ],
           elevation: 2,
@@ -341,22 +345,25 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     final fileName = p.basename(widget.filePath);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('오디오 메타데이터 — $fileName', overflow: TextOverflow.ellipsis),
+        title: Text(
+          t.audioMetadataTitle(fileName),
+          overflow: TextOverflow.ellipsis,
+        ),
         actions: [
           IconButton(
-            tooltip: _dirty ? '다른 이름으로 저장' : '수정 사항 없음',
-            // ▼ 기존: _save → 변경: _onSavePressed (광고 → 저장 플로우)
+            tooltip: _dirty ? t.tooltipSaveAs : t.tooltipNoChanges,
             onPressed: (_saving || !_dirty) ? null : _onSavePressed,
             icon: _saving
                 ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
                 : const Icon(Icons.save),
           ),
           IconButton(
-            tooltip: '다시 읽기',
+            tooltip: t.tooltipReload,
             onPressed: _loading ? null : _load,
             icon: const Icon(Icons.refresh),
           ),
@@ -431,10 +438,10 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
                                   controller: _lyricsCtl,
                                   scrollController: _lyricsScrollCtl,
                                   scrollPhysics: const ClampingScrollPhysics(),
-                                  decoration: const InputDecoration(
-                                    hintText: '(없음)',
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    hintText: t.hintNone,
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                    border: const OutlineInputBorder(),
                                   ),
                                   keyboardType: TextInputType.multiline,
                                   maxLines: null,
@@ -457,13 +464,27 @@ class _AudioTagViewerState extends State<AudioTagViewer> {
   }
 
   Widget _buildEditableFields() {
+    final t = AppLocalizations.of(context)!;
+
+    // 메타 키 → 라벨 매핑
+    final Map<String, String> labels = {
+      'title': t.metaLabelTitle,
+      'artist': t.metaLabelArtist,
+      'album': t.metaLabelAlbum,
+      'genre': t.metaLabelGenre,
+      'year': t.metaLabelYear,
+      'track': t.metaLabelTrack,
+      'disc': t.metaLabelDisc,
+    };
+
     final children = <Widget>[];
     for (var i = 0; i < _orderedKeys.length; i++) {
       final key = _orderedKeys[i];
-      final label = _displayToKey.entries.firstWhere((e) => e.value == key).key;
+      final label = labels[key] ?? key;
       final next = i < _orderedKeys.length - 1 ? _focusFor(_orderedKeys[i + 1]) : null;
       children.add(_kv(label: label, keyName: key, nextFocus: next));
     }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,

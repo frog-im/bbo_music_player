@@ -1,48 +1,202 @@
-// main.dart
-import 'dart:io' show Platform;
-import 'dart:async'; // ← Timer 폴백용
+
+// lib/main.dart
+import 'dart:async';
+import 'dart:io' show Platform, File;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_overlay_window/flutter_overlay_window.dart';
+
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-// 기존 앱 임포트
+// FFmpegKit (new_min)
+import 'package:ffmpeg_kit_flutter_new_min/ffmpeg_kit.dart';
+import 'package:ffmpeg_kit_flutter_new_min/ffmpeg_kit_config.dart';
+
+// l10n
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/app_localizations.dart';
+
+// 광고/앱 모듈
 import 'music/admob/ad_orchestrator.dart';
 import 'music/admob/main_admob_top__bottom.dart';
 import 'music/appUI/appUI.dart';
-import 'music/appUI/metadata_ui.dart';
 
-// ▶ 오버레이 UI 위젯(안드로이드 전용)을 참조하기 위해 추가
+// 오버레이 전용(안드로이드)
 import 'music/appUI/subtitles/androidUser/androidUI_subtitles.dart';
-import 'music/appUI/subtitles/androidUser/subtitles_android.dart' show AndroidLyricsOverlayApp;
 
-/// ------------------------
-/// 오버레이 전용 엔트리포인트
-/// * 반드시 main.dart 최상위 + @pragma 필요
-/// * 플러그인이 이 심볼을 찾아 별도 엔진으로 구동
-/// ------------------------
+// 프라이버시 헬퍼
+import 'privacy/privacy_gate.dart';
 
 bool Overlaylock = false;
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 오버레이 엔트리포인트(별도 FlutterEngine)
+// 주의: 여기서는 FFmpegKit 직접 호출 금지
+// ─────────────────────────────────────────────────────────────────────────────
 @pragma('vm:entry-point')
 void overlayMain() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const AndroidLyricsOverlayApp());
+  runApp(const AndroidLyricsOverlayApp()); // 이 위젯 안의 MaterialApp에도 l10n 등록 필수
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FFmpeg 빌드 플래그 출력(라이브러리 함수 아님 → 앞 두 글자 대문자 규칙 적용)
+// runApp() 이후, 같은 엔진에서 첫 프레임 렌더 뒤 호출할 것
+// ─────────────────────────────────────────────────────────────────────────────
+Future<void> GEPrintFfmpegBuildFlags() async {
+  if (kIsWeb) return; // 웹 가드
+  if (!(Platform.isAndroid || Platform.isIOS)) return; // 데스크톱 가드
+
+  try {
+    await FFmpegKitConfig.init(); // 플러그인 초기화 보장
+
+    final session = await FFmpegKit.execute('-version'); // 또는 '--version'
+    final out = await session.getOutput() ?? '';
+
+    final line = out.split('\n').firstWhere(
+          (l) => l.toLowerCase().contains('configuration:'),
+      orElse: () => 'no configuration line found',
+    );
+
+    // ignore: avoid_print
+    print('-----------------------------------------------------------------');
+    // ignore: avoid_print
+    print(line);
+    // ignore: avoid_print
+    print('-----------------------------------------------------------------');
+  } catch (e, st) {
+    // ignore: avoid_print
+    print('[FFmpegKit] failed to read build flags: $e');
+    // ignore: avoid_print
+    print(st);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LGPL 체크리스트 1번 자동 판정 헬퍼
+//  - FAIL 조건: --enable-gpl 또는 --enable-nonfree 발견
+//  - 참고 경고: libx264/libx265/libxvid/libvidstab/libfdk_aac 감지 시 표시
+// ─────────────────────────────────────────────────────────────────────────────
+Future<void> GEVerifyLgplItem1() async {
+  if (kIsWeb) return;
+  if (!(Platform.isAndroid || Platform.isIOS)) return;
+
+  try {
+    await FFmpegKitConfig.init();
+
+    final session = await FFmpegKit.execute('-version');
+    final out = await session.getOutput() ?? '';
+    final cfgLine = out
+        .split('\n')
+        .firstWhere((l) => l.toLowerCase().contains('configuration:'),
+        orElse: () => '');
+
+    final hasEnableGpl = cfgLine.contains('--enable-gpl');
+    final hasEnableNonfree = cfgLine.contains('--enable-nonfree');
+
+    // 흔한 위험 외부 라이브러리(문서화용 경고)
+    final suspects = <String>[
+      '--enable-libx264',
+      '--enable-libx265',
+      '--enable-libxvid',
+      '--enable-libvidstab',
+      '--enable-libfdk_aac',
+    ].where((t) => cfgLine.contains(t)).toList();
+
+    final pass = !(hasEnableGpl || hasEnableNonfree);
+
+    // 결과 출력
+    // ignore: avoid_print
+    print('===== FFmpeg LGPL #1 검사 결과 =====');
+    // ignore: avoid_print
+    print('configuration: ${cfgLine.isEmpty ? '(없음)' : cfgLine}');
+    // ignore: avoid_print
+    print(
+        'FAIL 플래그 감지: --enable-gpl=$hasEnableGpl, --enable-nonfree=$hasEnableNonfree');
+    // ignore: avoid_print
+    print('의심 외부 라이브러리: ${suspects.isEmpty ? '없음' : suspects.join(', ')}');
+    // ignore: avoid_print
+    print('최종 판정(1번): ${pass ? 'PASS' : 'FAIL'}');
+    // ignore: avoid_print
+    print('===================================');
+  } catch (e, st) {
+    // ignore: avoid_print
+    print('[LGPL-Check] 예외: $e');
+    // ignore: avoid_print
+    print(st);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LGPL 체크리스트 2번(동적 링크) 자동 판정 헬퍼(안드로이드 전용)
+//  - /proc/self/maps 를 읽어 현재 프로세스에 로드된 .so 중 FFmpeg 관련 항목이
+//    존재하는지 확인한다. 존재하면 공유 라이브러리(동적 링크) 사용이 실증됨.
+// ─────────────────────────────────────────────────────────────────────────────
+Future<void> GEVerifyLgplItem2() async {
+  if (!Platform.isAndroid) return; // /proc/self/maps 확인은 Android에서만 수행
+
+  try {
+    // /proc/self/maps 에는 현재 프로세스에 매핑된 파일(so 포함)이 나열된다.
+    final maps = await File('/proc/self/maps').readAsString();
+
+    final hits = maps
+        .split('\n')
+        .where((l) =>
+    l.contains('.so') &&
+        (l.contains('libav') ||
+            l.contains('ffmpeg') ||
+            l.contains('ffmpeg-kit')))
+        .toList();
+
+    // 결과 출력
+    // ignore: avoid_print
+    print('===== FFmpeg LGPL #2 검사 결과 =====');
+    // ignore: avoid_print
+    print('로드된 공유 라이브러리(발췌):');
+    for (final l in hits.take(20)) {
+      // ignore: avoid_print
+      print(l);
+    }
+    // ignore: avoid_print
+    print('총 매칭: ${hits.length}개');
+    // ignore: avoid_print
+    print('판정(2번): ${hits.isNotEmpty ? 'PASS(공유 라이브러리 로드 확인)' : '확인 필요(런타임 매핑 없음)'}');
+    // ignore: avoid_print
+    print('===================================');
+  } catch (e, st) {
+    // ignore: avoid_print
+    print('[LGPL-Check2] 예외: $e');
+    // ignore: avoid_print
+    print(st);
+  }
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   // 상태바/내비바 숨김
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-  // AdMob 초기화
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
+  // 광고 SDK 초기화
   await MobileAds.instance.initialize();
+
+  // 지역/태그 전역 설정
+  await PRivacy.instance.INit();
+
   if (Platform.isAndroid) {
     await ADOrchestrator.instance.INit();
   }
-  // 웹/앱 구분
+
   final bool isWeb = kIsWeb;
   runApp(MYapp(isWeb));
+
+  // FFmpegKit 호출은 runApp 이후, 같은 엔진에서 첫 프레임 뒤에만
+  WidgetsBinding.instance.addPostFrameCallback((_) async {
+    await GEPrintFfmpegBuildFlags(); // 1번 점검용 출력
+    await GEVerifyLgplItem1(); // 1번 자동 판정
+    await GEVerifyLgplItem2(); // 2번 자동 판정(공유 라이브러리 로드)
+  });
 }
 
 class MYapp extends StatefulWidget {
@@ -54,44 +208,145 @@ class MYapp extends StatefulWidget {
 }
 
 class _MAinAppState extends State<MYapp> {
+  // ─────────────────────────────────────────────────────────────────────────
+  // 오픈소스 안내 다이얼로그: WHERE-TO-GET-SOURCE.txt 를 읽어 표시
+  // ─────────────────────────────────────────────────────────────────────────
+  Future<void> _showOpenSourceDialog(BuildContext context) async {
+    try {
+      final txt = await rootBundle
+          .loadString('open-source/ffmpeg/WHERE-TO-GET-SOURCE.txt');
+
+      if (!mounted) return;
+      showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Guide to providing open source'),
+          content: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 420, maxWidth: 520),
+            child: SingleChildScrollView(
+              child: SelectableText(
+                txt,
+                style: const TextStyle(fontSize: 13),
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(),
+              child: const Text('close'),
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('error'),
+          content: Text('Failed to read file\n$e'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(),
+              child: const Text('ok'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // ✅ 핵심: MaterialApp 아래 컨텍스트를 얻기 위해 Builder 한 겹
+
+      // Flutter 현지화: 각 MaterialApp 마다 등록해야 동작
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ko'),
+        Locale('es'),
+        Locale('fr'),
+        Locale('de'),
+        Locale('it'),
+        Locale('pt', 'BR'),
+        Locale('ja'),
+        Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
+        Locale('hi'),
+        Locale('id'),
+        Locale('tr'),
+        Locale('vi'),
+        Locale('th'),
+      ],
+
       home: Builder(
         builder: (innerCtx) {
           return PopScope<Object?>(
             canPop: false,
-            // Flutter 3.22+ 권장 API
             onPopInvokedWithResult: (didPop, result) async {
               if (didPop) return;
-
-              // ✅ 반드시 MaterialApp 아래 컨텍스트로 showDialog 호출
               final allow = await SHowExitConfirmDialog(innerCtx);
               if (allow && innerCtx.mounted) {
                 SystemNavigator.pop();
               }
             },
             child: widget.classification
-            // 웹 전용(임시)
-                ? const Scaffold(backgroundColor: Colors.black)
-            // 앱 전용
+                ? const Scaffold(backgroundColor: Colors.black) // 웹 임시
                 : Scaffold(
-              body: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/backgroundimage.png'),
-                    fit: BoxFit.cover, // 화면 전체 채우기
+              body: Stack(
+                children: [
+                  // 기존 본문
+                  Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image:
+                        AssetImage('assets/backgroundimage.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Banner320x50_top(),
+                        Expanded(
+                          child: Center(child: BUttonChoice()),
+                        ),
+                        Banner320x50_bottom(),
+                      ],
+                    ),
                   ),
-                ),
-                child: Column(
-                  children:  [
-                    Banner320x50_top(),
-                    Expanded(child: Center(child: BUttonChoice())),
-                    Banner320x50_bottom(),
-                  ],
-                ),
+
+                  // 화면 상단 오른쪽 버튼
+                  SafeArea(
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: ElevatedButton.icon(
+                          onPressed: () =>
+                              _showOpenSourceDialog(innerCtx),
+                          icon: const Icon(Icons.info_outline),
+                          label: const Text('Open Source Guide'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.black87,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           );
@@ -101,11 +356,8 @@ class _MAinAppState extends State<MYapp> {
   }
 }
 
-/// ───────────────────────────── 종료 확인 다이얼로그 ─────────────────────────────
-/// returns: true=닫기(종료), false/null=취소
+/// 종료 확인 다이얼로그
 Future<bool> SHowExitConfirmDialog(BuildContext context) async {
-  // ✅ showDialog는 MaterialLocalizations가 있는 컨텍스트여야 한다
-  //    (MaterialApp 아래). 지금 context는 innerCtx라 안전.
   final res = await showDialog<bool>(
     context: context,
     barrierDismissible: true,
@@ -124,11 +376,7 @@ class _ExitDialogWithAd extends StatefulWidget {
 class _ExitDialogWithAdState extends State<_ExitDialogWithAd> {
   BannerAd? _ad;
   bool _loaded = false;
-
-  // ▼ 광고 노출(=impression) 이후에만 닫기 허용
   bool _canExit = false;
-
-  // ▼ 광고가 영영 안 뜰 경우 대비 폴백(갇힘 방지)
   Timer? _gateFallbackTimer;
 
   @override
@@ -136,12 +384,10 @@ class _ExitDialogWithAdState extends State<_ExitDialogWithAd> {
     super.initState();
     _LOadBanner();
 
-    // 광고가 실패하거나 너무 오래 걸리는 경우 대비 (3초 폴백)
+    // 광고 느리거나 실패 시 출구 봉쇄 방지
     _gateFallbackTimer = Timer(const Duration(seconds: 3), () {
       if (!mounted) return;
-      if (!_canExit) {
-        setState(() => _canExit = true);
-      }
+      if (!_canExit) setState(() => _canExit = true);
     });
   }
 
@@ -149,28 +395,23 @@ class _ExitDialogWithAdState extends State<_ExitDialogWithAd> {
   void dispose() {
     _gateFallbackTimer?.cancel();
     _gateFallbackTimer = null;
-
     _ad?.dispose();
     super.dispose();
   }
 
-  // 중앙 광고 로드: MREC(300x250)
   void _LOadBanner() {
-    final adUnitId = _GetDemoMrecAdUnitId(); // 개발/테스트용. 배포 전 교체 필수.
+    final adUnitId = _GetDemoMrecAdUnitId(); // 테스트용. 배포 전에 교체
     if (adUnitId.isEmpty) return;
 
-    final ad = BannerAd(
+    _ad = BannerAd(
       size: AdSize.mediumRectangle, // 300x250
       adUnitId: adUnitId,
-      request: const AdRequest(),
+      request: PRivacy.instance.ADRequest(),
       listener: BannerAdListener(
-        // 로드 완료 = 메모리에 올라옴. 아직 "보여졌다"는 아님.
         onAdLoaded: (ad) {
           if (!mounted) return;
           setState(() => _loaded = true);
-          // 여기서는 _canExit를 켜지 않음. 실제 화면 노출(impression)까지 대기.
         },
-        // 실제 노출 콜백. 여기서 종료 버튼 활성화.
         onAdImpression: (ad) {
           if (!mounted) return;
           setState(() => _canExit = true);
@@ -180,19 +421,18 @@ class _ExitDialogWithAdState extends State<_ExitDialogWithAd> {
           if (!mounted) return;
           setState(() {
             _loaded = false;
-            // 실패 시 즉시 허용(사용자 가둬두지 않기)
             _canExit = true;
           });
         },
       ),
-    );
-    ad.load();
-    _ad = ad;
+    )..load();
   }
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+
     return Dialog(
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -205,15 +445,17 @@ class _ExitDialogWithAdState extends State<_ExitDialogWithAd> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '앱을 종료하시겠습니까?',
-                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
+                t.exitDialogTitle,
+                style: theme.textTheme.titleMedium
+                    ?.copyWith(fontWeight: FontWeight.w800),
               ),
               const SizedBox(height: 12),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  '광고',
-                  style: theme.textTheme.labelSmall?.copyWith(color: Colors.black54),
+                  t.adLabel,
+                  style: theme.textTheme.labelSmall
+                      ?.copyWith(color: Colors.black54),
                 ),
               ),
               const SizedBox(height: 6),
@@ -238,17 +480,22 @@ class _ExitDialogWithAdState extends State<_ExitDialogWithAd> {
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () => Navigator.of(context).pop(false),
-                      child: const Text('취소'),
+                      child: Text(t.cancel),
                     ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: _canExit ? () => Navigator.of(context).pop(true) : null,
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                      onPressed:
+                      _canExit ? () => Navigator.of(context).pop(true) : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                      ),
                       child: Text(
-                        _canExit ? '종료' : '광고 로딩 중...',
-                        style: const TextStyle(color: Color.fromRGBO(252, 238, 255, 1)),
+                        _canExit ? t.exit : t.adLoading,
+                        style: const TextStyle(
+                          color: Color.fromRGBO(252, 238, 255, 1),
+                        ),
                       ),
                     ),
                   ),
@@ -274,7 +521,6 @@ class _AdPlaceholder extends StatelessWidget {
   }
 }
 
-/// 플랫폼별 데모 단위 아이디(테스트 모드). 실제 배포 전 운영 ID로 교체 + 테스트 단말 등록.
 String _GetDemoMrecAdUnitId() {
   if (Platform.isAndroid) {
     return 'ca-app-pub-3940256099942544/6300978111'; // Android 테스트 배너

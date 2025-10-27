@@ -1,15 +1,13 @@
-// lib/.../androidLyricsOverlayApp.dart (예시 파일명)
+// lib/music/appUI/subtitles/androidUser/androidUI_subtitles.dart
 
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../iphoneUser/subtitles_ios.dart'; // ✅ 추가
-
-// 안내 문구를 첫 페이지로 넣기 위한 상수
-const String _kHintText = '* 두 번 터치하면 오버레이가 종료됩니다.';
-const String _kHintBottomText = "* 페이지를 슬라이드해서 넘깁니다.";
+// l10n
+import 'package:bbo_music_player/l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class AndroidLyricsOverlayApp extends StatefulWidget {
   const AndroidLyricsOverlayApp({super.key});
@@ -20,51 +18,34 @@ class AndroidLyricsOverlayApp extends StatefulWidget {
 
 class _AndroidLyricsOverlayAppState extends State<AndroidLyricsOverlayApp> {
   final PageController _pc = PageController();
-
   List<LIstPage> _pages = const [];
-
-  // ▼ 닫기 가드 (중복 닫기 방지)
   bool _closingGuard = false;
-
-  // ▼ overlay 이벤트 구독 핸들
   StreamSubscription<dynamic>? _ovlSub;
 
-  // ✅ 저장된 폰트 사이즈
   double _fontSize = 22.0;
+  late Future<void> _boot; // ★ 초기 로드 완료 대기용
 
   @override
   void initState() {
     super.initState();
 
-    // 첫 프레임 직후 가드 리셋
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       _closingGuard = false;
     });
 
-    // ✅ 진입 시 폰트 로드
-    LOadFontPrefs();
+    _boot = LOadFontPrefs(); // ★ 최초 1회 로드 Future 저장
 
-    // 오버레이 이벤트로 가사 수신 + "활성화 신호"로 가드 리셋
     _ovlSub = FlutterOverlayWindow.overlayListener.listen((event) {
-      // overlay 재오픈 시점마다 닫기 가드 해제
       _closingGuard = false;
-
-      // ✅ 이벤트 수신 때마다 최신 폰트 재로드(사용자가 방금 저장했을 수 있으니)
-      LOadFontPrefs();
+      LOadFontPrefs(); // ★ 이벤트마다 최신값 재로드
 
       final text = (event ?? '').toString();
       final normalized = _NOrmalizeNewlines(text);
       final lyricPages = SPaginateLyrics(normalized);
 
-      // 첫 페이지에 안내 문구 삽입
-      final combined = <LIstPage>[
-        const LIstPage(top: _kHintText, bottom: _kHintBottomText),
-        ...lyricPages,
-      ];
-
       if (!mounted) return;
-      setState(() => _pages = combined);
+      setState(() => _pages = lyricPages);
       if (_pc.hasClients) _pc.jumpToPage(0);
     });
   }
@@ -77,14 +58,14 @@ class _AndroidLyricsOverlayAppState extends State<AndroidLyricsOverlayApp> {
     super.dispose();
   }
 
-  // ✅ 저장된 폰트 사이즈 로드
+  // 저장된 폰트 사이즈 로드(캐시 무효화 포함)
   Future<void> LOadFontPrefs() async {
     try {
       final sp = await SharedPreferences.getInstance();
+      await sp.reload(); // ★ 중요: 최신 디스크 값으로 재로딩
       final f = sp.getDouble('overlay_text_font'); // 편집기와 동일 키
       if (!mounted) return;
       setState(() {
-        // 합리적인 가드 범위
         final v = (f ?? 22.0);
         _fontSize = v.clamp(8.0, 96.0).toDouble();
       });
@@ -93,20 +74,18 @@ class _AndroidLyricsOverlayAppState extends State<AndroidLyricsOverlayApp> {
     }
   }
 
-  // ▼ 더블 탭 → 그냥 닫기
+  // 더블 탭 → 닫기
   void _onDoubleTapClose() {
     _closeOverlaySafely();
   }
 
-  // ▼ 중복 호출/레이스 컨디션 방지용 안전 닫기(+실패 시 가드 복구)
+  // 안전 닫기
   Future<void> _closeOverlaySafely() async {
     if (_closingGuard) return;
     _closingGuard = true;
     try {
-      final result = await FlutterOverlayWindow.closeOverlay();
-      if (result != true) {
-        _closingGuard = false;
-      }
+      final ok = await FlutterOverlayWindow.closeOverlay();
+      if (ok != true) _closingGuard = false;
     } catch (_) {
       _closingGuard = false;
     }
@@ -116,38 +95,69 @@ class _AndroidLyricsOverlayAppState extends State<AndroidLyricsOverlayApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
+      // 필요 시 테스트로 영어 고정
+      // locale: const Locale('en'),
+
+      // 오버레이 전용 트리에도 지역화 등록 필요
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ko'),
+      ],
+
       home: Builder(
-        builder: (ctx) {
-          return Scaffold(
-            backgroundColor: Colors.transparent,
-            body: Center(
-              child: GestureDetector(
-                onDoubleTap: _onDoubleTapClose,
-                child: Card(
-                  color: const Color.fromRGBO(0, 0, 0, .5),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  clipBehavior: Clip.antiAlias,
-                 // child: Padding(
-                    //padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: _pages.isEmpty
-                        ? const _EmptyContent()
-                        : PageView.builder(
-                      controller: _pc,
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: _pages.length,
-                      itemBuilder: (context, index) {
-                        final p = _pages[index];
-                        return BUildTwoLineCard(
-                          top: p.top,
-                          bottom: p.bottom,
-                          fontSize: _fontSize, // ✅ 적용
-                        );
-                      },
+        builder: (innerCtx) {
+          final t = AppLocalizations.of(innerCtx)!;
+
+          return FutureBuilder<void>(
+            future: _boot, // ★ 초기 로드가 끝난 뒤 그리기
+            builder: (_, __) {
+              final pages = <LIstPage>[
+                LIstPage(top: t.overlayHintDoubleTap, bottom: t.overlayHintSwipe),
+                ..._pages,
+              ];
+
+              return Scaffold(
+                backgroundColor: Colors.transparent,
+                body: Center(
+                  child: GestureDetector(
+                    onDoubleTap: _onDoubleTapClose,
+                    child: Card(
+                      color: const Color.fromRGBO(0, 0, 0, .5),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      clipBehavior: Clip.antiAlias,
+                      child: pages.isEmpty
+                          ? Center(
+                        child: Text(
+                          t.emptyLyrics,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: Colors.white70, fontSize: 12),
+                        ),
+                      )
+                          : PageView.builder(
+                        controller: _pc,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: pages.length,
+                        itemBuilder: (ctx, index) {
+                          final p = pages[index];
+                          return BUildTwoLineCard(
+                            top: p.top,
+                            bottom: p.bottom,
+                            fontSize: _fontSize, // ★ 저장값 사용
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
-              ),
-           // ),
+              );
+            },
           );
         },
       ),
@@ -160,22 +170,6 @@ class LIstPage {
   final String top;
   final String bottom;
   const LIstPage({required this.top, required this.bottom});
-}
-
-/// 빈 컨텐츠 안내
-class _EmptyContent extends StatelessWidget {
-  const _EmptyContent();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        '가사를 받지 못했습니다.',
-        textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.white70, fontSize: 12),
-      ),
-    );
-  }
 }
 
 /// 개행/공백 정리
@@ -195,4 +189,30 @@ List<LIstPage> SPaginateLyrics(String s) {
     pages.add(LIstPage(top: top, bottom: bottom));
   }
   return pages;
+}
+
+/// 두 줄 카드
+Widget BUildTwoLineCard({
+  required String top,
+  required String bottom,
+  double fontSize = 14, // 기본값도 22로 통일
+}) {
+  final base = TextStyle(
+    color: Colors.white,
+    fontSize: fontSize,
+    height: 1.22,
+    fontWeight: FontWeight.w800,
+  );
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(top, maxLines: 1, overflow: TextOverflow.ellipsis, style: base),
+        const SizedBox(height: 6),
+        Text(bottom, maxLines: 1, overflow: TextOverflow.ellipsis, style: base),
+      ],
+    ),
+  );
 }

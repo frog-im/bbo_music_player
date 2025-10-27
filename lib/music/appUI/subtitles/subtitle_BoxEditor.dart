@@ -1,22 +1,17 @@
-// lib/music/appUI/subtitles/subtitle_BoxEditor.dart
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
 
-/// 자막 편집기:
-/// - 드래그로 위치 지정
-/// - 폰트 크기 모달 피커
-/// - 좌표/폰트 저장/복원
-/// - 2단계 오차 보정(저장 시에만 Δ 적용)
-/// - 상단 팔레트: 우상단 버튼을 누르면 아래로 작게 펼쳐짐
+// l10n: 현재 프로젝트 생성 위치에 맞춘 경로
+import 'package:bbo_music_player/l10n/app_localizations.dart';
+
 class OverlayBoxEditor extends StatefulWidget {
   const OverlayBoxEditor({
     super.key,
-    this.text1 = '짧은 글일 경우',
-    this.text2 = '해당 자막이 긴 글일 경우에에ㅔㅔㅔ요',
+    this.text1 = '',
+    this.text2 = '',
     this.minFont = 14,
     this.maxFont = 36,
     this.initFont = 14,
@@ -40,7 +35,7 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
   static const _kFont = 'overlay_text_font';
 
   // 상태
-  Offset _pos = const Offset(24, 120); // 에디터상 논리 좌표
+  Offset _pos = const Offset(24, 120);
   double _fontSize = 22;
   bool _lockCenter = false;
 
@@ -49,8 +44,8 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
 
   // 오차 보정 상태
   bool _calibrating = false;
-  Offset? _calibStartBoxPos; // 1회차 버튼 시점 렌더 좌표
-  Offset? _pendingDelta;     // 저장 시에만 적용할 보정값(1회차 − 2회차)
+  Offset? _calibStartBoxPos;
+  Offset? _pendingDelta;
   Offset _lastRenderedPos = const Offset(24, 120);
 
   // 팔레트 상태
@@ -129,25 +124,23 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
 
   // ───────── 오차 버튼(2단계) ─────────
 
-  /// 1회차(오차없애기): 현재 렌더 좌표로 오버레이 생성(고정)
   Future<void> SHowOverlayForCalib() async {
     setState(() {
       _calibrating = true;
       _calibStartBoxPos = _lastRenderedPos;
-      _pendingDelta = null; // 이전 보정값 초기화
+      _pendingDelta = null;
     });
     try {
-      // 물리 픽셀 기준 75% × 10% 사이즈
       final view = WidgetsBinding.instance.platformDispatcher.views.first;
-      final widthPx  = (view.physicalSize.width  * 0.75).round();
+      final widthPx = (view.physicalSize.width * 0.75).round();
       final heightPx = (view.physicalSize.height * 0.10).round();
 
       await FlutterOverlayWindow.showOverlay(
         alignment: OverlayAlignment.topLeft,
-        width:  widthPx,
+        width: widthPx,
         height: heightPx,
         startPosition: OverlayPosition(_lastRenderedPos.dx, _lastRenderedPos.dy),
-        enableDrag: false, // 고정
+        enableDrag: false,
         positionGravity: PositionGravity.none,
       );
     } catch (_) {
@@ -155,7 +148,6 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
     }
   }
 
-  /// 2회차(겹치기): Δ = (1회차 렌더 − 현재 렌더) 저장 시만 적용. 오버레이 자동 종료.
   Future<void> FInishCalibAndQueueDelta() async {
     try {
       if (_calibStartBoxPos == null) {
@@ -164,7 +156,7 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
       }
       final delta = _calibStartBoxPos! - _lastRenderedPos;
       setState(() {
-        _pendingDelta = delta;  // UI 이동 없음, 저장 시에만 반영
+        _pendingDelta = delta;
         _calibrating = false;
         _calibStartBoxPos = null;
       });
@@ -176,6 +168,8 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
   // ───────── 폰트 선택(모달) ─────────
 
   Future<void> SHoWFontPicker(BuildContext context) async {
+    final t = AppLocalizations.of(context)!;
+
     final min = widget.minFont.floor();
     final max = widget.maxFont.floor();
     final values = [for (int v = min; v <= max; v++) v.toDouble()];
@@ -194,7 +188,7 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
             child: Column(
               children: [
                 const SizedBox(height: 12),
-                const Text('폰트 크기 선택', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                Text(t.fontPickerTitle, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 8),
                 Expanded(
                   child: CupertinoPicker(
@@ -212,14 +206,14 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
                       Expanded(
                         child: OutlinedButton(
                           onPressed: () => Navigator.of(ctx).pop(null),
-                          child: const Text('취소'),
+                          child: Text(t.commonCancel),
                         ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: FilledButton(
                           onPressed: () => Navigator.of(ctx).pop(selected),
-                          child: const Text('확인'),
+                          child: Text(t.commonOk),
                         ),
                       ),
                     ],
@@ -241,26 +235,27 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
 
   @override
   Widget build(BuildContext context) {
-    // 편집 영역: 좌표계 0,0을 화면 맨 위에 맞추기 위해 상단에 별도 SafeArea 패딩 주지 않음
-    final palette = _BUildPalette(); // 위에 겹쳐 띄울 작은 팔레트
+    final t = AppLocalizations.of(context)!;
+
+    final palette = _BUildPalette(t); // 위에 겹쳐 띄울 작은 팔레트
 
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.02),
       body: Stack(
         children: [
           // 편집 영역(전체)
-          Positioned.fill(child: _BUildEditor()),
+          Positioned.fill(child: _BUildEditor(t)),
 
           // 우상단 "팔레트" 토글 버튼
           Positioned(
             top: 8,
             right: 8,
-            child: _BUildPaletteToggleButton(),
+            child: _BUildPaletteToggleButton(t),
           ),
 
           // 팔레트(아래로 슬라이드 + 페이드)
           Positioned(
-            top: 48, // 토글 버튼 바로 아래
+            top: 48,
             right: 8,
             child: palette,
           ),
@@ -270,11 +265,11 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
   }
 
   // 팔레트 토글 버튼(우상단 작은 버튼)
-  Widget _BUildPaletteToggleButton() {
+  Widget _BUildPaletteToggleButton(AppLocalizations t) {
     return FilledButton.tonalIcon(
       onPressed: TOgglePalette,
       icon: Icon(_paletteOpen ? Icons.close_fullscreen : Icons.expand_more),
-      label: const Text('설정'),
+      label: Text(t.commonSettings),
       style: FilledButton.styleFrom(
         visualDensity: VisualDensity.compact,
         minimumSize: const Size(10, 36),
@@ -283,9 +278,7 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
   }
 
   // 작은 팔레트: 아래로 펼쳐지는 카드
-  Widget _BUildPalette() {
-    // AnimatedSlide/AnimatedOpacity 조합으로 부드럽게 열고 닫힘
-    // AnimatedSlide는 child 크기 기준 오프셋 비율로 이동(0, -0.1 등)한다. :contentReference[oaicite:2]{index=2}
+  Widget _BUildPalette(AppLocalizations t) {
     final content = Material(
       elevation: 8,
       borderRadius: BorderRadius.circular(12),
@@ -303,10 +296,10 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
                 children: [
                   const Icon(Icons.format_size, size: 20),
                   const SizedBox(width: 8),
-                  Expanded(child: Text('폰트 ${_fontSize.toStringAsFixed(0)}')),
+                  Expanded(child: Text(t.paletteFontLabel(_fontSize.toStringAsFixed(0)))),
                   FilledButton.tonal(
                     onPressed: () => SHoWFontPicker(context),
-                    child: const Text('변경'),
+                    child: Text(t.commonChange),
                   ),
                 ],
               ),
@@ -317,7 +310,7 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
                 children: [
                   const Icon(Icons.center_focus_strong, size: 20),
                   const SizedBox(width: 8),
-                  const Expanded(child: Text('X축 중앙 고정')),
+                  Expanded(child: Text(t.paletteLockCenterX)),
                   Switch(
                     value: _lockCenter,
                     onChanged: (v) => setState(() => _lockCenter = v),
@@ -331,7 +324,7 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
                 children: [
                   Icon(_calibrating ? Icons.merge_type : Icons.open_in_new, size: 20),
                   const SizedBox(width: 8),
-                  Expanded(child: Text(_calibrating ? '겹치기(Δ 큐에 저장)' : '오차없애기(오버레이 고정)')),
+                  Expanded(child: Text(_calibrating ? t.calibMergeHint : t.calibFixHint)),
                   FilledButton(
                     onPressed: () async {
                       if (_calibrating) {
@@ -340,7 +333,7 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
                         await SHowOverlayForCalib();
                       }
                     },
-                    child: Text(_calibrating ? '겹치기' : '오차없애기'),
+                    child: Text(_calibrating ? t.calibMerge : t.calibFix),
                   ),
                 ],
               ),
@@ -351,15 +344,15 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
                 children: [
                   const Icon(Icons.save, size: 20),
                   const SizedBox(width: 8),
-                  const Expanded(child: Text('보정값 적용 후 저장')),
+                  Expanded(child: Text(t.saveApplyDelta)),
                   FilledButton(
                     onPressed: () async {
                       _requestSaveAndClose = true;
-                      await CLoseOverlayIfActive(); // 안전 종료
+                      await CLoseOverlayIfActive();
                       if (!mounted) return;
                       setState(() {});
                     },
-                    child: const Text('저장'),
+                    child: Text(t.commonSave),
                   ),
                 ],
               ),
@@ -381,16 +374,16 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
           child: content,
         ),
       ),
-    ); // AnimatedOpacity로 페이드도 함께 처리. :contentReference[oaicite:3]{index=3}
+    );
   }
 
   // 편집 영역(전체)
-  Widget _BUildEditor() {
+  Widget _BUildEditor(AppLocalizations t) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final screen = constraints.biggest; // 논리 픽셀
-        final boxW = screen.width * 0.75;   // 폭 75%
-        final boxH = screen.height * 0.10;  // 높이 10%
+        final screen = constraints.biggest;
+        final boxW = screen.width * 0.75;
+        final boxH = screen.height * 0.10;
         final boxSize = Size(boxW, boxH);
 
         // 자유 모드 좌표 경계 보정
@@ -403,16 +396,19 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
         // 현재 프레임 렌더 좌표 캐시
         _lastRenderedPos = posToUse;
 
-        // 저장 트리거 처리: 저장 시점에만 delta 적용
+        // 저장 트리거 처리
         if (_requestSaveAndClose) {
           _requestSaveAndClose = false;
 
           final savePos = posToUse + (_pendingDelta ?? Offset.zero);
           SAvePrefsAt(pos: savePos).then((_) {
-            _pendingDelta = null; // 보정값 소진
+            _pendingDelta = null;
             if (mounted) Navigator.of(context).pop(true);
           });
         }
+
+        final topText = (widget.text1.isEmpty) ? t.overlaySampleShort : widget.text1;
+        final bottomText = (widget.text2.isEmpty) ? t.overlaySampleLong : widget.text2;
 
         return Stack(
           children: [
@@ -449,8 +445,8 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
                   width: boxW,
                   height: boxH,
                   fontSize: _fontSize,
-                  topText: widget.text1,
-                  bottomText: widget.text2,
+                  topText: topText,
+                  bottomText: bottomText,
                 ),
               ),
             ),
@@ -470,7 +466,7 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
                     'x: ${posToUse.dx.toStringAsFixed(0)}  '
                         'y: ${posToUse.dy.toStringAsFixed(0)}  '
                         'font: ${_fontSize.toStringAsFixed(0)}'
-                        '${_lockCenter ? "  (X중앙 고정)" : ""}'
+                        '${_lockCenter ? "  ${t.hudCenterSuffix}" : ""}'
                         '${_pendingDelta != null ? "  Δ(${_pendingDelta!.dx.toStringAsFixed(0)}, ${_pendingDelta!.dy.toStringAsFixed(0)})" : ""}',
                     style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
@@ -484,7 +480,6 @@ class _OverlayBoxEditorState extends State<OverlayBoxEditor>
   }
 }
 
-/// 드래그 박스(두 줄, 각 Text는 maxLines: 1)
 class _DraggableTextBox extends StatelessWidget {
   const _DraggableTextBox({
     required this.width,
@@ -532,7 +527,6 @@ class _DraggableTextBox extends StatelessWidget {
   }
 }
 
-/// 배경 가이드
 class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {

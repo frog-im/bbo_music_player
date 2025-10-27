@@ -1,0 +1,177 @@
+{
+  "@@locale": "en",
+
+  "exitDialogTitle": "Do you want to exit the app?",
+  "@exitDialogTitle": { "description": "Title of the confirm-exit dialog" },
+
+  "adLabel": "Advertisement",
+  "@adLabel": { "description": "Label shown above the ad container" },
+
+  "cancel": "Cancel",
+  "@cancel": { "description": "Cancel button text in dialogs" },
+
+  "exit": "Exit",
+  "@exit": { "description": "Exit/confirm button text in dialogs" },
+
+  "adLoading": "Loading ad...",
+  "@adLoading": { "description": "Disabled button text while ad is loading" },
+
+  "audioMetadataTitle": "Audio metadata — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "AppBar title with file name",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "Save as…",
+  "@tooltipSaveAs": { "description": "Save icon tooltip when there are changes" },
+
+  "tooltipNoChanges": "No changes",
+  "@tooltipNoChanges": { "description": "Save icon tooltip when there are no changes" },
+
+  "tooltipReload": "Reload",
+  "@tooltipReload": { "description": "Refresh icon tooltip" },
+
+  "bannerCoverSelected": "Cover selected: {fileName}",
+  "@bannerCoverSelected": {
+    "description": "Banner after selecting cover image",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "Close",
+  "@btnClose": { "description": "Banner button: Close" },
+
+  "saveDone": "Saved: {displayName}",
+  "@saveDone": {
+    "description": "Banner body for save success",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "Save cancelled",
+  "@saveCancelled": { "description": "Banner body for save cancellation" },
+
+  "saveFailed": "Save failed: {error}",
+  "@saveFailed": {
+    "description": "Banner body for save failure",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "(none)",
+  "@hintNone": { "description": "Hint text for empty lyrics field" },
+
+  "metaLabelTitle": "Title",
+  "@metaLabelTitle": { "description": "Label for title" },
+
+  "metaLabelArtist": "Artist",
+  "@metaLabelArtist": { "description": "Label for artist" },
+
+  "metaLabelAlbum": "Album",
+  "@metaLabelAlbum": { "description": "Label for album" },
+
+  "metaLabelGenre": "Genre",
+  "@metaLabelGenre": { "description": "Label for genre" },
+
+  "metaLabelYear": "Year",
+  "@metaLabelYear": { "description": "Label for year" },
+
+  "metaLabelTrack": "Track",
+  "@metaLabelTrack": { "description": "Label for track number" },
+
+  "metaLabelDisc": "Disc",
+  "@metaLabelDisc": { "description": "Label for disc number" },
+
+   "chooseActionTitle": "What would you like to do?",
+    "@chooseActionTitle": { "description": "Dialog title for choosing overlay/edit action" },
+
+    "chooseActionBody": "Choose one and it will run immediately.",
+    "@chooseActionBody": { "description": "Dialog body for choosing overlay/edit action" },
+
+    "actionEditOverlay": "Edit size & position",
+    "@actionEditOverlay": { "description": "Button to open overlay editor" },
+
+    "actionLoadSubtitles": "Load subtitles",
+    "@actionLoadSubtitles": { "description": "Button to start lyrics overlay" },
+
+    "overlayPermissionNeeded": "Overlay permission is required. Please allow it in Settings.",
+    "@overlayPermissionNeeded": { "description": "SnackBar for SYSTEM_ALERT_WINDOW permission" },
+
+    "overlayWindowDenied": "Overlay Window permission was denied.",
+    "@overlayWindowDenied": { "description": "SnackBar for FlutterOverlayWindow permission denied" },
+
+    "overlaySampleShort": "For short lines",
+      "@overlaySampleShort": { "description": "Sample text top line" },
+
+      "overlaySampleLong": "When the subtitle is a long sentence",
+      "@overlaySampleLong": { "description": "Sample text bottom line" },
+
+      "fontPickerTitle": "Choose font size",
+      "@fontPickerTitle": { "description": "Font size picker title" },
+
+      "commonCancel": "Cancel",
+      "@commonCancel": { "description": "Common: Cancel" },
+
+      "commonOk": "OK",
+      "@commonOk": { "description": "Common: OK" },
+
+      "commonSave": "Save",
+      "@commonSave": { "description": "Common: Save" },
+
+      "commonChange": "Change",
+      "@commonChange": { "description": "Common: Change" },
+
+      "commonSettings": "Settings",
+      "@commonSettings": { "description": "Common: Settings label" },
+
+      "paletteFontLabel": "Font {size}",
+      "@paletteFontLabel": {
+        "description": "Palette: current font size",
+        "placeholders": { "size": {} }
+      },
+
+      "paletteLockCenterX": "Lock center on X",
+      "@paletteLockCenterX": { "description": "Palette: X-axis center lock" },
+
+      "calibFixHint": "Fix offset (overlay fixed)",
+      "@calibFixHint": { "description": "Calibration step 1 hint" },
+
+      "calibMergeHint": "Merge (queue Δ)",
+      "@calibMergeHint": { "description": "Calibration step 2 hint" },
+
+      "calibFix": "Fix",
+      "@calibFix": { "description": "Calibration step 1 button" },
+
+      "calibMerge": "Merge",
+      "@calibMerge": { "description": "Calibration step 2 button" },
+
+      "saveApplyDelta": "Save with correction",
+      "@saveApplyDelta": { "description": "Palette: save label" },
+
+      "hudCenterSuffix": "(X-centered)",
+
+      "webBack": "Back",
+        "@webBack": { "description": "Web toolbar: back" },
+
+        "webForward": "Forward",
+        "@webForward": { "description": "Web toolbar: forward" },
+
+        "webReload": "Reload",
+        "@webReload": { "description": "Web toolbar: reload" },
+
+        "webClose": "Close",
+        "@webClose": { "description": "Web toolbar: close" },
+
+        "webAddressHint": "Enter address or paste",
+        "@webAddressHint": { "description": "Address field hint" },
+
+        "emptyLyrics": "Lyrics not received.",
+        "@emptyLyrics": { "description": "Empty lyrics notice" },
+
+        "overlayHintDoubleTap": "* Double-tap to close the overlay.",
+          "@overlayHintDoubleTap": { "description": "Overlay first page top hint" },
+
+          "overlayHintSwipe": "* Swipe to change pages.",
+          "@overlayHintSwipe": { "description": "Overlay first page bottom hint" }
+
+
+
+
+}

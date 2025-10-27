@@ -1,0 +1,23 @@
+﻿# REPRODUCE
+
+## Target / ABI
+- Android (min variant)
+- ABI: arm64-v8a
+
+## Toolchain (as bundled by ffmpeg-kit-min)
+- clang target: aarch64-linux-android24-clang
+- NDK path and exact toolchain are implied by vendor build; see configure line below.
+
+## FFmpeg configure line actually used
+10-27 16:10:32.562 29320 29320 I flutter : configuration: --cross-prefix=aarch64-linux-android- --sysroot=/Users/me/Library/Android/sdk/ndk/29.0.13113456/toolchains/llvm/prebuilt/darwin-x86_64/sysroot --prefix=/Users/me/StudioProjects/ffmpeg-kit-6.0.LTS/prebuilt/android-arm64/ffmpeg --pkg-config=/opt/homebrew/bin/pkg-config --enable-version3 --arch=aarch64 --cpu=armv8-a --target-os=android --enable-neon --enable-asm --enable-inline-asm --ar=llvm-ar --cc=aarch64-linux-android24-clang --cxx=aarch64-linux-android24-clang++ --ranlib=llvm-ranlib --strip=llvm-strip --nm=llvm-nm --extra-libs='-L/Users/me/StudioProjects/ffmpeg-kit-6.0.LTS/prebuilt/android-arm64/cpu-features/lib -lndk_compat' --disable-autodetect --enable-cross-compile --enable-pic --enable-jni --enable-optimizations --enable-swscale --disable-static --enable-shared --enable-pthreads --enable-v4l2-m2m --disable-outdev=fbdev --disable-indev=fbdev --enable-small --disable-xmm-clobber-test --disable-debug --enable-lto --disable-neon-clobber-test --disable-programs --disable-doc --disable-htmlpag
+
+
+## Build traits
+- shared libraries only (--enable-shared)
+- no CLI binaries (--disable-programs)
+- no docs (--disable-doc)
+- no GPL/nonfree codecs enabled (--enable-gpl/--enable-nonfree absent)
+
+## Output
+- libav* .so libraries (runtime-loaded via ffmpeg-kit)
+

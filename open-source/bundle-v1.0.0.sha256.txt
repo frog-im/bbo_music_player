@@ -1,0 +1,4 @@
+SHA256의 open-source\bundle-v1.0.0.zip 해시:
+55ff4e8f1027d0fdac08b02eab8aa5f9281d79aa46f131140d91e8cac0a19859
+CertUtil: -hashfile 명령이 성공적으로 완료되었습니다.
+
