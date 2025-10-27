@@ -1,0 +1,16 @@
+I/flutter (30029): Loaded ffmpeg-kit-flutter-android-min-arm64-v8a-8.0.0.
+
+[Artifacts: Runtime Classpath]
+Source: gradlew :app:dependencies --configuration releaseRuntimeClasspath
+ABI/Artifact: ffmpeg-kit-android-min-arm64-v8a-8.0.0
+Wrapper: com.antonkarpenko:ffmpeg-kit-min:2.0.0
+
+releaseRuntimeClasspath:
+  project :ffmpeg_kit_flutter_new_min
+    -> com.antonkarpenko:ffmpeg-kit-min:2.0.0
+
+debugRuntimeClasspath:
+  project :ffmpeg_kit_flutter_new_min
+    -> com.antonkarpenko:ffmpeg-kit-min:2.0.0
+
+
