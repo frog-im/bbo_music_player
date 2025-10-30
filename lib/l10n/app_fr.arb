@@ -1,0 +1,300 @@
+﻿{
+  "@@locale": "fr",
+
+  "exitDialogTitle": "Voulez-vous quitter l'application ?",
+  "@exitDialogTitle": { "description": "Titre de la boîte de dialogue de confirmation de sortie" },
+
+  "adLabel": "Publicité",
+  "@adLabel": { "description": "Libellé en haut du conteneur de publicité" },
+
+  "cancel": "Annuler",
+  "@cancel": { "description": "Texte du bouton Annuler dans la boîte de dialogue" },
+
+  "exit": "Quitter",
+  "@exit": { "description": "Texte du bouton Confirmer/Quitter dans la boîte de dialogue" },
+
+  "adLoading": "Chargement de la publicité…",
+  "@adLoading": { "description": "Texte du bouton désactivé pendant le chargement de la publicité" },
+
+  "audioMetadataTitle": "Métadonnées audio — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "Titre de la barre d’application (AppBar)",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "Enregistrer sous",
+  "@tooltipSaveAs": { "description": "Info-bulle de l’icône Enregistrer (s’il y a des modifications)" },
+
+  "tooltipNoChanges": "Aucune modification",
+  "@tooltipNoChanges": { "description": "Info-bulle de l’icône Enregistrer (aucune modification)" },
+
+  "tooltipReload": "Recharger",
+  "@tooltipReload": { "description": "Info-bulle de l’icône Recharger" },
+
+  "bannerCoverSelected": "Couverture sélectionnée : {fileName}",
+  "@bannerCoverSelected": {
+    "description": "Bannière d’information après la sélection de la couverture",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "Fermer",
+  "@btnClose": { "description": "Bouton de bannière : Fermer" },
+
+  "saveDone": "Enregistré : {displayName}",
+  "@saveDone": {
+    "description": "Texte de bannière lors d’un enregistrement réussi",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "Enregistrement annulé",
+  "@saveCancelled": { "description": "Texte de bannière lors d’un enregistrement annulé" },
+
+  "saveFailed": "Échec de l’enregistrement : {error}",
+  "@saveFailed": {
+    "description": "Texte de bannière lors d’un échec d’enregistrement",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "(Aucun)",
+  "@hintNone": { "description": "Texte d’aide du champ des paroles (lorsqu’il est vide)" },
+
+  "metaLabelTitle": "Titre",
+  "@metaLabelTitle": { "description": "Libellé de métadonnée : titre" },
+
+  "metaLabelArtist": "Artiste",
+  "@metaLabelArtist": { "description": "Libellé de métadonnée : artiste" },
+
+  "metaLabelAlbum": "Album",
+  "@metaLabelAlbum": { "description": "Libellé de métadonnée : album" },
+
+  "metaLabelGenre": "Genre",
+  "@metaLabelGenre": { "description": "Libellé de métadonnée : genre" },
+
+  "metaLabelYear": "Année",
+  "@metaLabelYear": { "description": "Libellé de métadonnée : année" },
+
+  "metaLabelTrack": "Piste",
+  "@metaLabelTrack": { "description": "Libellé de métadonnée : numéro de piste" },
+
+  "metaLabelDisc": "Disque",
+  "@metaLabelDisc": { "description": "Libellé de métadonnée : numéro de disque" },
+
+  "chooseActionTitle": "Quelle action souhaitez-vous exécuter ?",
+  "@chooseActionTitle": { "description": "Titre de la boîte de dialogue de sélection d’action (superposition/édition)" },
+
+  "chooseActionBody": "L’option choisie sera exécutée immédiatement.",
+  "@chooseActionBody": { "description": "Corps de la boîte de dialogue de sélection d’action" },
+
+  "actionEditOverlay": "Ajuster la taille et la position",
+  "@actionEditOverlay": { "description": "Bouton pour ouvrir l’écran d’édition de la superposition" },
+
+  "actionLoadSubtitles": "Charger les sous-titres",
+  "@actionLoadSubtitles": { "description": "Bouton pour lancer la superposition des sous-titres" },
+
+  "overlayPermissionNeeded": "L’autorisation de superposition est requise. Veuillez l’autoriser dans les paramètres.",
+  "@overlayPermissionNeeded": { "description": "Snackbar : autorisation SYSTEM_ALERT_WINDOW requise" },
+
+  "overlayWindowDenied": "L’autorisation de fenêtre de superposition a été refusée.",
+  "@overlayWindowDenied": { "description": "Snackbar : autorisation FlutterOverlayWindow refusée" },
+
+  "overlaySampleShort": "Pour les textes courts",
+  "@overlaySampleShort": { "description": "Texte d’exemple pour la ligne supérieure de la superposition" },
+
+  "overlaySampleLong": "Pour les textes longs",
+  "@overlaySampleLong": { "description": "Texte d’exemple pour la ligne inférieure de la superposition" },
+
+  "fontPickerTitle": "Sélectionner la taille de police",
+  "@fontPickerTitle": { "description": "Titre de la fenêtre modale de sélection de la taille de police" },
+
+  "commonCancel": "Annuler",
+  "@commonCancel": { "description": "Commun : Annuler" },
+
+  "commonOk": "OK",
+  "@commonOk": { "description": "Commun : OK" },
+
+  "commonSave": "Enregistrer",
+  "@commonSave": { "description": "Commun : Enregistrer" },
+
+  "commonChange": "Modifier",
+  "@commonChange": { "description": "Commun : Modifier" },
+
+  "commonSettings": "Paramètres",
+  "@commonSettings": { "description": "Commun : libellé Paramètres" },
+
+  "paletteFontLabel": "Taille de police {size}",
+  "@paletteFontLabel": {
+    "description": "Palette : affichage de la taille de police actuelle",
+    "placeholders": { "size": {} }
+  },
+
+  "paletteLockCenterX": "Verrouiller le centre X",
+  "@paletteLockCenterX": { "description": "Palette : libellé de l’interrupteur pour verrouiller l’axe X au centre" },
+
+  "calibFixHint": "Supprimer le décalage (verrouiller la superposition)",
+  "@calibFixHint": { "description": "Étape 1 de calibration : description" },
+
+  "calibMergeHint": "Fusionner (enregistrer dans la file Δ)",
+  "@calibMergeHint": { "description": "Étape 2 de calibration : description" },
+
+  "calibFix": "Supprimer le décalage",
+  "@calibFix": { "description": "Étape 1 de calibration : bouton" },
+
+  "calibMerge": "Fusionner",
+  "@calibMerge": { "description": "Étape 2 de calibration : bouton" },
+
+  "saveApplyDelta": "Appliquer la correction puis enregistrer",
+  "@saveApplyDelta": { "description": "Palette : libellé Enregistrer" },
+
+  "hudCenterSuffix": "(centre X verrouillé)",
+  "@hudCenterSuffix": { "description": "HUD : suffixe indiquant le centre verrouillé" },
+
+  "webBack": "Précédent",
+  "@webBack": { "description": "Barre d’adresses : Précédent" },
+
+  "webForward": "Suivant",
+  "@webForward": { "description": "Barre d’adresses : Suivant" },
+
+  "webReload": "Recharger",
+  "@webReload": { "description": "Barre d’adresses : Recharger" },
+
+  "webClose": "Fermer",
+  "@webClose": { "description": "Barre d’adresses : Fermer" },
+
+  "webAddressHint": "Saisir ou coller l’adresse",
+  "@webAddressHint": { "description": "Texte d’aide du champ d’adresse" },
+
+  "emptyLyrics": "Aucune parole reçue.",
+  "@emptyLyrics": { "description": "Message indiquant l’absence de paroles" },
+
+  "overlayHintDoubleTap": "* Touchez deux fois pour fermer la superposition.",
+  "@overlayHintDoubleTap": { "description": "Première page de la superposition : indication en haut" },
+
+  "overlayHintSwipe": "* Balayez pour changer de page.",
+  "@overlayHintSwipe": { "description": "Première page de la superposition : indication en bas" },
+
+  "menuPrivacy": "Confidentialité",
+  "menuPrivacyPolicy": "Politique de confidentialité",
+  "menuPrivacyOptions": "Options de confidentialité publicitaire",
+  "menuPrivacyOptionsSub": "Modifier votre consentement aux annonces personnalisées",
+  "menuPrivacyOptionsNotRequired": "Non requis dans la région/la session actuelle",
+  "openUrlFailed": "Impossible d’ouvrir l’URL",
+  "privacyClosed": "L’écran des options de confidentialité a été fermé",
+  "privacyNotAvailable": "Le formulaire de confidentialité est indisponible",
+  "privacyExplainer": "Cette application utilise un SDK publicitaire pour diffuser des annonces et fournit un écran de consentement dans les régions où il est requis.",
+
+  "privacyOptionsRequiredLabel": "Options de confidentialité (requis)",
+  "@privacyOptionsRequiredLabel": { "description": "Libellé du bouton flottant en haut à droite (région où c’est requis)" },
+
+  "privacyOptionsNotRequiredLabel": "Options de confidentialité (non requis)",
+  "@privacyOptionsNotRequiredLabel": { "description": "Libellé du bouton flottant en haut à droite (région où ce n’est pas requis)" },
+
+  "privacyOptionsUpdated": "Options de confidentialité mises à jour",
+  "@privacyOptionsUpdated": { "description": "Snackbar après modification d’une option UMP" },
+
+  "privacyOptionsNotRequiredSnack": "Les options de confidentialité ne sont pas requises dans votre région",
+  "@privacyOptionsNotRequiredSnack": { "description": "Snackbar pour les régions où UMP n’est pas requis" },
+
+  "openSource": "Open source",
+  "@openSource": { "description": "Libellé du bouton d’information open source" },
+
+  "openSourceGuideTitle": "Avis open source",
+  "@openSourceGuideTitle": { "description": "Titre de la boîte de dialogue d’information open source" },
+
+  "errorTitle": "Erreur",
+  "@errorTitle": { "description": "Titre de la boîte de dialogue d’erreur" },
+
+  "readFileFailed": "Échec de lecture du fichier : {error}",
+  "@readFileFailed": {
+    "description": "Message d’erreur lors du chargement du texte d’information open source",
+    "placeholders": { "error": {} }
+  },
+  "privacySettingsTitle": "Paramètres de confidentialité et publicités",
+  "@privacySettingsTitle": { "description": "Titre de l’AppBar de l’écran des paramètres" },
+
+  "consentSectionTitle": "Consentement (CMP/UMP)",
+  "@consentSectionTitle": { "description": "Titre de la section de consentement" },
+
+  "entryRequiredChip": "Requis",
+  "@entryRequiredChip": { "description": "Chip à droite dans la section de consentement" },
+
+  "openPrivacyOptionsButton": "Ouvrir les options de confidentialité",
+  "@openPrivacyOptionsButton": { "description": "Libellé du bouton pour ouvrir les options UMP" },
+
+  "consentRegionalNote": "Les utilisateurs de l’EEE/Royaume-Uni/Suisse peuvent gérer leur consentement ici. Les modifications s’appliquent aux requêtes d’annonces suivantes.",
+  "@consentRegionalNote": { "description": "Texte informatif sous la section de consentement" },
+
+  "adsPersonalizationTitle": "Personnalisation des annonces et données régionales",
+  "@adsPersonalizationTitle": { "description": "Titre de la section de personnalisation des annonces" },
+
+  "npaTitle": "Toujours des annonces non personnalisées (NPA)",
+  "@npaTitle": { "description": "Titre de l’interrupteur NPA" },
+
+  "npaSubtitle": "Toujours demander des annonces non personnalisées",
+  "@npaSubtitle": { "description": "Sous-titre de l’interrupteur NPA" },
+
+  "rdpTitle": "Traitement restreint des données aux États-Unis (RDP)",
+  "@rdpTitle": { "description": "Titre de l’interrupteur RDP" },
+
+  "rdpSubtitle": "Conformité aux lois des États-Unis : ajouter rdp=1 aux extras",
+  "@rdpSubtitle": { "description": "Sous-titre de l’interrupteur RDP" },
+
+  "childFlagsSectionTitle": "Indicateurs enfant/mineur",
+  "@childFlagsSectionTitle": { "description": "Titre de la section enfant/mineur" },
+
+  "coppaTitle": "Service destiné aux enfants (COPPA)",
+  "@coppaTitle": { "description": "Titre de l’interrupteur COPPA" },
+
+  "coppaSubtitle": "Marquer comme destiné aux enfants",
+  "@coppaSubtitle": { "description": "Sous-titre de l’interrupteur COPPA" },
+
+  "uacTitle": "Âge inférieur au consentement (UAC)",
+  "@uacTitle": { "description": "Titre de l’interrupteur UAC" },
+
+  "uacSubtitle": "Marquer comme inférieur à l’âge de consentement",
+  "@uacSubtitle": { "description": "Sous-titre de l’interrupteur UAC" },
+
+  "coppaNote": "COPPA/UAC sont des paramètres globaux d’AdMob et s’appliquent immédiatement aux annonces chargées par la suite.",
+  "@coppaNote": { "description": "Note sous la section enfant/mineur" },
+
+  "policySectionTitle": "Politique de confidentialité",
+  "@policySectionTitle": { "description": "Titre de la section Politique de confidentialité" },
+
+  "viewInAppButton": "Afficher dans l’application",
+  "@viewInAppButton": { "description": "Bouton pour afficher la politique dans l’app" },
+
+  "openStorePolicyButton": "Ouvrir la politique sur la boutique",
+  "@openStorePolicyButton": { "description": "Bouton pour ouvrir la politique sur la boutique" },
+
+  "policySectionNote": "Fournissez à la fois l’URL de la politique sur la boutique et un écran de politique dans l’application.",
+  "@policySectionNote": { "description": "Note sous la section Politique de confidentialité" },
+
+  "inAppPolicyTitle": "Politique de confidentialité",
+  "@inAppPolicyTitle": { "description": "Titre de l’AppBar de l’écran de la politique dans l’app" },
+
+  "inAppPolicyFallback": "Fournissez ici votre politique de confidentialité intégrée à l’application.",
+  "@inAppPolicyFallback": { "description": "Texte de secours lorsque le HTML de la politique est absent" },
+
+  "crossBorderTitle": "Avis de transfert de données transfrontière",
+  "@crossBorderTitle": { "description": "국외이전(국제 데이터 이전) 안내 팝업 제목" },
+
+  "viewFullPolicy": "Voir la politique complète",
+  "@viewFullPolicy": { "description": "국외이전 팝업의 전체 정책 링크 버튼" },
+
+  "crossBorderFullText": "• Cette application utilise des services tiers (p. ex., Google AdMob) pour diffuser et mesurer la publicité. Par conséquent, vos données personnelles peuvent être transférées hors de votre pays.\n\n— Destinataire et contact\n  · Destinataire : Google LLC et ses sociétés affiliées (fournisseur d’AdMob)\n  · Service/Rôle : Diffusion d’annonces, fourniture de fonctions publicitaires/de mesure, traitement des journaux associés\n  · Site Web : admob.google.com\n  · Remarque : Sur iOS, l’utilisation de l’identifiant publicitaire (IDFA) dépend des règles de la plateforme et de l’état du consentement de l’utilisateur.\n\n— Pays de destination\n  · États-Unis et pays où Google ou ses affiliés disposent de capacités de traitement des données (p. ex., Europe, Asie)\n\n— Moment et méthode du transfert\n  · Moment : Au lancement de l’application et lorsque des requêtes/affichages/clics/mesures publicitaires se produisent, selon les besoins\n  · Méthode : Transmission réseau avec chiffrement en transit (HTTPS/TLS)\n  · Mesures de protection : Traitement conforme aux cadres internationaux applicables et aux garanties contractuelles (p. ex., décisions d’adéquation, clauses contractuelles types)\n\n— Finalités et catégories de données\n  · Finalités : Diffusion d’annonces, respect des choix de personnalisation, mesure des performances, analyses statistiques, amélioration de la qualité/stabilité du service\n  · Exemples de données : Identifiants publicitaires (AAID/IDFA), version/paramètres de l’application, informations de base sur l’appareil/le réseau, identifiants de type cookie, journaux d’utilisation (y compris interactions publicitaires et erreurs/plantages), région (niveau ville/pays), etc.\n\n— Durée de conservation\n  · Conservées jusqu’à l’atteinte des finalités ou pendant la période requise par la loi applicable, puis supprimées ou désidentifiées\n\n— Droit de refus et de retrait du consentement\n  · Vous pouvez choisir les annonces non personnalisées (NPA) dans les « options de confidentialité » de l’application. Dans les régions telles que l’EEE/R.-U./Suisse, l’écran de consentement CMP/UMP permet de choisir entre annonces personnalisées/non personnalisées et de réinitialiser le choix.\n\n— Contact\n  · E-mail : g.ns.0700g@gmail.com",
+
+  "warningTitle": "Avertissement d’édition des métadonnées",
+
+  "metadataRiskBody": "Certains formats autres que MP3 peuvent limiter l’insertion de balises/pochettes ou présenter des différences de compatibilité selon le lecteur, ce qui peut entraîner l’échec de l’édition.",
+
+  "metadataRiskFormatsDetail": "M4A/MP4 utilisent iTunes atoms, Ogg/Opus utilisent Vorbis Comment (bloc PICTURE), FLAC utilise Vorbis Comment/PICTURE et WAV utilise LIST-INFO.",
+
+  "doNotShowAgain": "Ne plus afficher",
+
+  "continueLabel": "Continuer",
+
+  "paletteWidthFactor": "Largeur {percent} %",
+  "@paletteWidthFactor": { "description": "Pourcentage du curseur de largeur", "placeholders": { "percent": { "type": "String", "example": "75" } } },
+  "paletteHeightFactor": "Hauteur {percent} %",
+  "@paletteHeightFactor": { "description": "Pourcentage du curseur de hauteur", "placeholders": { "percent": { "type": "String", "example": "10" } } }
+
+}

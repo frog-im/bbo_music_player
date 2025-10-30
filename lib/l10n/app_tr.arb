@@ -1,0 +1,300 @@
+﻿{
+  "@@locale": "tr",
+
+  "exitDialogTitle": "Uygulamadan çıkmak istiyor musunuz?",
+  "@exitDialogTitle": { "description": "Uygulamadan çıkış onay iletişim kutusu başlığı" },
+
+  "adLabel": "Reklam",
+  "@adLabel": { "description": "Reklam konteynerinin üst etiketi" },
+
+  "cancel": "İptal",
+  "@cancel": { "description": "İletişim kutusu İptal düğmesi metni" },
+
+  "exit": "Çıkış",
+  "@exit": { "description": "İletişim kutusu Onay/Çıkış düğmesi metni" },
+
+  "adLoading": "Reklam yükleniyor...",
+  "@adLoading": { "description": "Reklam yüklenirken pasif düğme metni" },
+
+  "audioMetadataTitle": "Ses meta verileri — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "Üst AppBar başlığı",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "Farklı kaydet",
+  "@tooltipSaveAs": { "description": "Kaydet simgesinin araç ipucu (değişiklik varken)" },
+
+  "tooltipNoChanges": "Değişiklik yok",
+  "@tooltipNoChanges": { "description": "Kaydet simgesinin araç ipucu (değişiklik yokken)" },
+
+  "tooltipReload": "Yeniden yükle",
+  "@tooltipReload": { "description": "Yenile simgesinin araç ipucu" },
+
+  "bannerCoverSelected": "Kapak seçildi: {fileName}",
+  "@bannerCoverSelected": {
+    "description": "Kapak seçimi sonrası bilgi bandı",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "Kapat",
+  "@btnClose": { "description": "Bant düğmesi: Kapat" },
+
+  "saveDone": "Kaydedildi: {displayName}",
+  "@saveDone": {
+    "description": "Kaydetme başarılı bandı metni",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "Kaydetme iptal edildi",
+  "@saveCancelled": { "description": "Kaydetme iptali bandı metni" },
+
+  "saveFailed": "Kaydetme başarısız: {error}",
+  "@saveFailed": {
+    "description": "Kaydetme başarısız bandı metni",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "(Yok)",
+  "@hintNone": { "description": "Şarkı sözü giriş ipucu (boşken)" },
+
+  "metaLabelTitle": "Başlık",
+  "@metaLabelTitle": { "description": "Meta etiket: başlık" },
+
+  "metaLabelArtist": "Sanatçı",
+  "@metaLabelArtist": { "description": "Meta etiket: sanatçı" },
+
+  "metaLabelAlbum": "Albüm",
+  "@metaLabelAlbum": { "description": "Meta etiket: albüm" },
+
+  "metaLabelGenre": "Tür",
+  "@metaLabelGenre": { "description": "Meta etiket: tür" },
+
+  "metaLabelYear": "Yıl",
+  "@metaLabelYear": { "description": "Meta etiket: yıl" },
+
+  "metaLabelTrack": "Parça",
+  "@metaLabelTrack": { "description": "Meta etiket: parça numarası" },
+
+  "metaLabelDisc": "Disk",
+  "@metaLabelDisc": { "description": "Meta etiket: disk numarası" },
+
+  "chooseActionTitle": "Hangi işlemi yürütmek istersiniz?",
+  "@chooseActionTitle": { "description": "Overlay/düzenleme işlem seçimi iletişim kutusu başlığı" },
+
+  "chooseActionBody": "Seçilen seçenek hemen çalıştırılır.",
+  "@chooseActionBody": { "description": "Overlay/düzenleme işlem seçimi iletişim kutusu gövdesi" },
+
+  "actionEditOverlay": "Boyut ve konumu ayarla",
+  "@actionEditOverlay": { "description": "Overlay düzenleme ekranına git düğmesi" },
+
+  "actionLoadSubtitles": "Altyazı yükle",
+  "@actionLoadSubtitles": { "description": "Altyazı overlay’ini başlat düğmesi" },
+
+  "overlayPermissionNeeded": "Overlay izni gerekli. Lütfen Ayarlar’dan izin verin.",
+  "@overlayPermissionNeeded": { "description": "SYSTEM_ALERT_WINDOW izni gerekli snackbar" },
+
+  "overlayWindowDenied": "Overlay penceresi izni reddedildi.",
+  "@overlayWindowDenied": { "description": "FlutterOverlayWindow izin reddi snackbar" },
+
+  "overlaySampleShort": "Kısa metin için",
+  "@overlaySampleShort": { "description": "Overlay üst satır örnek metni" },
+
+  "overlaySampleLong": "Uzun metin için",
+  "@overlaySampleLong": { "description": "Overlay alt satır örnek metni" },
+
+  "fontPickerTitle": "Yazı tipi boyutu seç",
+  "@fontPickerTitle": { "description": "Yazı tipi boyutu seçim modali başlığı" },
+
+  "commonCancel": "İptal",
+  "@commonCancel": { "description": "Genel: İptal" },
+
+  "commonOk": "Tamam",
+  "@commonOk": { "description": "Genel: Tamam" },
+
+  "commonSave": "Kaydet",
+  "@commonSave": { "description": "Genel: Kaydet" },
+
+  "commonChange": "Değiştir",
+  "@commonChange": { "description": "Genel: Değiştir" },
+
+  "commonSettings": "Ayarlar",
+  "@commonSettings": { "description": "Genel: Ayarlar etiketi" },
+
+  "paletteFontLabel": "Yazı tipi {size}",
+  "@paletteFontLabel": {
+    "description": "Palet: geçerli yazı tipi boyutu göstergesi",
+    "placeholders": { "size": {} }
+  },
+
+  "paletteLockCenterX": "X ekseni merkezini kilitle",
+  "@paletteLockCenterX": { "description": "Palet: X ekseni merkez kilidi anahtarı etiketi" },
+
+  "calibFixHint": "Ofseti kaldır (overlay’i kilitle)",
+  "@calibFixHint": { "description": "Kalibrasyon 1. adım açıklaması" },
+
+  "calibMergeHint": "Birleştir (Δ kuyruğuna kaydet)",
+  "@calibMergeHint": { "description": "Kalibrasyon 2. adım açıklaması" },
+
+  "calibFix": "Ofseti kaldır",
+  "@calibFix": { "description": "Kalibrasyon 1. adım düğmesi" },
+
+  "calibMerge": "Birleştir",
+  "@calibMerge": { "description": "Kalibrasyon 2. adım düğmesi" },
+
+  "saveApplyDelta": "Düzeltmeyi uygula ve kaydet",
+  "@saveApplyDelta": { "description": "Palet: Kaydet etiketi" },
+
+  "hudCenterSuffix": "(X merkezi kilitli)",
+  "@hudCenterSuffix": { "description": "HUD: merkez kilit göstergesi" },
+
+  "webBack": "Geri",
+  "@webBack": { "description": "Web adres çubuğu araç çubuğu: Geri" },
+
+  "webForward": "İleri",
+  "@webForward": { "description": "Web adres çubuğu araç çubuğu: İleri" },
+
+  "webReload": "Yenile",
+  "@webReload": { "description": "Web adres çubuğu araç çubuğu: Yenile" },
+
+  "webClose": "Kapat",
+  "@webClose": { "description": "Web adres çubuğu araç çubuğu: Kapat" },
+
+  "webAddressHint": "Adres girin veya yapıştırın",
+  "@webAddressHint": { "description": "Adres giriş alanı ipucu" },
+
+  "emptyLyrics": "Şarkı sözleri alınamadı.",
+  "@emptyLyrics": { "description": "Şarkı sözü yok bilgisi" },
+
+  "overlayHintDoubleTap": "* Overlay’i kapatmak için iki kez dokunun.",
+  "@overlayHintDoubleTap": { "description": "Overlay ilk sayfa: üst bilgi" },
+
+  "overlayHintSwipe": "* Sayfa değiştirmek için kaydırın.",
+  "@overlayHintSwipe": { "description": "Overlay ilk sayfa: alt bilgi" },
+
+  "menuPrivacy": "Gizlilik",
+  "menuPrivacyPolicy": "Gizlilik Politikası",
+  "menuPrivacyOptions": "Reklam gizlilik seçenekleri",
+  "menuPrivacyOptionsSub": "Kişiselleştirilmiş reklam onayını değiştirin",
+  "menuPrivacyOptionsNotRequired": "Geçerli bölge/oturum için gösterim gerekli değil",
+  "openUrlFailed": "URL açılamıyor",
+  "privacyClosed": "Gizlilik seçenekleri ekranı kapatıldı",
+  "privacyNotAvailable": "Gizlilik formu kullanılamıyor",
+  "privacyExplainer": "Bu uygulama reklam sunmak için bir reklam SDK’sı kullanır ve onayın gerekli olduğu bölgelerde bir onay yönetim ekranı sağlar.",
+
+  "privacyOptionsRequiredLabel": "Gizlilik seçenekleri (gerekli)",
+  "@privacyOptionsRequiredLabel": { "description": "Sağ üstteki yüzen düğme etiketi (gerekli bölge)" },
+
+  "privacyOptionsNotRequiredLabel": "Gizlilik seçenekleri (gerekli değil)",
+  "@privacyOptionsNotRequiredLabel": { "description": "Sağ üstteki yüzen düğme etiketi (gerekli olmayan bölge)" },
+
+  "privacyOptionsUpdated": "Gizlilik seçenekleri güncellendi",
+  "@privacyOptionsUpdated": { "description": "UMP seçeneği değişiminden sonraki snackbar" },
+
+  "privacyOptionsNotRequiredSnack": "Bulunduğunuz bölgede gizlilik seçeneklerinin gösterilmesi gerekli değil",
+  "@privacyOptionsNotRequiredSnack": { "description": "UMP gereksiz bölgeler için snackbar" },
+
+  "openSource": "Açık kaynak",
+  "@openSource": { "description": "Açık kaynak bilgisi düğme etiketi" },
+
+  "openSourceGuideTitle": "Açık kaynak bilgilendirmesi",
+  "@openSourceGuideTitle": { "description": "Açık kaynak bilgi iletişim kutusu başlığı" },
+
+  "errorTitle": "Hata",
+  "@errorTitle": { "description": "Hata iletişim kutusu başlığı" },
+
+  "readFileFailed": "Dosya okunamadı: {error}",
+  "@readFileFailed": {
+    "description": "Açık kaynak bilgi metni yükleme hatası mesajı",
+    "placeholders": { "error": {} }
+  },
+
+  "privacySettingsTitle": "Gizlilik ve reklam ayarları",
+  "@privacySettingsTitle": { "description": "Ayarlar ekranı AppBar başlığı" },
+
+  "consentSectionTitle": "Onay (CMP/UMP)",
+  "@consentSectionTitle": { "description": "Onay bölümü başlığı" },
+
+  "entryRequiredChip": "Gösterim gerekli",
+  "@entryRequiredChip": { "description": "Onay bölümünün sağındaki çip" },
+
+  "openPrivacyOptionsButton": "Gizlilik seçeneklerini aç",
+  "@openPrivacyOptionsButton": { "description": "UMP seçeneklerini açma düğmesi etiketi" },
+
+  "consentRegionalNote": "AEA/UK/CH kullanıcıları onayı buradan yönetebilir. Değişiklikler sonraki reklam isteklerinden itibaren geçerlidir.",
+  "@consentRegionalNote": { "description": "Onay bölümünün alt açıklaması" },
+
+  "adsPersonalizationTitle": "Reklam kişiselleştirme ve bölgesel veriler",
+  "@adsPersonalizationTitle": { "description": "Reklam kişiselleştirme bölümü başlığı" },
+
+  "npaTitle": "Her zaman kişisel olmayan reklamlar (NPA)",
+  "@npaTitle": { "description": "NPA anahtarı başlığı" },
+
+  "npaSubtitle": "Her zaman NPA iste",
+  "@npaSubtitle": { "description": "NPA anahtarı alt başlığı" },
+
+  "rdpTitle": "ABD Kısıtlı Veri İşleme (RDP)",
+  "@rdpTitle": { "description": "RDP anahtarı başlığı" },
+
+  "rdpSubtitle": "ABD eyalet yasalarına uyum: ekstralara rdp=1 ekle",
+  "@rdpSubtitle": { "description": "RDP anahtarı alt başlığı" },
+
+  "childFlagsSectionTitle": "Çocuk/reşit olmayan etiketleri",
+  "@childFlagsSectionTitle": { "description": "Çocuk/reşit olmayan bölümü başlığı" },
+
+  "coppaTitle": "Çocuklara yönelik hizmet (COPPA)",
+  "@coppaTitle": { "description": "COPPA anahtarı başlığı" },
+
+  "coppaSubtitle": "Çocuk hedefli hizmet etiketi",
+  "@coppaSubtitle": { "description": "COPPA anahtarı alt başlığı" },
+
+  "uacTitle": "Onay yaşının altında (UAC)",
+  "@uacTitle": { "description": "UAC anahtarı başlığı" },
+
+  "uacSubtitle": "Reşit olmayan (onay yaşının altında) etiketi",
+  "@uacSubtitle": { "description": "UAC anahtarı alt başlığı" },
+
+  "coppaNote": "COPPA/UAC, AdMob’un küresel yapılandırmasıdır; anında yürürlüğe girer ve bundan sonra yüklenecek reklamlara uygulanır.",
+  "@coppaNote": { "description": "Çocuk/reşit olmayan bölümü alt notu" },
+
+  "policySectionTitle": "Gizlilik Politikası",
+  "@policySectionTitle": { "description": "Politika bölümü başlığı" },
+
+  "viewInAppButton": "Uygulama içinde görüntüle",
+  "@viewInAppButton": { "description": "Uygulama içi politikayı görüntüleme düğmesi" },
+
+  "openStorePolicyButton": "Mağaza politikasını aç",
+  "@openStorePolicyButton": { "description": "Mağaza politikasını açma düğmesi" },
+
+  "policySectionNote": "Mağaza politika URL’sini ve uygulama içi politika ekranını birlikte sağlayın.",
+  "@policySectionNote": { "description": "Politika bölümünün alt açıklaması" },
+
+  "inAppPolicyTitle": "Gizlilik Politikası",
+  "@inAppPolicyTitle": { "description": "Uygulama içi politika ekranı AppBar başlığı" },
+
+  "inAppPolicyFallback": "Uygulama içi politikayı burada sağlayın.",
+  "@inAppPolicyFallback": { "description": "Politika HTML’i yoksa kullanılan yedek metin" },
+
+  "crossBorderTitle": "Sınır Ötesi Veri Aktarımı Bildirimi",
+  "@crossBorderTitle": { "description": "국외이전(국제 데이터 이전) 안내 팝업 제목" },
+
+
+  "viewFullPolicy": "Tüm politikayı görüntüle",
+  "@viewFullPolicy": { "description": "국외이전 팝업의 전체 정책 링크 버튼" },
+
+
+  "crossBorderFullText": "• Bu uygulama, reklam sunumu ve ölçümü için üçüncü taraf hizmetler (örn. Google AdMob) kullanır; bunun sonucunda kişisel verileriniz ülke dışına aktarılabilir.\n\n— Alıcı ve iletişim\n  · Alıcı: Google LLC ve bağlı kuruluşları (AdMob sağlayıcısı)\n  · Hizmet/Rol: Reklamların yayınlanması, reklam/ölçüm işlevlerinin sağlanması, ilgili günlüklerin işlenmesi\n  · Web sitesi: admob.google.com\n  · Not: iOS’ta reklam tanımlayıcısının (IDFA) kullanımı, platform politikalarına ve kullanıcının rıza durumuna bağlıdır.\n\n— Alıcı ülkeler\n  · Amerika Birleşik Devletleri ve Google’ın veya bağlı kuruluşlarının veri işleme kapasitesine sahip olduğu ülkeler (örn. Avrupa, Asya)\n\n— Aktarım zamanı ve yöntemi\n  · Zaman: Uygulama açıldığında ve gerekli olduğunda reklam isteği/gösterimi/tıklaması/ölçümü gerçekleştiğinde\n  · Yöntem: Ağ üzerinden aktarım ve aktarım sırasında şifreleme (HTTPS/TLS)\n  · Güvenlik önlemleri: Uygulanabilir uluslararası aktarım çerçeveleri ve sözleşmesel korumalar uyarınca işleme (örn. yeterlilik kararları, Standart Sözleşme Maddeleri)\n\n— Amaçlar ve veri öğeleri\n  · Amaçlar: Reklam sunumu, kişiselleştirme tercihine uygunluk, performans ölçümü, istatistiksel analiz, hizmet kalitesi/kararlılığının iyileştirilmesi\n  · Örnek veri öğeleri: Reklam tanımlayıcıları (AAID/IDFA), uygulama sürümü/ayarları, temel cihaz/ağ bilgileri, çerez benzeri tanımlayıcılar, kullanım günlükleri (reklam etkileşimleri ve hata/çökme kayıtları dahil), bölge (şehir/ülke düzeyi) vb.\n\n— Saklama süresi\n  · Amaçlar gerçekleştirilene kadar veya yürürlükteki hukukta öngörülen süre boyunca saklanır; sonrasında silinir veya kimliği giderilir\n\n— Reddetme ve rızayı geri çekme hakkı\n  · Uygulamanın “Gizlilik seçenekleri” bölümünde Kişisel Olmayan Reklamları (NPA) seçebilirsiniz. AEA/Birleşik Krallık/İsviçre gibi bölgelerde CMP/UMP rıza ekranı, kişiselleştirilmiş/kişisel olmayan reklam tercihini seçme ve sıfırlama imkanı sunar.\n\n— İletişim\n  · E-posta: g.ns.0700g@gmail.com",
+
+  "warningTitle": "Meta Veri Düzenleme Uyarısı",
+  "metadataRiskBody": "MP3 dışındaki bazı biçimlerde etiket/kapak gömme kısıtlı olabilir veya oynatıcıya göre uyumluluk değişebilir; bu nedenle düzenleme başarısız olabilir.",
+  "metadataRiskFormatsDetail": "M4A/MP4 iTunes atoms kullanır, Ogg/Opus Vorbis Comment (PICTURE bloğu) kullanır, FLAC Vorbis Comment/PICTURE kullanır ve WAV LIST-INFO kullanır.",
+  "doNotShowAgain": "Bir daha gösterme",
+  "continueLabel": "Devam",
+
+
+  "paletteWidthFactor": "Genişlik {percent}%",
+  "@paletteWidthFactor": { "description": "Genişlik kaydırıcısının yüzde değeri", "placeholders": { "percent": { "type": "String", "example": "75" } } },
+  "paletteHeightFactor": "Yükseklik {percent}%",
+  "@paletteHeightFactor": { "description": "Yükseklik kaydırıcısının yüzde değeri", "placeholders": { "percent": { "type": "String", "example": "10" } } }
+
+}

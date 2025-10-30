@@ -1,0 +1,299 @@
+﻿{
+  "@@locale": "ja",
+
+  "exitDialogTitle": "アプリを終了しますか？",
+  "@exitDialogTitle": { "description": "アプリ終了の確認ダイアログのタイトル" },
+
+  "adLabel": "広告",
+  "@adLabel": { "description": "広告コンテナー上部のラベル" },
+
+  "cancel": "キャンセル",
+  "@cancel": { "description": "ダイアログのキャンセルボタンのテキスト" },
+
+  "exit": "終了",
+  "@exit": { "description": "ダイアログの確定/終了ボタンのテキスト" },
+
+  "adLoading": "広告を読み込み中...",
+  "@adLoading": { "description": "広告読み込み中に無効化されたボタンのテキスト" },
+
+  "audioMetadataTitle": "オーディオメタデータ — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "上部 AppBar のタイトル",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "名前を付けて保存",
+  "@tooltipSaveAs": { "description": "保存アイコンのツールチップ（変更がある場合）" },
+
+  "tooltipNoChanges": "変更はありません",
+  "@tooltipNoChanges": { "description": "保存アイコンのツールチップ（変更がない場合）" },
+
+  "tooltipReload": "再読み込み",
+  "@tooltipReload": { "description": "再読み込みアイコンのツールチップ" },
+
+  "bannerCoverSelected": "選択したカバー: {fileName}",
+  "@bannerCoverSelected": {
+    "description": "カバー選択後の案内バナー",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "閉じる",
+  "@btnClose": { "description": "バナーのボタン: 閉じる" },
+
+  "saveDone": "保存完了: {displayName}",
+  "@saveDone": {
+    "description": "保存成功時のバナー本文",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "保存がキャンセルされました",
+  "@saveCancelled": { "description": "保存キャンセル時のバナー本文" },
+
+  "saveFailed": "保存に失敗しました: {error}",
+  "@saveFailed": {
+    "description": "保存失敗時のバナー本文",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "(なし)",
+  "@hintNone": { "description": "歌詞入力欄のヒント（空の場合）" },
+
+  "metaLabelTitle": "タイトル",
+  "@metaLabelTitle": { "description": "メタラベル: タイトル" },
+
+  "metaLabelArtist": "アーティスト",
+  "@metaLabelArtist": { "description": "メタラベル: アーティスト" },
+
+  "metaLabelAlbum": "アルバム",
+  "@metaLabelAlbum": { "description": "メタラベル: アルバム" },
+
+  "metaLabelGenre": "ジャンル",
+  "@metaLabelGenre": { "description": "メタラベル: ジャンル" },
+
+  "metaLabelYear": "年",
+  "@metaLabelYear": { "description": "メタラベル: 年" },
+
+  "metaLabelTrack": "トラック",
+  "@metaLabelTrack": { "description": "メタラベル: トラック番号" },
+
+  "metaLabelDisc": "ディスク",
+  "@metaLabelDisc": { "description": "メタラベル: ディスク番号" },
+
+  "chooseActionTitle": "どの操作を実行しますか？",
+  "@chooseActionTitle": { "description": "オーバーレイ/編集の操作選択ダイアログのタイトル" },
+
+  "chooseActionBody": "どちらかを選択すると直ちに実行されます。",
+  "@chooseActionBody": { "description": "オーバーレイ/編集の操作選択ダイアログ本文" },
+
+  "actionEditOverlay": "サイズと位置を設定",
+  "@actionEditOverlay": { "description": "オーバーレイ編集画面へ移動するボタン" },
+
+  "actionLoadSubtitles": "字幕を読み込む",
+  "@actionLoadSubtitles": { "description": "字幕オーバーレイを実行するボタン" },
+
+  "overlayPermissionNeeded": "オーバーレイ権限が必要です。設定で許可してください。",
+  "@overlayPermissionNeeded": { "description": "SYSTEM_ALERT_WINDOW 権限が必要な場合のスナックバー" },
+
+  "overlayWindowDenied": "オーバーレイウィンドウの権限が拒否されました。",
+  "@overlayWindowDenied": { "description": "FlutterOverlayWindow 権限拒否時のスナックバー" },
+
+  "overlaySampleShort": "短いテキストの場合",
+  "@overlaySampleShort": { "description": "字幕上段のサンプルテキスト" },
+
+  "overlaySampleLong": "長いテキストの場合",
+  "@overlaySampleLong": { "description": "字幕下段のサンプルテキスト" },
+
+  "fontPickerTitle": "フォントサイズを選択",
+  "@fontPickerTitle": { "description": "フォントサイズ選択モーダルのタイトル" },
+
+  "commonCancel": "キャンセル",
+  "@commonCancel": { "description": "共通: キャンセル" },
+
+  "commonOk": "OK",
+  "@commonOk": { "description": "共通: 確認" },
+
+  "commonSave": "保存",
+  "@commonSave": { "description": "共通: 保存" },
+
+  "commonChange": "変更",
+  "@commonChange": { "description": "共通: 変更" },
+
+  "commonSettings": "設定",
+  "@commonSettings": { "description": "共通: 設定ラベル" },
+
+  "paletteFontLabel": "フォント {size}",
+  "@paletteFontLabel": {
+    "description": "パレット: 現在のフォントサイズの表示",
+    "placeholders": { "size": {} }
+  },
+
+  "paletteLockCenterX": "X 軸中央を固定",
+  "@paletteLockCenterX": { "description": "パレット: X 軸中央固定スイッチのラベル" },
+
+  "calibFixHint": "ずれを解消（オーバーレイ固定）",
+  "@calibFixHint": { "description": "補正 第1段階の説明" },
+
+  "calibMergeHint": "重ね合わせ（Δ キューに保存）",
+  "@calibMergeHint": { "description": "補正 第2段階の説明" },
+
+  "calibFix": "ずれを解消",
+  "@calibFix": { "description": "補正 第1段階のボタン" },
+
+  "calibMerge": "重ね合わせ",
+  "@calibMerge": { "description": "補正 第2段階のボタン" },
+
+  "saveApplyDelta": "補正値を適用して保存",
+  "@saveApplyDelta": { "description": "パレット: 保存ラベル" },
+
+  "hudCenterSuffix": "（X 中央固定）",
+  "@hudCenterSuffix": { "description": "HUD: 中央固定の表記" },
+
+  "webBack": "戻る",
+  "@webBack": { "description": "ウェブアドレスバーのツールバー: 戻る" },
+
+  "webForward": "進む",
+  "@webForward": { "description": "ウェブアドレスバーのツールバー: 進む" },
+
+  "webReload": "再読み込み",
+  "@webReload": { "description": "ウェブアドレスバーのツールバー: 再読み込み" },
+
+  "webClose": "閉じる",
+  "@webClose": { "description": "ウェブアドレスバーのツールバー: 閉じる" },
+
+  "webAddressHint": "アドレスを入力または貼り付け",
+  "@webAddressHint": { "description": "アドレス入力フィールドのヒント" },
+
+  "emptyLyrics": "歌詞を取得できませんでした。",
+  "@emptyLyrics": { "description": "歌詞がない場合の案内" },
+
+  "overlayHintDoubleTap": "※ ダブルタップでオーバーレイを終了します。",
+  "@overlayHintDoubleTap": { "description": "オーバーレイ初回ページ 上部の案内" },
+
+  "overlayHintSwipe": "※ スワイプしてページを切り替えます。",
+  "@overlayHintSwipe": { "description": "オーバーレイ初回ページ 下部の案内" },
+
+  "menuPrivacy": "プライバシー",
+  "menuPrivacyPolicy": "プライバシーポリシー",
+  "menuPrivacyOptions": "広告のプライバシーオプション",
+  "menuPrivacyOptionsSub": "パーソナライズド広告の同意状態を変更します",
+  "menuPrivacyOptionsNotRequired": "現在の地域/セッションでは表示は不要です",
+  "openUrlFailed": "URL を開けません",
+  "privacyClosed": "プライバシーオプション画面を閉じました",
+  "privacyNotAvailable": "プライバシーフォームを利用できません",
+  "privacyExplainer": "このアプリは広告配信のために広告 SDK を使用し、同意が必要な地域では同意管理画面を提供します。",
+
+  "privacyOptionsRequiredLabel": "プライバシーオプション（必須）",
+  "@privacyOptionsRequiredLabel": { "description": "右上のフローティングボタンのラベル（必須地域）" },
+
+  "privacyOptionsNotRequiredLabel": "プライバシーオプション（不要）",
+  "@privacyOptionsNotRequiredLabel": { "description": "右上のフローティングボタンのラベル（不要地域）" },
+
+  "privacyOptionsUpdated": "プライバシーオプションを更新しました",
+  "@privacyOptionsUpdated": { "description": "UMP オプション変更後のスナックバー" },
+
+  "privacyOptionsNotRequiredSnack": "現在の地域ではプライバシーオプションの表示は不要です",
+  "@privacyOptionsNotRequiredSnack": { "description": "UMP が不要な地域向けスナックバー" },
+
+  "openSource": "オープンソース",
+  "@openSource": { "description": "オープンソース案内ボタンのラベル" },
+
+  "openSourceGuideTitle": "オープンソースのご案内",
+  "@openSourceGuideTitle": { "description": "オープンソース案内ダイアログのタイトル" },
+
+  "errorTitle": "エラー",
+  "@errorTitle": { "description": "エラーダイアログのタイトル" },
+
+  "readFileFailed": "ファイルを読み取れませんでした: {error}",
+  "@readFileFailed": {
+    "description": "オープンソース案内テキストの読み込み失敗メッセージ",
+    "placeholders": { "error": {} }
+  },
+
+  "privacySettingsTitle": "プライバシーと広告の設定",
+  "@privacySettingsTitle": { "description": "設定画面の AppBar タイトル" },
+
+  "consentSectionTitle": "同意（CMP/UMP）",
+  "@consentSectionTitle": { "description": "同意セクションのタイトル" },
+
+  "entryRequiredChip": "表示が必要",
+  "@entryRequiredChip": { "description": "同意セクション右側のチップ" },
+
+  "openPrivacyOptionsButton": "プライバシーオプションを開く",
+  "@openPrivacyOptionsButton": { "description": "UMP オプションを開くボタンのラベル" },
+
+  "consentRegionalNote": "EEA/UK/CH のユーザーはここで同意を管理できます。変更は以降の広告リクエストから反映されます。",
+  "@consentRegionalNote": { "description": "同意セクション下部の説明" },
+
+  "adsPersonalizationTitle": "広告のパーソナライズと地域データ",
+  "@adsPersonalizationTitle": { "description": "広告パーソナライズセクションのタイトル" },
+
+  "npaTitle": "常に非パーソナライズド広告（NPA）",
+  "@npaTitle": { "description": "NPA スイッチのタイトル" },
+
+  "npaSubtitle": "常に NPA をリクエストします",
+  "@npaSubtitle": { "description": "NPA スイッチのサブタイトル" },
+
+  "rdpTitle": "US Restricted Data Processing（RDP）",
+  "@rdpTitle": { "description": "RDP スイッチのタイトル" },
+
+  "rdpSubtitle": "米州法対応: extras に rdp=1 を付与",
+  "@rdpSubtitle": { "description": "RDP スイッチのサブタイトル" },
+
+  "childFlagsSectionTitle": "子供/未成年タグ",
+  "@childFlagsSectionTitle": { "description": "子供/未成年セクションのタイトル" },
+
+  "coppaTitle": "子供向けサービス（COPPA）",
+  "@coppaTitle": { "description": "COPPA スイッチのタイトル" },
+
+  "coppaSubtitle": "子供向けサービスのタグ",
+  "@coppaSubtitle": { "description": "COPPA スイッチのサブタイトル" },
+
+  "uacTitle": "年齢同意未満（UAC）",
+  "@uacTitle": { "description": "UAC スイッチのタイトル" },
+
+  "uacSubtitle": "未成年（年齢同意未満）のタグ",
+  "@uacSubtitle": { "description": "UAC スイッチのサブタイトル" },
+
+  "coppaNote": "COPPA/UAC は AdMob のグローバル設定で即時に反映され、以降に読み込まれる広告から適用されます。",
+  "@coppaNote": { "description": "子供/未成年セクション下部の案内" },
+
+  "policySectionTitle": "プライバシーポリシー",
+  "@policySectionTitle": { "description": "ポリシーセクションのタイトル" },
+
+  "viewInAppButton": "アプリ内で表示",
+  "@viewInAppButton": { "description": "アプリ内ポリシー表示ボタン" },
+
+  "openStorePolicyButton": "ストアのポリシーを開く",
+  "@openStorePolicyButton": { "description": "ストアポリシーを開くボタン" },
+
+  "policySectionNote": "ストアのポリシー URL とアプリ内のポリシー画面の両方を提供してください。",
+  "@policySectionNote": { "description": "ポリシーセクション下部の案内" },
+
+  "inAppPolicyTitle": "プライバシーポリシー",
+  "@inAppPolicyTitle": { "description": "アプリ内ポリシー画面の AppBar タイトル" },
+
+  "inAppPolicyFallback": "ここにアプリ内ポリシーを提供してください。",
+  "@inAppPolicyFallback": { "description": "ポリシー HTML がない場合の代替文言" },
+
+  "crossBorderTitle": "越境データ移転に関する通知",
+  "@crossBorderTitle": { "description": "국외이전(국제 데이터 이전) 안내 팝업 제목" },
+
+  "viewFullPolicy": "ポリシー全文を見る",
+  "@viewFullPolicy": { "description": "국외이전 팝업의 전체 정책 링크 버튼" },
+
+  "crossBorderFullText": "• 本アプリは広告の配信および効果測定のために第三者サービス（例: Google AdMob）を利用しており、その結果、個人データが国外へ移転される場合があります。\n\n— 受領者・連絡先\n  · 受領者: Google LLC およびその関連会社（AdMob 提供主体）\n  · サービス/役割: 広告配信、広告/測定機能の提供、関連ログの処理\n  · ウェブサイト: admob.google.com\n  · 備考: iOS における広告識別子（IDFA）の利用は、プラットフォームのポリシーおよびユーザーの同意状況に依存します。\n\n— 移転先の国/地域\n  · 米国ならびに Google または関連会社がデータ処理能力を有する国/地域（例: 欧州、アジア など）\n\n— 移転の時期・方法\n  · 時期: アプリ起動時、ならびに広告リクエスト/表示/クリック/測定が発生するタイミング\n  · 方法: ネットワーク伝送（転送区間の暗号化: HTTPS/TLS）\n  · 保護措置: 適用される国際的な移転枠組みおよび契約上の保護措置（例: 適法性認定、標準契約条項）に基づき処理\n\n— 目的・項目\n  · 目的: 広告配信、パーソナライズ選択の反映、パフォーマンス測定、統計分析、サービス品質/安定性の改善\n  · 項目例: 広告識別子（AAID/IDFA）、アプリのバージョン/設定、デバイス/ネットワークの基本情報、Cookie 類似の識別子、利用ログ（広告とのやり取りやエラー/クラッシュを含む）、地域（市/国レベル）など\n\n— 保管期間\n  · 目的達成まで、または適用法令で定められた期間保管し、その後は削除または非識別化\n\n— 同意の拒否・撤回\n  · アプリの「プライバシー設定」で非パーソナライズド広告（NPA）を選択できます。EEE/英国/スイス等の地域では、CMP/UMP の同意画面からパーソナライズ/非パーソナライズの選択や再設定が可能です。\n\n— お問い合わせ\n  · Eメール: g.ns.0700g@gmail.com",
+
+  "warningTitle": "メタデータ編集の注意",
+  "metadataRiskBody": "MP3 以外の一部フォーマットでは、タグ／カバーの埋め込みが制限されていたり、プレーヤーごとに互換性が異なるため、編集に失敗する場合があります。",
+  "metadataRiskFormatsDetail": "M4A/MP4 は iTunes atoms、Ogg/Opus は Vorbis Comment（PICTURE ブロック）、FLAC は Vorbis Comment/PICTURE、WAV は LIST-INFO を使用します。",
+  "doNotShowAgain": "今後表示しない",
+  "continueLabel": "続行",
+
+
+  "paletteWidthFactor": "幅 {percent}%",
+  "@paletteWidthFactor": { "description": "幅スライダーのパーセント", "placeholders": { "percent": { "type": "String", "example": "75" } } },
+  "paletteHeightFactor": "高さ {percent}%",
+  "@paletteHeightFactor": { "description": "高さスライダーのパーセント", "placeholders": { "percent": { "type": "String", "example": "10" } } }
+
+
+}

@@ -1,0 +1,302 @@
+﻿{
+  "@@locale": "de",
+
+  "exitDialogTitle": "Möchten Sie die App beenden?",
+  "@exitDialogTitle": { "description": "Titel des Bestätigungsdialogs zum Beenden" },
+
+  "adLabel": "Werbung",
+  "@adLabel": { "description": "Label am oberen Rand des Werbebereichs" },
+
+  "cancel": "Abbrechen",
+  "@cancel": { "description": "Schaltflächentext: Abbrechen im Dialog" },
+
+  "exit": "Beenden",
+  "@exit": { "description": "Schaltflächentext: Bestätigen/Beenden im Dialog" },
+
+  "adLoading": "Werbung wird geladen...",
+  "@adLoading": { "description": "Deaktivierter Button-Text während die Werbung lädt" },
+
+  "audioMetadataTitle": "Audio-Metadaten — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "Titel der AppBar",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "Speichern unter",
+  "@tooltipSaveAs": { "description": "Tooltip des Speicher-Icons (wenn Änderungen vorhanden)" },
+
+  "tooltipNoChanges": "Keine Änderungen",
+  "@tooltipNoChanges": { "description": "Tooltip des Speicher-Icons (wenn keine Änderungen vorliegen)" },
+
+  "tooltipReload": "Neu laden",
+  "@tooltipReload": { "description": "Tooltip für das Aktualisieren/Neu laden" },
+
+  "bannerCoverSelected": "Cover ausgewählt: {fileName}",
+  "@bannerCoverSelected": {
+    "description": "Info-Banner nach der Cover-Auswahl",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "Schließen",
+  "@btnClose": { "description": "Banner-Schaltfläche: Schließen" },
+
+  "saveDone": "Gespeichert: {displayName}",
+  "@saveDone": {
+    "description": "Bannertext bei erfolgreichem Speichern",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "Speichern abgebrochen",
+  "@saveCancelled": { "description": "Bannertext bei abgebrochenem Speichern" },
+
+  "saveFailed": "Speichern fehlgeschlagen: {error}",
+  "@saveFailed": {
+    "description": "Bannertext bei fehlgeschlagenem Speichern",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "(Keine)",
+  "@hintNone": { "description": "Hinweistext im Liedtextfeld (wenn leer)" },
+
+  "metaLabelTitle": "Titel",
+  "@metaLabelTitle": { "description": "Meta-Beschriftung: Titel" },
+
+  "metaLabelArtist": "Künstler",
+  "@metaLabelArtist": { "description": "Meta-Beschriftung: Künstler" },
+
+  "metaLabelAlbum": "Album",
+  "@metaLabelAlbum": { "description": "Meta-Beschriftung: Album" },
+
+  "metaLabelGenre": "Genre",
+  "@metaLabelGenre": { "description": "Meta-Beschriftung: Genre" },
+
+  "metaLabelYear": "Jahr",
+  "@metaLabelYear": { "description": "Meta-Beschriftung: Jahr" },
+
+  "metaLabelTrack": "Track",
+  "@metaLabelTrack": { "description": "Meta-Beschriftung: Track-Nummer" },
+
+  "metaLabelDisc": "Disc",
+  "@metaLabelDisc": { "description": "Meta-Beschriftung: Disc-Nummer" },
+
+  "chooseActionTitle": "Welche Aktion möchten Sie ausführen?",
+  "@chooseActionTitle": { "description": "Titel des Dialogs zur Auswahl von Overlay/Editor-Aktion" },
+
+  "chooseActionBody": "Die ausgewählte Option wird sofort ausgeführt.",
+  "@chooseActionBody": { "description": "Textkörper des Aktionsauswahldialogs" },
+
+  "actionEditOverlay": "Größe und Position einstellen",
+  "@actionEditOverlay": { "description": "Schaltfläche zum Overlay-Editor" },
+
+  "actionLoadSubtitles": "Untertitel laden",
+  "@actionLoadSubtitles": { "description": "Schaltfläche zum Start des Untertitel-Overlays" },
+
+  "overlayPermissionNeeded": "Overlay-Berechtigung erforderlich. Bitte in den Einstellungen erlauben.",
+  "@overlayPermissionNeeded": { "description": "Snackbar: SYSTEM_ALERT_WINDOW erforderlich" },
+
+  "overlayWindowDenied": "Overlay-Fenster-Berechtigung wurde verweigert.",
+  "@overlayWindowDenied": { "description": "Snackbar: FlutterOverlayWindow-Berechtigung verweigert" },
+
+  "overlaySampleShort": "Für kurzen Text",
+  "@overlaySampleShort": { "description": "Beispieltext für die obere Zeile des Overlays" },
+
+  "overlaySampleLong": "Für langen Text",
+  "@overlaySampleLong": { "description": "Beispieltext für die untere Zeile des Overlays" },
+
+  "fontPickerTitle": "Schriftgröße auswählen",
+  "@fontPickerTitle": { "description": "Titel des Modals zur Schriftgrößenauswahl" },
+
+  "commonCancel": "Abbrechen",
+  "@commonCancel": { "description": "Allgemein: Abbrechen" },
+
+  "commonOk": "OK",
+  "@commonOk": { "description": "Allgemein: OK" },
+
+  "commonSave": "Speichern",
+  "@commonSave": { "description": "Allgemein: Speichern" },
+
+  "commonChange": "Ändern",
+  "@commonChange": { "description": "Allgemein: Ändern" },
+
+  "commonSettings": "Einstellungen",
+  "@commonSettings": { "description": "Allgemein: Label Einstellungen" },
+
+  "paletteFontLabel": "Schriftgröße {size}",
+  "@paletteFontLabel": {
+    "description": "Palette: Anzeige der aktuellen Schriftgröße",
+    "placeholders": { "size": {} }
+  },
+
+  "paletteLockCenterX": "X-Achse mittig fixieren",
+  "@paletteLockCenterX": { "description": "Palette: Schalterlabel für X-Mittenfixierung" },
+
+  "calibFixHint": "Versatz entfernen (Overlay fixieren)",
+  "@calibFixHint": { "description": "Kalibrierung Schritt 1: Beschreibung" },
+
+  "calibMergeHint": "Zusammenführen (in Δ-Warteschlange speichern)",
+  "@calibMergeHint": { "description": "Kalibrierung Schritt 2: Beschreibung" },
+
+  "calibFix": "Versatz entfernen",
+  "@calibFix": { "description": "Kalibrierung Schritt 1: Schaltfläche" },
+
+  "calibMerge": "Zusammenführen",
+  "@calibMerge": { "description": "Kalibrierung Schritt 2: Schaltfläche" },
+
+  "saveApplyDelta": "Korrektur anwenden und speichern",
+  "@saveApplyDelta": { "description": "Palette: Beschriftung für Speichern" },
+
+  "hudCenterSuffix": "(X-Zentrum fixiert)",
+  "@hudCenterSuffix": { "description": "HUD: Hinweis bei zentrierter X-Achse" },
+
+  "webBack": "Zurück",
+  "@webBack": { "description": "Toolbar der Adressleiste: Zurück" },
+
+  "webForward": "Vor",
+  "@webForward": { "description": "Toolbar der Adressleiste: Vor" },
+
+  "webReload": "Neu laden",
+  "@webReload": { "description": "Toolbar der Adressleiste: Neu laden" },
+
+  "webClose": "Schließen",
+  "@webClose": { "description": "Toolbar der Adressleiste: Schließen" },
+
+  "webAddressHint": "Adresse eingeben oder einfügen",
+  "@webAddressHint": { "description": "Hinweistext im Adressfeld" },
+
+  "emptyLyrics": "Keine Songtexte empfangen.",
+  "@emptyLyrics": { "description": "Hinweis bei fehlenden Songtexten" },
+
+  "overlayHintDoubleTap": "* Doppeltippen, um das Overlay zu schließen.",
+  "@overlayHintDoubleTap": { "description": "Overlay, erste Seite: Hinweis oben" },
+
+  "overlayHintSwipe": "* Zum Seitenwechsel wischen.",
+  "@overlayHintSwipe": { "description": "Overlay, erste Seite: Hinweis unten" },
+
+  "menuPrivacy": "Datenschutz",
+  "menuPrivacyPolicy": "Datenschutzerklärung",
+  "menuPrivacyOptions": "Datenschutzoptionen für Werbung",
+  "menuPrivacyOptionsSub": "Einwilligung für personalisierte Werbung ändern",
+  "menuPrivacyOptionsNotRequired": "In der aktuellen Region/Sitzung nicht erforderlich",
+  "openUrlFailed": "URL kann nicht geöffnet werden",
+  "privacyClosed": "Datenschutzoptionen wurden geschlossen",
+  "privacyNotAvailable": "Datenschutzformular ist nicht verfügbar",
+  "privacyExplainer": "Diese App verwendet ein Werbe-SDK und stellt in Regionen mit Einwilligungspflicht einen Einwilligungsbildschirm bereit.",
+
+  "privacyOptionsRequiredLabel": "Datenschutzoptionen (erforderlich)",
+  "@privacyOptionsRequiredLabel": { "description": "Label der schwebenden Schaltfläche oben rechts (erforderliche Region)" },
+
+  "privacyOptionsNotRequiredLabel": "Datenschutzoptionen (nicht erforderlich)",
+  "@privacyOptionsNotRequiredLabel": { "description": "Label der schwebenden Schaltfläche oben rechts (nicht erforderliche Region)" },
+
+  "privacyOptionsUpdated": "Datenschutzoptionen aktualisiert",
+  "@privacyOptionsUpdated": { "description": "Snackbar nach Änderung der UMP-Optionen" },
+
+  "privacyOptionsNotRequiredSnack": "In Ihrer Region sind Datenschutzoptionen nicht erforderlich",
+  "@privacyOptionsNotRequiredSnack": { "description": "Snackbar für Regionen ohne UMP-Pflicht" },
+
+  "openSource": "Open Source",
+  "@openSource": { "description": "Schaltflächenlabel für Open-Source-Informationen" },
+
+  "openSourceGuideTitle": "Open-Source-Hinweis",
+  "@openSourceGuideTitle": { "description": "Dialogtitel für Open-Source-Informationen" },
+
+  "errorTitle": "Fehler",
+  "@errorTitle": { "description": "Dialogtitel: Fehler" },
+
+  "readFileFailed": "Datei konnte nicht gelesen werden: {error}",
+  "@readFileFailed": {
+    "description": "Fehlermeldung beim Laden des Open-Source-Infotexts",
+    "placeholders": { "error": {} }
+  },
+
+  "privacySettingsTitle": "Datenschutz- und Werbeeinstellungen",
+    "@privacySettingsTitle": { "description": "AppBar-Titel des Einstellungsbildschirms" },
+
+    "consentSectionTitle": "Einwilligung (CMP/UMP)",
+    "@consentSectionTitle": { "description": "Titel des Einwilligungsabschnitts" },
+
+    "entryRequiredChip": "Erforderlich",
+    "@entryRequiredChip": { "description": "Rechter Chip im Einwilligungsabschnitt" },
+
+    "openPrivacyOptionsButton": "Datenschutzoptionen öffnen",
+    "@openPrivacyOptionsButton": { "description": "Schaltflächenbeschriftung: UMP-Optionen öffnen" },
+
+    "consentRegionalNote": "Nutzer in EWR/UK/CH können ihre Einwilligung hier verwalten. Änderungen gelten für nachfolgende Werbeanfragen.",
+    "@consentRegionalNote": { "description": "Hilfetext im Einwilligungsabschnitt" },
+
+    "adsPersonalizationTitle": "Personalisierung von Werbung und regionale Daten",
+    "@adsPersonalizationTitle": { "description": "Titel des Abschnitts zur Werbepersonalisierung" },
+
+    "npaTitle": "Immer nicht personalisierte Werbung (NPA)",
+    "@npaTitle": { "description": "Titel des NPA-Schalters" },
+
+    "npaSubtitle": "Fordert stets nicht personalisierte Werbung an",
+    "@npaSubtitle": { "description": "Untertitel des NPA-Schalters" },
+
+    "rdpTitle": "US-eingeschränkte Datenverarbeitung (RDP)",
+    "@rdpTitle": { "description": "Titel des RDP-Schalters" },
+
+    "rdpSubtitle": "Konformität mit US-Bundesstaatengesetzen: rdp=1 in den Extras anhängen",
+    "@rdpSubtitle": { "description": "Untertitel des RDP-Schalters" },
+
+    "childFlagsSectionTitle": "Kennzeichnungen: Kinder/unter Einwilligungsalter",
+    "@childFlagsSectionTitle": { "description": "Titel des Abschnitts Kinder/unter Einwilligungsalter" },
+
+    "coppaTitle": "Kindergerichteter Dienst (COPPA)",
+    "@coppaTitle": { "description": "Titel des COPPA-Schalters" },
+
+    "coppaSubtitle": "Als kindergerichtet kennzeichnen",
+    "@coppaSubtitle": { "description": "Untertitel des COPPA-Schalters" },
+
+    "uacTitle": "Unter dem gesetzlichen Einwilligungsalter (UAC)",
+    "@uacTitle": { "description": "Titel des UAC-Schalters" },
+
+    "uacSubtitle": "Als unter dem Einwilligungsalter kennzeichnen",
+    "@uacSubtitle": { "description": "Untertitel des UAC-Schalters" },
+
+    "coppaNote": "COPPA/UAC sind globale AdMob-Einstellungen und gelten sofort für anschließend geladene Anzeigen.",
+    "@coppaNote": { "description": "Hinweistext unter dem Abschnitt Kinder/unter Einwilligungsalter" },
+
+    "policySectionTitle": "Datenschutzerklärung",
+    "@policySectionTitle": { "description": "Titel des Abschnitts Datenschutzerklärung" },
+
+    "viewInAppButton": "In der App anzeigen",
+    "@viewInAppButton": { "description": "Schaltfläche: In-App-Datenschutzerklärung anzeigen" },
+
+    "openStorePolicyButton": "Store-Datenschutzerklärung öffnen",
+    "@openStorePolicyButton": { "description": "Schaltfläche: Store-Datenschutzerklärung öffnen" },
+
+    "policySectionNote": "Sowohl die Store-URL der Datenschutzerklärung als auch die In-App-Ansicht bereitstellen.",
+    "@policySectionNote": { "description": "Hinweistext unter dem Abschnitt Datenschutzerklärung" },
+
+    "inAppPolicyTitle": "Datenschutzerklärung",
+    "@inAppPolicyTitle": { "description": "AppBar-Titel des In-App-Policy-Bildschirms" },
+
+    "inAppPolicyFallback": "Hier Ihre In-App-Datenschutzerklärung bereitstellen.",
+    "@inAppPolicyFallback": { "description": "Fallback-Text, wenn die Policy-HTML fehlt" },
+
+    "crossBorderTitle": "Hinweis zur grenzüberschreitenden Datenübermittlung",
+    "@crossBorderTitle": { "description": "국외이전(국제 데이터 이전) 안내 팝업 제목" },
+
+    "viewFullPolicy": "Gesamte Richtlinie anzeigen",
+    "@viewFullPolicy": { "description": "국외이전 팝업의 전체 정책 링크 버튼" },
+
+    "crossBorderFullText": "• Diese App verwendet Dienste von Drittanbietern (z. B. Google AdMob) zur Bereitstellung und Messung von Werbung. Dadurch können personenbezogene Daten in Länder außerhalb Ihres Wohnsitzstaates übermittelt werden.\n\n— Empfänger und Kontakt\n  · Empfänger: Google LLC und verbundene Unternehmen (Anbieter von AdMob)\n  · Dienst/Rolle: Auslieferung von Werbung, Bereitstellung von Werbe-/Messfunktionen, Verarbeitung zugehöriger Protokolle\n  · Website: admob.google.com\n  · Hinweis: Unter iOS hängt die Nutzung der Werbe-ID (IDFA) von den Plattformrichtlinien und dem Einwilligungsstatus der Nutzer ab.\n\n— Empfängerländer\n  · Die Vereinigten Staaten sowie Länder, in denen Google oder verbundene Unternehmen über Datenverarbeitungskapazitäten verfügen (z. B. Europa, Asien)\n\n— Zeitpunkt und Verfahren der Übermittlung\n  · Zeitpunkt: Beim Start der App sowie bei Anzeigenanfragen/-einblendungen/-klicks/-messungen nach Bedarf\n  · Verfahren: Netzwerkübertragung mit Verschlüsselung während der Übertragung (HTTPS/TLS)\n  · Schutzmaßnahmen: Verarbeitung gemäß anwendbaren internationalen Transferrahmen und vertraglichen Schutzmechanismen (z. B. Angemessenheitsbeschlüsse, Standardvertragsklauseln)\n\n— Zwecke und Datenkategorien\n  · Zwecke: Auslieferung von Werbung, Berücksichtigung der Personalisierungswahl, Leistungs-/Erfolgsmessung, statistische Analysen, Verbesserung der Dienstqualität/-stabilität\n  · Beispieldaten: Werbe-Kennungen (AAID/IDFA), App-Version/Einstellungen, grundlegende Geräte-/Netzwerkinformationen, Cookie-ähnliche Kennungen, Nutzungsprotokolle (einschließlich Anzeigeninteraktionen sowie Fehler/Abstürze), Region (Stadt-/Länderebene) usw.\n\n— Aufbewahrungsdauer\n  · Speicherung bis zur Zweckerreichung oder für den gesetzlich vorgeschriebenen Zeitraum; anschließend Löschung oder Anonymisierung/Pseudonymisierung\n\n— Widerspruchs- und Widerrufsrecht\n  · In den „Datenschutzoptionen“ der App können Sie Nicht-personalisierte Anzeigen (NPA) wählen. In Regionen wie EWR/VK/CH können Sie über den CMP/UMP-Einwilligungsbildschirm personalisierte/nicht-personalisierte Anzeigen wählen und Ihre Auswahl zurücksetzen.\n\n— Kontakt\n  · E-Mail: g.ns.0700g@gmail.com",
+
+    "warningTitle": "Warnung zur Metadatenbearbeitung",
+
+    "metadataRiskBody": "Bei einigen Formaten außer MP3 kann das Einbetten von Tags/Covern eingeschränkt sein oder die Kompatibilität je nach Player variieren, wodurch die Bearbeitung fehlschlagen kann.",
+
+    "metadataRiskFormatsDetail": "M4A/MP4 verwenden iTunes atoms, Ogg/Opus verwenden Vorbis Comment (PICTURE-Block), FLAC verwendet Vorbis Comment/PICTURE und WAV verwendet LIST-INFO.",
+
+    "doNotShowAgain": "Nicht mehr anzeigen",
+
+    "continueLabel": "Weiter",
+
+    "paletteWidthFactor": "Breite {percent} %",
+    "@paletteWidthFactor": { "description": "Prozentsatz des Breiten-Schiebereglers", "placeholders": { "percent": { "type": "String", "example": "75" } } },
+    "paletteHeightFactor": "Höhe {percent} %",
+    "@paletteHeightFactor": { "description": "Prozentsatz des Höhen-Schiebereglers", "placeholders": { "percent": { "type": "String", "example": "10" } } }
+
+
+}

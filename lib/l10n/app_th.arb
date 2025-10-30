@@ -1,0 +1,298 @@
+﻿{
+  "@@locale": "th",
+
+  "exitDialogTitle": "ต้องการออกจากแอปหรือไม่?",
+  "@exitDialogTitle": { "description": "ชื่อเรื่องของไดอะล็อกยืนยันการออกจากแอป" },
+
+  "adLabel": "โฆษณา",
+  "@adLabel": { "description": "ป้ายกำกับด้านบนของคอนเทนเนอร์โฆษณา" },
+
+  "cancel": "ยกเลิก",
+  "@cancel": { "description": "ข้อความปุ่มยกเลิกในไดอะล็อก" },
+
+  "exit": "ออก",
+  "@exit": { "description": "ข้อความปุ่มยืนยัน/ออกในไดอะล็อก" },
+
+  "adLoading": "กำลังโหลดโฆษณา...",
+  "@adLoading": { "description": "ข้อความปุ่มที่ถูกปิดใช้งานระหว่างโหลดโฆษณา" },
+
+  "audioMetadataTitle": "ข้อมูลเมตาเสียง — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "ชื่อเรื่อง AppBar ด้านบน",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "บันทึกเป็น",
+  "@tooltipSaveAs": { "description": "ทูลทิปไอคอนบันทึก (เมื่อมีการเปลี่ยนแปลง)" },
+
+  "tooltipNoChanges": "ไม่มีการเปลี่ยนแปลง",
+  "@tooltipNoChanges": { "description": "ทูลทิปไอคอนบันทึก (เมื่อไม่มีการเปลี่ยนแปลง)" },
+
+  "tooltipReload": "โหลดใหม่",
+  "@tooltipReload": { "description": "ทูลทิปไอคอนโหลดใหม่" },
+
+  "bannerCoverSelected": "เลือกปกแล้ว: {fileName}",
+  "@bannerCoverSelected": {
+    "description": "แบนเนอร์แจ้งหลังเลือกภาพปก",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "ปิด",
+  "@btnClose": { "description": "ปุ่มบนแบนเนอร์: ปิด" },
+
+  "saveDone": "บันทึกแล้ว: {displayName}",
+  "@saveDone": {
+    "description": "ข้อความแบนเนอร์เมื่อบันทึกสำเร็จ",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "ยกเลิกการบันทึก",
+  "@saveCancelled": { "description": "ข้อความแบนเนอร์เมื่อยกเลิกการบันทึก" },
+
+  "saveFailed": "บันทึกล้มเหลว: {error}",
+  "@saveFailed": {
+    "description": "ข้อความแบนเนอร์เมื่อบันทึกล้มเหลว",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "(ไม่มี)",
+  "@hintNone": { "description": "ข้อความแนะนำในช่องป้อนเนื้อเพลง (เมื่อว่าง)" },
+
+  "metaLabelTitle": "ชื่อเรื่อง",
+  "@metaLabelTitle": { "description": "ป้ายกำกับเมตา: ชื่อเรื่อง" },
+
+  "metaLabelArtist": "ศิลปิน",
+  "@metaLabelArtist": { "description": "ป้ายกำกับเมตา: ศิลปิน" },
+
+  "metaLabelAlbum": "อัลบั้ม",
+  "@metaLabelAlbum": { "description": "ป้ายกำกับเมตา: อัลบั้ม" },
+
+  "metaLabelGenre": "แนวเพลง",
+  "@metaLabelGenre": { "description": "ป้ายกำกับเมตา: แนวเพลง" },
+
+  "metaLabelYear": "ปี",
+  "@metaLabelYear": { "description": "ป้ายกำกับเมตา: ปี" },
+
+  "metaLabelTrack": "แทร็ก",
+  "@metaLabelTrack": { "description": "ป้ายกำกับเมตา: หมายเลขแทร็ก" },
+
+  "metaLabelDisc": "ดิสก์",
+  "@metaLabelDisc": { "description": "ป้ายกำกับเมตา: หมายเลขดิสก์" },
+
+  "chooseActionTitle": "ต้องการดำเนินการใด?",
+  "@chooseActionTitle": { "description": "ชื่อเรื่องไดอะล็อกเลือกการทำงาน (โอเวอร์เลย์/แก้ไข)" },
+
+  "chooseActionBody": "เมื่อเลือกแล้วจะเริ่มทำงานทันที",
+  "@chooseActionBody": { "description": "เนื้อหาไดอะล็อกเลือกการทำงาน (โอเวอร์เลย์/แก้ไข)" },
+
+  "actionEditOverlay": "ตั้งค่าขนาดและตำแหน่ง",
+  "@actionEditOverlay": { "description": "ปุ่มไปยังหน้าจอแก้ไขโอเวอร์เลย์" },
+
+  "actionLoadSubtitles": "โหลดคำบรรยาย",
+  "@actionLoadSubtitles": { "description": "ปุ่มเริ่มโอเวอร์เลย์คำบรรยาย" },
+
+  "overlayPermissionNeeded": "ต้องการสิทธิ์โอเวอร์เลย์ โปรดอนุญาตในการตั้งค่า",
+  "@overlayPermissionNeeded": { "description": "สแน็คบาร์เมื่อจำเป็นต้องมีสิทธิ์ SYSTEM_ALERT_WINDOW" },
+
+  "overlayWindowDenied": "ถูกปฏิเสธสิทธิ์หน้าต่างโอเวอร์เลย์",
+  "@overlayWindowDenied": { "description": "สแน็คบาร์: สิทธิ์ FlutterOverlayWindow ถูกปฏิเสธ" },
+
+  "overlaySampleShort": "สำหรับข้อความสั้น",
+  "@overlaySampleShort": { "description": "ตัวอย่างข้อความบรรทัดบนของโอเวอร์เลย์" },
+
+  "overlaySampleLong": "สำหรับข้อความยาว",
+  "@overlaySampleLong": { "description": "ตัวอย่างข้อความบรรทัดล่างของโอเวอร์เลย์" },
+
+  "fontPickerTitle": "เลือกขนาดฟอนต์",
+  "@fontPickerTitle": { "description": "ชื่อเรื่องของม็อดอลเลือกขนาดฟอนต์" },
+
+  "commonCancel": "ยกเลิก",
+  "@commonCancel": { "description": "ทั่วไป: ยกเลิก" },
+
+  "commonOk": "ตกลง",
+  "@commonOk": { "description": "ทั่วไป: ตกลง" },
+
+  "commonSave": "บันทึก",
+  "@commonSave": { "description": "ทั่วไป: บันทึก" },
+
+  "commonChange": "เปลี่ยน",
+  "@commonChange": { "description": "ทั่วไป: เปลี่ยน" },
+
+  "commonSettings": "การตั้งค่า",
+  "@commonSettings": { "description": "ทั่วไป: ป้ายกำกับการตั้งค่า" },
+
+  "paletteFontLabel": "ฟอนต์ {size}",
+  "@paletteFontLabel": {
+    "description": "พาเลต: แสดงขนาดฟอนต์ปัจจุบัน",
+    "placeholders": { "size": {} }
+  },
+
+  "paletteLockCenterX": "ล็อกกึ่งกลางแกน X",
+  "@paletteLockCenterX": { "description": "พาเลต: ป้ายสวิตช์ล็อกกึ่งกลางแกน X" },
+
+  "calibFixHint": "ลบความคลาดเคลื่อน (ล็อกโอเวอร์เลย์)",
+  "@calibFixHint": { "description": "คำอธิบายการปรับเทียบ ขั้นที่ 1" },
+
+  "calibMergeHint": "ซ้อนทับ (บันทึกในคิว Δ)",
+  "@calibMergeHint": { "description": "คำอธิบายการปรับเทียบ ขั้นที่ 2" },
+
+  "calibFix": "ลบความคลาดเคลื่อน",
+  "@calibFix": { "description": "การปรับเทียบ ขั้นที่ 1: ปุ่ม" },
+
+  "calibMerge": "ซ้อนทับ",
+  "@calibMerge": { "description": "การปรับเทียบ ขั้นที่ 2: ปุ่ม" },
+
+  "saveApplyDelta": "ใช้ค่าการปรับแก้แล้วบันทึก",
+  "@saveApplyDelta": { "description": "พาเลต: ป้ายบันทึก" },
+
+  "hudCenterSuffix": "(ล็อกกึ่งกลางแกน X)",
+  "@hudCenterSuffix": { "description": "HUD: สัญลักษณ์บอกว่าล็อกกึ่งกลางแล้ว" },
+
+  "webBack": "ย้อนกลับ",
+  "@webBack": { "description": "แถบที่อยู่: ย้อนกลับ" },
+
+  "webForward": "เดินหน้า",
+  "@webForward": { "description": "แถบที่อยู่: เดินหน้า" },
+
+  "webReload": "โหลดใหม่",
+  "@webReload": { "description": "แถบที่อยู่: โหลดใหม่" },
+
+  "webClose": "ปิด",
+  "@webClose": { "description": "แถบที่อยู่: ปิด" },
+
+  "webAddressHint": "ป้อนหรือวางที่อยู่",
+  "@webAddressHint": { "description": "คำแนะนำในช่องป้อนที่อยู่" },
+
+  "emptyLyrics": "ไม่ได้รับเนื้อเพลง",
+  "@emptyLyrics": { "description": "ข้อความแจ้งเมื่อไม่มีเนื้อเพลง" },
+
+  "overlayHintDoubleTap": "* แตะสองครั้งเพื่อปิดโอเวอร์เลย์",
+  "@overlayHintDoubleTap": { "description": "คำแนะนำด้านบนของหน้าแรกโอเวอร์เลย์" },
+
+  "overlayHintSwipe": "* ปัดเพื่อเปลี่ยนหน้า",
+  "@overlayHintSwipe": { "description": "คำแนะนำด้านล่างของหน้าแรกโอเวอร์เลย์" },
+
+  "menuPrivacy": "ความเป็นส่วนตัว",
+  "menuPrivacyPolicy": "นโยบายความเป็นส่วนตัว",
+  "menuPrivacyOptions": "ตัวเลือกความเป็นส่วนตัวของโฆษณา",
+  "menuPrivacyOptionsSub": "เปลี่ยนสถานะความยินยอมสำหรับโฆษณาที่ปรับให้เป็นส่วนบุคคล",
+  "menuPrivacyOptionsNotRequired": "ไม่จำเป็นต้องแสดงในภูมิภาค/เซสชันปัจจุบัน",
+  "openUrlFailed": "ไม่สามารถเปิด URL ได้",
+  "privacyClosed": "ปิดหน้าตัวเลือกความเป็นส่วนตัวแล้ว",
+  "privacyNotAvailable": "ไม่สามารถใช้แบบฟอร์มความเป็นส่วนตัวได้",
+  "privacyExplainer": "แอปนี้ใช้ SDK โฆษณาเพื่อแสดงโฆษณา และจัดให้มีหน้าจอจัดการความยินยอมในภูมิภาคที่ต้องขอความยินยอม",
+
+  "privacyOptionsRequiredLabel": "ตัวเลือกความเป็นส่วนตัว (จำเป็น)",
+  "@privacyOptionsRequiredLabel": { "description": "ป้ายปุ่มลอยมุมขวาบน (ภูมิภาคที่จำเป็น)" },
+
+  "privacyOptionsNotRequiredLabel": "ตัวเลือกความเป็นส่วนตัว (ไม่จำเป็น)",
+  "@privacyOptionsNotRequiredLabel": { "description": "ป้ายปุ่มลอยมุมขวาบน (ภูมิภาคที่ไม่จำเป็น)" },
+
+  "privacyOptionsUpdated": "อัปเดตตัวเลือกความเป็นส่วนตัวแล้ว",
+  "@privacyOptionsUpdated": { "description": "สแน็คบาร์หลังเปลี่ยนการตั้งค่า UMP" },
+
+  "privacyOptionsNotRequiredSnack": "ในภูมิภาคของคุณไม่จำเป็นต้องแสดงตัวเลือกความเป็นส่วนตัว",
+  "@privacyOptionsNotRequiredSnack": { "description": "สแน็คบาร์สำหรับภูมิภาคที่ไม่ต้องใช้ UMP" },
+
+  "openSource": "โอเพนซอร์ส",
+  "@openSource": { "description": "ป้ายปุ่มข้อมูลโอเพนซอร์ส" },
+
+  "openSourceGuideTitle": "ประกาศโอเพนซอร์ส",
+  "@openSourceGuideTitle": { "description": "ชื่อเรื่องไดอะล็อกข้อมูลโอเพนซอร์ส" },
+
+  "errorTitle": "ข้อผิดพลาด",
+  "@errorTitle": { "description": "ชื่อเรื่องไดอะล็อกข้อผิดพลาด" },
+
+  "readFileFailed": "ไม่สามารถอ่านไฟล์ได้: {error}",
+  "@readFileFailed": {
+    "description": "ข้อความล้มเหลวเมื่อโหลดข้อความข้อมูลโอเพนซอร์ส",
+    "placeholders": { "error": {} }
+  },
+
+  "privacySettingsTitle": "การตั้งค่าความเป็นส่วนตัวและโฆษณา",
+  "@privacySettingsTitle": { "description": "ชื่อเรื่อง AppBar ของหน้าการตั้งค่า" },
+
+  "consentSectionTitle": "ความยินยอม (CMP/UMP)",
+  "@consentSectionTitle": { "description": "ชื่อส่วนความยินยอม" },
+
+  "entryRequiredChip": "ต้องแสดง",
+  "@entryRequiredChip": { "description": "ชิปด้านขวาของส่วนความยินยอม" },
+
+  "openPrivacyOptionsButton": "เปิดตัวเลือกความเป็นส่วนตัว",
+  "@openPrivacyOptionsButton": { "description": "ป้ายปุ่มสำหรับเปิดตัวเลือก UMP" },
+
+  "consentRegionalNote": "ผู้ใช้ EEA/UK/CH จัดการความยินยอมได้ที่นี่ การเปลี่ยนแปลงมีผลกับคำขอโฆษณาถัดไป",
+  "@consentRegionalNote": { "description": "คำอธิบายใต้ส่วนความยินยอม" },
+
+  "adsPersonalizationTitle": "การปรับโฆษณาให้เป็นส่วนบุคคลและข้อมูลตามภูมิภาค",
+  "@adsPersonalizationTitle": { "description": "ชื่อส่วนการปรับให้เป็นส่วนบุคคลของโฆษณา" },
+
+  "npaTitle": "แสดงโฆษณาที่ไม่ปรับให้เป็นส่วนบุคคลเสมอ (NPA)",
+  "@npaTitle": { "description": "ชื่อสวิตช์ NPA" },
+
+  "npaSubtitle": "ร้องขอ NPA เสมอ",
+  "@npaSubtitle": { "description": "คำอธิบายสวิตช์ NPA" },
+
+  "rdpTitle": "US Restricted Data Processing (RDP)",
+  "@rdpTitle": { "description": "ชื่อสวิตช์ RDP" },
+
+  "rdpSubtitle": "ปฏิบัติตามกฎหมายของรัฐในสหรัฐ: เพิ่ม rdp=1 ใน extras",
+  "@rdpSubtitle": { "description": "คำอธิบายสวิตช์ RDP" },
+
+  "childFlagsSectionTitle": "แท็กเด็ก/ผู้เยาว์",
+  "@childFlagsSectionTitle": { "description": "ชื่อส่วนเด็ก/ผู้เยาว์" },
+
+  "coppaTitle": "บริการที่มุ่งเป้าไปยังเด็ก (COPPA)",
+  "@coppaTitle": { "description": "ชื่อสวิตช์ COPPA" },
+
+  "coppaSubtitle": "แท็กสำหรับบริการที่มุ่งเป้าไปยังเด็ก",
+  "@coppaSubtitle": { "description": "คำอธิบายสวิตช์ COPPA" },
+
+  "uacTitle": "อายุต่ำกว่าที่ให้ความยินยอมได้ (UAC)",
+  "@uacTitle": { "description": "ชื่อสวิตช์ UAC" },
+
+  "uacSubtitle": "แท็กผู้เยาว์ (อายุต่ำกว่าที่ให้ความยินยอมได้)",
+  "@uacSubtitle": { "description": "คำอธิบายสวิตช์ UAC" },
+
+  "coppaNote": "COPPA/UAC เป็นการกำหนดค่าระดับโลกของ AdMob มีผลทันทีและใช้กับโฆษณาที่โหลดหลังจากนั้น",
+  "@coppaNote": { "description": "คำอธิบายใต้ส่วนเด็ก/ผู้เยาว์" },
+
+  "policySectionTitle": "นโยบายความเป็นส่วนตัว",
+  "@policySectionTitle": { "description": "ชื่อส่วนของนโยบาย" },
+
+  "viewInAppButton": "ดูในแอป",
+  "@viewInAppButton": { "description": "ปุ่มดูนโยบายภายในแอป" },
+
+  "openStorePolicyButton": "เปิดนโยบายบนสโตร์",
+  "@openStorePolicyButton": { "description": "ปุ่มเปิดนโยบายบนสโตร์" },
+
+  "policySectionNote": "โปรดระบุทั้ง URL นโยบายบนสโตร์และหน้าจอนโยบายภายในแอป",
+  "@policySectionNote": { "description": "คำอธิบายใต้ส่วนของนโยบาย" },
+
+  "inAppPolicyTitle": "นโยบายความเป็นส่วนตัว",
+  "@inAppPolicyTitle": { "description": "ชื่อเรื่อง AppBar ของหน้านโยบายภายในแอป" },
+
+  "inAppPolicyFallback": "โปรดระบุนโยบายภายในแอปที่นี่",
+  "@inAppPolicyFallback": { "description": "ข้อความสำรองเมื่อไม่มี HTML ของนโยบาย" },
+
+  "crossBorderTitle": "ประกาศการโอนข้อมูลข้ามพรมแดน",
+  "@crossBorderTitle": { "description": "국외이전(국제 데이터 이전) 안내 팝업 제목" },
+
+
+  "viewFullPolicy": "ดูนโยบายฉบับเต็ม",
+  "@viewFullPolicy": { "description": "국외이전 팝업의 전체 정책 링크 버튼" },
+
+
+  "crossBorderFullText": "• แอปนี้ใช้บริการของบุคคลที่สาม (เช่น Google AdMob) เพื่อการแสดงและการวัดผลโฆษณา ซึ่งอาจทำให้มีการโอนข้อมูลส่วนบุคคลของคุณไปยังต่างประเทศ\n\n— ผู้รับและข้อมูลติดต่อ\n  · ผู้รับ: Google LLC และบริษัทในเครือ (ผู้ให้บริการ AdMob)\n  · บริการ/บทบาท: การแสดงโฆษณา การให้ฟังก์ชันโฆษณา/การวัดผล การประมวลผลบันทึกที่เกี่ยวข้อง\n  · เว็บไซต์: admob.google.com\n  · หมายเหตุ: บน iOS การใช้ตัวระบุโฆษณา (IDFA) ขึ้นอยู่กับนโยบายของแพลตฟอร์มและสถานะความยินยอมของผู้ใช้\n\n— ประเทศปลายทาง\n  · สหรัฐอเมริกาและประเทศที่ Google หรือบริษัทในเครือมีขีดความสามารถในการประมวลผลข้อมูล (เช่น ยุโรป เอเชีย)\n\n— เวลาและวิธีการโอน\n  · เวลา: เมื่อเปิดแอป และเมื่อมีการร้องขอโฆษณา/แสดงผล/คลิก/การวัดผล ตามความจำเป็น\n  · วิธีการ: ส่งผ่านเครือข่าย พร้อมการเข้ารหัสระหว่างทาง (HTTPS/TLS)\n  · มาตรการคุ้มครอง: ดำเนินการตามกรอบการโอนข้อมูลระหว่างประเทศที่เกี่ยวข้องและการคุ้มครองตามสัญญา (เช่น คำตัดสินความเพียงพอ มาตราข้อตกลงมาตรฐาน)\n\n— วัตถุประสงค์และรายการข้อมูล\n  · วัตถุประสงค์: การแสดงโฆษณา เคารพตัวเลือกการปรับให้เป็นแบบเฉพาะบุคคล การวัดประสิทธิภาพ การวิเคราะห์ทางสถิติ ปรับปรุงคุณภาพ/ความเสถียรของบริการ\n  · ตัวอย่างข้อมูล: ตัวระบุโฆษณา (AAID/IDFA), เวอร์ชัน/การตั้งค่าแอป, ข้อมูลพื้นฐานของอุปกรณ์/เครือข่าย, ตัวระบุที่คล้ายคุกกี้, บันทึกการใช้งาน (รวมการโต้ตอบกับโฆษณาและข้อผิดพลาด/การล่ม), พื้นที่ (ระดับเมือง/ประเทศ) เป็นต้น\n\n— ระยะเวลาเก็บรักษา\n  · เก็บรักษาจนบรรลุวัตถุประสงค์ หรือเป็นระยะเวลาตามที่กฎหมายกำหนด จากนั้นลบหรือทำให้ไม่สามารถระบุตัวบุคคลได้\n\n— สิทธิในการปฏิเสธหรือถอนความยินยอม\n  · คุณสามารถเลือกโฆษณาแบบไม่ปรับให้เป็นแบบเฉพาะบุคคล (NPA) ได้ใน “ตัวเลือกความเป็นส่วนตัว” ของแอป สำหรับภูมิภาคเช่น EEA/สหราชอาณาจักร/สวิตเซอร์แลนด์ หน้าจอขอความยินยอมของ CMP/UMP ช่วยให้เลือกโฆษณาแบบปรับ/ไม่ปรับและรีเซ็ตตัวเลือกได้\n\n— ติดต่อเรา\n  · อีเมล: g.ns.0700g@gmail.com",
+
+  "warningTitle": "คำเตือนการแก้ไขเมตาดาตา",
+  "metadataRiskBody": "รูปแบบบางชนิดที่ไม่ใช่ MP3 อาจจำกัดการฝังแท็ก/ปก หรือมีความเข้ากันได้ต่างกันตามเครื่องเล่น ทำให้การแก้ไขล้มเหลวได้",
+  "metadataRiskFormatsDetail": "M4A/MP4 ใช้ iTunes atoms, Ogg/Opus ใช้ Vorbis Comment (บล็อก PICTURE), FLAC ใช้ Vorbis Comment/PICTURE และ WAV ใช้ LIST-INFO",
+  "doNotShowAgain": "ไม่ต้องแสดงอีก",
+  "continueLabel": "ดำเนินการต่อ",
+
+  "paletteWidthFactor": "ความกว้าง {percent}%",
+  "@paletteWidthFactor": { "description": "เปอร์เซ็นต์ของแถบเลื่อนความกว้าง", "placeholders": { "percent": { "type": "String", "example": "75" } } },
+  "paletteHeightFactor": "ความสูง {percent}%",
+  "@paletteHeightFactor": { "description": "เปอร์เซ็นต์ของแถบเลื่อนความสูง", "placeholders": { "percent": { "type": "String", "example": "10" } } }
+}

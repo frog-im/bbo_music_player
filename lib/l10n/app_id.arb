@@ -1,0 +1,298 @@
+﻿{
+  "@@locale": "id",
+
+  "exitDialogTitle": "Ingin keluar dari aplikasi?",
+  "@exitDialogTitle": { "description": "Judul dialog konfirmasi keluar" },
+
+  "adLabel": "Iklan",
+  "@adLabel": { "description": "Label di bagian atas kontainer iklan" },
+
+  "cancel": "Batal",
+  "@cancel": { "description": "Teks tombol Batal pada dialog" },
+
+  "exit": "Keluar",
+  "@exit": { "description": "Teks tombol Konfirmasi/Keluar pada dialog" },
+
+  "adLoading": "Memuat iklan...",
+  "@adLoading": { "description": "Teks tombol nonaktif saat iklan dimuat" },
+
+  "audioMetadataTitle": "Metadata audio — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "Judul AppBar",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "Simpan sebagai",
+  "@tooltipSaveAs": { "description": "Tooltip ikon Simpan (saat ada perubahan)" },
+
+  "tooltipNoChanges": "Tidak ada perubahan",
+  "@tooltipNoChanges": { "description": "Tooltip ikon Simpan (saat tidak ada perubahan)" },
+
+  "tooltipReload": "Muat ulang",
+  "@tooltipReload": { "description": "Tooltip ikon Muat ulang" },
+
+  "bannerCoverSelected": "Sampul dipilih: {fileName}",
+  "@bannerCoverSelected": {
+    "description": "Banner info setelah memilih sampul",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "Tutup",
+  "@btnClose": { "description": "Tombol banner: Tutup" },
+
+  "saveDone": "Tersimpan: {displayName}",
+  "@saveDone": {
+    "description": "Isi banner saat penyimpanan berhasil",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "Penyimpanan dibatalkan",
+  "@saveCancelled": { "description": "Isi banner saat penyimpanan dibatalkan" },
+
+  "saveFailed": "Gagal menyimpan: {error}",
+  "@saveFailed": {
+    "description": "Isi banner saat penyimpanan gagal",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "(Tidak ada)",
+  "@hintNone": { "description": "Teks petunjuk input lirik (saat kosong)" },
+
+  "metaLabelTitle": "Judul",
+  "@metaLabelTitle": { "description": "Label meta: judul" },
+
+  "metaLabelArtist": "Artis",
+  "@metaLabelArtist": { "description": "Label meta: artis" },
+
+  "metaLabelAlbum": "Album",
+  "@metaLabelAlbum": { "description": "Label meta: album" },
+
+  "metaLabelGenre": "Genre",
+  "@metaLabelGenre": { "description": "Label meta: genre" },
+
+  "metaLabelYear": "Tahun",
+  "@metaLabelYear": { "description": "Label meta: tahun" },
+
+  "metaLabelTrack": "Trek",
+  "@metaLabelTrack": { "description": "Label meta: nomor trek" },
+
+  "metaLabelDisc": "Cakram",
+  "@metaLabelDisc": { "description": "Label meta: nomor cakram" },
+
+  "chooseActionTitle": "Tindakan apa yang ingin dijalankan?",
+  "@chooseActionTitle": { "description": "Judul dialog pemilihan tindakan overlay/editor" },
+
+  "chooseActionBody": "Memilih salah satu akan langsung dijalankan.",
+  "@chooseActionBody": { "description": "Isi dialog pemilihan tindakan overlay/editor" },
+
+  "actionEditOverlay": "Atur ukuran dan posisi",
+  "@actionEditOverlay": { "description": "Tombol menuju layar edit overlay" },
+
+  "actionLoadSubtitles": "Muat subtitle",
+  "@actionLoadSubtitles": { "description": "Tombol untuk menjalankan overlay subtitle" },
+
+  "overlayPermissionNeeded": "Izin overlay diperlukan. Aktifkan di Pengaturan.",
+  "@overlayPermissionNeeded": { "description": "Snackbar: izin SYSTEM_ALERT_WINDOW diperlukan" },
+
+  "overlayWindowDenied": "Izin Overlay Window ditolak.",
+  "@overlayWindowDenied": { "description": "Snackbar: izin FlutterOverlayWindow ditolak" },
+
+  "overlaySampleShort": "Untuk teks pendek",
+  "@overlaySampleShort": { "description": "Teks contoh untuk baris atas overlay" },
+
+  "overlaySampleLong": "Untuk teks panjang",
+  "@overlaySampleLong": { "description": "Teks contoh untuk baris bawah overlay" },
+
+  "fontPickerTitle": "Pilih ukuran font",
+  "@fontPickerTitle": { "description": "Judul modal pemilihan ukuran font" },
+
+  "commonCancel": "Batal",
+  "@commonCancel": { "description": "Umum: Batal" },
+
+  "commonOk": "OK",
+  "@commonOk": { "description": "Umum: OK" },
+
+  "commonSave": "Simpan",
+  "@commonSave": { "description": "Umum: Simpan" },
+
+  "commonChange": "Ubah",
+  "@commonChange": { "description": "Umum: Ubah" },
+
+  "commonSettings": "Pengaturan",
+  "@commonSettings": { "description": "Umum: label Pengaturan" },
+
+  "paletteFontLabel": "Ukuran font {size}",
+  "@paletteFontLabel": {
+    "description": "Palet: tampilan ukuran font saat ini",
+    "placeholders": { "size": {} }
+  },
+
+  "paletteLockCenterX": "Kunci tengah X",
+  "@paletteLockCenterX": { "description": "Palet: label sakelar kunci pusat sumbu X" },
+
+  "calibFixHint": "Hilangkan offset (kunci overlay)",
+  "@calibFixHint": { "description": "Deskripsi langkah kalibrasi 1" },
+
+  "calibMergeHint": "Gabungkan (simpan ke antrian Δ)",
+  "@calibMergeHint": { "description": "Deskripsi langkah kalibrasi 2" },
+
+  "calibFix": "Hilangkan offset",
+  "@calibFix": { "description": "Tombol langkah kalibrasi 1" },
+
+  "calibMerge": "Gabungkan",
+  "@calibMerge": { "description": "Tombol langkah kalibrasi 2" },
+
+  "saveApplyDelta": "Terapkan koreksi lalu simpan",
+  "@saveApplyDelta": { "description": "Palet: label Simpan" },
+
+  "hudCenterSuffix": "(Pusat X terkunci)",
+  "@hudCenterSuffix": { "description": "HUD: penanda pusat terkunci" },
+
+  "webBack": "Kembali",
+  "@webBack": { "description": "Toolbar bilah alamat: Kembali" },
+
+  "webForward": "Maju",
+  "@webForward": { "description": "Toolbar bilah alamat: Maju" },
+
+  "webReload": "Muat ulang",
+  "@webReload": { "description": "Toolbar bilah alamat: Muat ulang" },
+
+  "webClose": "Tutup",
+  "@webClose": { "description": "Toolbar bilah alamat: Tutup" },
+
+  "webAddressHint": "Masukkan atau tempel alamat",
+  "@webAddressHint": { "description": "Petunjuk kolom masukan alamat" },
+
+  "emptyLyrics": "Lirik tidak diterima.",
+  "@emptyLyrics": { "description": "Pemberitahuan tidak ada lirik" },
+
+  "overlayHintDoubleTap": "* Ketuk dua kali untuk menutup overlay.",
+  "@overlayHintDoubleTap": { "description": "Halaman pertama overlay: petunjuk atas" },
+
+  "overlayHintSwipe": "* Geser untuk mengganti halaman.",
+  "@overlayHintSwipe": { "description": "Halaman pertama overlay: petunjuk bawah" },
+
+  "menuPrivacy": "Privasi",
+  "menuPrivacyPolicy": "Kebijakan Privasi",
+  "menuPrivacyOptions": "Opsi privasi iklan",
+  "menuPrivacyOptionsSub": "Ubah status persetujuan untuk iklan yang dipersonalisasi",
+  "menuPrivacyOptionsNotRequired": "Tidak perlu ditampilkan untuk wilayah/sesi saat ini",
+  "openUrlFailed": "Tidak dapat membuka URL",
+  "privacyClosed": "Layar opsi privasi ditutup",
+  "privacyNotAvailable": "Formulir privasi tidak tersedia",
+  "privacyExplainer": "Aplikasi ini menggunakan SDK iklan untuk menayangkan iklan dan menampilkan layar pengelolaan persetujuan di wilayah yang mewajibkannya.",
+
+  "privacyOptionsRequiredLabel": "Opsi privasi (diperlukan)",
+  "@privacyOptionsRequiredLabel": { "description": "Label tombol mengambang kanan atas (wilayah diperlukan)" },
+
+  "privacyOptionsNotRequiredLabel": "Opsi privasi (tidak diperlukan)",
+  "@privacyOptionsNotRequiredLabel": { "description": "Label tombol mengambang kanan atas (wilayah tidak diperlukan)" },
+
+  "privacyOptionsUpdated": "Opsi privasi telah diperbarui",
+  "@privacyOptionsUpdated": { "description": "Snackbar setelah perubahan opsi UMP" },
+
+  "privacyOptionsNotRequiredSnack": "Opsi privasi tidak diperlukan di wilayah Anda",
+  "@privacyOptionsNotRequiredSnack": { "description": "Snackbar untuk wilayah tanpa kewajiban UMP" },
+
+  "openSource": "Sumber terbuka",
+  "@openSource": { "description": "Label tombol informasi sumber terbuka" },
+
+  "openSourceGuideTitle": "Pemberitahuan sumber terbuka",
+  "@openSourceGuideTitle": { "description": "Judul dialog informasi sumber terbuka" },
+
+  "errorTitle": "Kesalahan",
+  "@errorTitle": { "description": "Judul dialog kesalahan" },
+
+  "readFileFailed": "Gagal membaca file: {error}",
+  "@readFileFailed": {
+    "description": "Pesan kegagalan memuat teks informasi sumber terbuka",
+    "placeholders": { "error": {} }
+  },
+
+  "privacySettingsTitle": "Privasi dan pengaturan iklan",
+  "@privacySettingsTitle": { "description": "Judul AppBar layar pengaturan" },
+
+  "consentSectionTitle": "Persetujuan (CMP/UMP)",
+  "@consentSectionTitle": { "description": "Judul bagian persetujuan" },
+
+  "entryRequiredChip": "Perlu ditampilkan",
+  "@entryRequiredChip": { "description": "Chip di sisi kanan bagian persetujuan" },
+
+  "openPrivacyOptionsButton": "Buka opsi privasi",
+  "@openPrivacyOptionsButton": { "description": "Label tombol untuk membuka opsi UMP" },
+
+  "consentRegionalNote": "Pengguna EEA/UK/CH dapat mengelola persetujuan di sini. Perubahan berlaku mulai permintaan iklan berikutnya.",
+  "@consentRegionalNote": { "description": "Keterangan di bagian bawah persetujuan" },
+
+  "adsPersonalizationTitle": "Personalisasi iklan dan data regional",
+  "@adsPersonalizationTitle": { "description": "Judul bagian personalisasi iklan" },
+
+  "npaTitle": "Selalu iklan non-pribadi (NPA)",
+  "@npaTitle": { "description": "Judul sakelar NPA" },
+
+  "npaSubtitle": "Selalu minta NPA",
+  "@npaSubtitle": { "description": "Subjudul sakelar NPA" },
+
+  "rdpTitle": "US Restricted Data Processing (RDP)",
+  "@rdpTitle": { "description": "Judul sakelar RDP" },
+
+  "rdpSubtitle": "Kepatuhan hukum negara bagian AS: tambahkan rdp=1 pada extras",
+  "@rdpSubtitle": { "description": "Subjudul sakelar RDP" },
+
+  "childFlagsSectionTitle": "Tag anak/di bawah umur",
+  "@childFlagsSectionTitle": { "description": "Judul bagian anak/di bawah umur" },
+
+  "coppaTitle": "Layanan untuk anak (COPPA)",
+  "@coppaTitle": { "description": "Judul sakelar COPPA" },
+
+  "coppaSubtitle": "Tag layanan yang ditujukan untuk anak",
+  "@coppaSubtitle": { "description": "Subjudul sakelar COPPA" },
+
+  "uacTitle": "Di bawah usia persetujuan (UAC)",
+  "@uacTitle": { "description": "Judul sakelar UAC" },
+
+  "uacSubtitle": "Tag di bawah umur (di bawah usia persetujuan)",
+  "@uacSubtitle": { "description": "Subjudul sakelar UAC" },
+
+  "coppaNote": "COPPA/UAC adalah konfigurasi global AdMob, berlaku segera dan diterapkan pada iklan yang dimuat setelahnya.",
+  "@coppaNote": { "description": "Keterangan di bagian bawah anak/di bawah umur" },
+
+  "policySectionTitle": "Kebijakan Privasi",
+  "@policySectionTitle": { "description": "Judul bagian kebijakan" },
+
+  "viewInAppButton": "Lihat di dalam aplikasi",
+  "@viewInAppButton": { "description": "Tombol untuk melihat kebijakan di dalam aplikasi" },
+
+  "openStorePolicyButton": "Buka kebijakan di Store",
+  "@openStorePolicyButton": { "description": "Tombol untuk membuka kebijakan di Store" },
+
+  "policySectionNote": "Sediakan URL kebijakan di Store dan juga layar kebijakan di dalam aplikasi.",
+  "@policySectionNote": { "description": "Keterangan di bagian bawah kebijakan" },
+
+  "inAppPolicyTitle": "Kebijakan Privasi",
+  "@inAppPolicyTitle": { "description": "Judul AppBar layar kebijakan dalam aplikasi" },
+
+  "inAppPolicyFallback": "Tampilkan kebijakan dalam aplikasi di sini.",
+  "@inAppPolicyFallback": { "description": "Teks pengganti saat HTML kebijakan tidak tersedia" },
+
+  "crossBorderTitle": "Pemberitahuan Transfer Data Lintas Negara",
+  "@crossBorderTitle": { "description": "국외이전(국제 데이터 이전) 안내 팝업 제목" },
+
+  "viewFullPolicy": "Lihat kebijakan lengkap",
+  "@viewFullPolicy": { "description": "국외이전 팝업의 전체 정책 링크 버튼" },
+
+  "crossBorderFullText": "• Aplikasi ini menggunakan layanan pihak ketiga (mis. Google AdMob) untuk penayangan dan pengukuran iklan. Akibatnya, data pribadi Anda dapat ditransfer ke luar negara Anda.\n\n— Penerima dan kontak\n  · Penerima: Google LLC dan afiliasinya (penyedia AdMob)\n  · Layanan/Peran: Penayangan iklan, penyediaan fitur iklan/pengukuran, pemrosesan log terkait\n  · Situs web: admob.google.com\n  · Catatan: Di iOS, penggunaan pengenal iklan (IDFA) bergantung pada kebijakan platform dan status persetujuan pengguna.\n\n— Negara tujuan\n  · Amerika Serikat dan negara lain tempat Google atau afiliasinya memiliki kemampuan pemrosesan data (mis. Eropa, Asia)\n\n— Waktu dan metode transfer\n  · Waktu: Saat aplikasi diluncurkan serta ketika permintaan/penayangan/klik/pengukuran iklan terjadi sesuai kebutuhan\n  · Metode: Transmisi jaringan dengan enkripsi selama transit (HTTPS/TLS)\n  · Perlindungan: Diproses sesuai kerangka transfer internasional yang berlaku dan perlindungan kontraktual (mis. keputusan kecukupan, Klausul Kontrak Standar)\n\n— Tujuan dan jenis data\n  · Tujuan: Penayangan iklan, menghormati pilihan personalisasi, pengukuran kinerja, analisis statistik, peningkatan kualitas/stabilitas layanan\n  · Contoh data: Pengenal iklan (AAID/IDFA), versi/pengaturan aplikasi, informasi dasar perangkat/jaringan, pengenal mirip cookie, log penggunaan (termasuk interaksi iklan serta error/crash), wilayah (level kota/negara), dll.\n\n— Periode penyimpanan\n  · Disimpan hingga tujuan tercapai atau selama periode yang disyaratkan hukum berlaku, kemudian dihapus atau dianonimkan\n\n— Hak untuk menolak atau menarik persetujuan\n  · Anda dapat memilih Iklan Non-Personalisasi (NPA) di “Opsi privasi” aplikasi. Di wilayah seperti EEA/UK/CH, layar persetujuan CMP/UMP memungkinkan pilihan iklan personalisasi/non-personaliasi dan pengaturan ulang pilihan.\n\n— Kontak\n  · Email: g.ns.0700g@gmail.com",
+
+  "warningTitle": "Peringatan Pengeditan Metadata",
+  "metadataRiskBody": "Beberapa format selain MP3 membatasi penyisipan tag/sampul atau memiliki kompatibilitas yang berbeda antar pemutar, sehingga pengeditan bisa gagal.",
+  "metadataRiskFormatsDetail": "M4A/MP4 menggunakan iTunes atoms, Ogg/Opus menggunakan Vorbis Comment (blok PICTURE), FLAC menggunakan Vorbis Comment/PICTURE, dan WAV menggunakan LIST-INFO.",
+  "doNotShowAgain": "Jangan tampilkan lagi",
+  "continueLabel": "Lanjutkan",
+
+
+  "paletteWidthFactor": "Lebar {percent}%",
+  "@paletteWidthFactor": { "description": "Persentase penggeser lebar", "placeholders": { "percent": { "type": "String", "example": "75" } } },
+  "paletteHeightFactor": "Tinggi {percent}%",
+  "@paletteHeightFactor": { "description": "Persentase penggeser tinggi", "placeholders": { "percent": { "type": "String", "example": "10" } } }
+
+}

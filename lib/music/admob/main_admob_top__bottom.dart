@@ -1,7 +1,9 @@
+// lib/music/admob/main_admob_top__bottom.dart
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+import '../../privacy/privacy_gate.dart';
 
 class Banner320x50_top extends StatefulWidget {
   const Banner320x50_top({super.key});
@@ -17,16 +19,19 @@ class _Banner320x50_topState extends State<Banner320x50_top> {
   void initState() {
     super.initState();
     _ad = BannerAd(
-      size: AdSize.banner, // 320x50 고정
+      size: AdSize.banner, // 320x50
       adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/6300978111' // (테스트용 배너 ID - Android)
-          : 'ca-app-pub-3940256099942544/2934735716', // (테스트용 배너 ID - iOS)
-      request: const AdRequest(),
+          ? /*'ca-app-pub-3940256099942544/6300978111'*/ 'ca-app-pub-3252837628484304/2261714757'
+          : /*'ca-app-pub-3940256099942544/2934735716'*/'ca-app-pub-3252837628484304/6364611292',
+      request: PRivacy.instance.ADRequest(),
       listener: BannerAdListener(
-        onAdLoaded: (ad) => setState(() => _loaded = true),
+        onAdLoaded: (ad) {
+          if (!mounted) return;
+          setState(() => _loaded = true);
+        },
         onAdFailedToLoad: (ad, err) {
           ad.dispose();
-          debugPrint('Banner load failed: $err');
+          // 필요 시 재시도 로직 추가 가능
         },
       ),
     )..load();
@@ -41,16 +46,13 @@ class _Banner320x50_topState extends State<Banner320x50_top> {
   @override
   Widget build(BuildContext context) {
     if (!_loaded || _ad == null) return const SizedBox.shrink();
-    // 컨테이너 크기는 광고 크기 이상이어야 하며, 패딩으로 줄어들면 표시되지 않습니다.
-    // (공식 문서 참고)
     return SizedBox(
-      width: _ad!.size.width.toDouble(),   // 320
-      height: _ad!.size.height.toDouble(), // 50
+      width: _ad!.size.width.toDouble(),
+      height: _ad!.size.height.toDouble(),
       child: AdWidget(ad: _ad!),
     );
   }
 }
-
 
 class Banner320x50_bottom extends StatefulWidget {
   const Banner320x50_bottom({super.key});
@@ -66,16 +68,18 @@ class _Banner320x50State extends State<Banner320x50_bottom> {
   void initState() {
     super.initState();
     _ad = BannerAd(
-      size: AdSize.banner, // 320x50 고정
+      size: AdSize.banner,
       adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/6300978111' // (테스트용 배너 ID - Android)
-          : 'ca-app-pub-3940256099942544/2934735716', // (테스트용 배너 ID - iOS)
-      request: const AdRequest(),
+          ? /*'ca-app-pub-3940256099942544/6300978111'*/ 'ca-app-pub-3252837628484304/1650684124'
+          : /*'ca-app-pub-3940256099942544/2934735716'*/'ca-app-pub-3252837628484304/9621330020',
+      request: PRivacy.instance.ADRequest(),
       listener: BannerAdListener(
-        onAdLoaded: (ad) => setState(() => _loaded = true),
+        onAdLoaded: (ad) {
+          if (!mounted) return;
+          setState(() => _loaded = true);
+        },
         onAdFailedToLoad: (ad, err) {
           ad.dispose();
-          debugPrint('Banner load failed: $err');
         },
       ),
     )..load();
@@ -89,12 +93,7 @@ class _Banner320x50State extends State<Banner320x50_bottom> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_loaded || _ad == null) {
-      print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    $_ad");
-      return const SizedBox.shrink();
-    }
-    // 컨테이너 크기는 광고 크기 이상이어야 하며, 패딩으로 줄어들면 표시되지 않습니다.
-    // (공식 문서 참고)
+    if (!_loaded || _ad == null) return const SizedBox.shrink();
     return SizedBox(
       width: _ad!.size.width.toDouble(),
       height: _ad!.size.height.toDouble(),

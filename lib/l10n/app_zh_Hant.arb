@@ -1,0 +1,300 @@
+﻿{
+  "@@locale": "zh_Hant",
+
+  "exitDialogTitle": "要結束應用程式嗎？",
+  "@exitDialogTitle": { "description": "應用程式結束確認對話框標題" },
+
+  "adLabel": "廣告",
+  "@adLabel": { "description": "廣告容器上方的標籤" },
+
+  "cancel": "取消",
+  "@cancel": { "description": "對話框取消按鈕文字" },
+
+  "exit": "結束",
+  "@exit": { "description": "對話框確定/結束按鈕文字" },
+
+  "adLoading": "正在載入廣告…",
+  "@adLoading": { "description": "載入廣告期間的停用按鈕文字" },
+
+  "audioMetadataTitle": "音訊中繼資料 — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "上方 AppBar 標題",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "另存新檔",
+  "@tooltipSaveAs": { "description": "儲存圖示工具提示（有變更時）" },
+
+  "tooltipNoChanges": "無變更",
+  "@tooltipNoChanges": { "description": "儲存圖示工具提示（無變更時）" },
+
+  "tooltipReload": "重新載入",
+  "@tooltipReload": { "description": "重新整理圖示工具提示" },
+
+  "bannerCoverSelected": "已選封面：{fileName}",
+  "@bannerCoverSelected": {
+    "description": "選擇封面後的提示橫幅",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "關閉",
+  "@btnClose": { "description": "橫幅按鈕：關閉" },
+
+  "saveDone": "已儲存：{displayName}",
+  "@saveDone": {
+    "description": "儲存成功時的橫幅本文",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "已取消儲存",
+  "@saveCancelled": { "description": "取消儲存時的橫幅本文" },
+
+  "saveFailed": "儲存失敗：{error}",
+  "@saveFailed": {
+    "description": "儲存失敗時的橫幅本文",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "（無）",
+  "@hintNone": { "description": "歌詞輸入提示文字（無內容時）" },
+
+  "metaLabelTitle": "標題",
+  "@metaLabelTitle": { "description": "後設欄位標籤：標題" },
+
+  "metaLabelArtist": "演出者",
+  "@metaLabelArtist": { "description": "後設欄位標籤：演出者" },
+
+  "metaLabelAlbum": "專輯",
+  "@metaLabelAlbum": { "description": "後設欄位標籤：專輯" },
+
+  "metaLabelGenre": "類型",
+  "@metaLabelGenre": { "description": "後設欄位標籤：類型" },
+
+  "metaLabelYear": "年",
+  "@metaLabelYear": { "description": "後設欄位標籤：年份" },
+
+  "metaLabelTrack": "曲目",
+  "@metaLabelTrack": { "description": "後設欄位標籤：曲目編號" },
+
+  "metaLabelDisc": "碟片",
+  "@metaLabelDisc": { "description": "後設欄位標籤：碟片編號" },
+
+  "chooseActionTitle": "要執行哪個動作？",
+  "@chooseActionTitle": { "description": "覆蓋層/編輯動作選擇對話框標題" },
+
+  "chooseActionBody": "選擇任一選項後將立即執行。",
+  "@chooseActionBody": { "description": "覆蓋層/編輯動作選擇對話框本文" },
+
+  "actionEditOverlay": "設定大小與位置",
+  "@actionEditOverlay": { "description": "前往覆蓋層編輯畫面的按鈕" },
+
+  "actionLoadSubtitles": "載入字幕",
+  "@actionLoadSubtitles": { "description": "啟動字幕覆蓋層的按鈕" },
+
+  "overlayPermissionNeeded": "需要覆蓋層權限。請在設定中允許。",
+  "@overlayPermissionNeeded": { "description": "SYSTEM_ALERT_WINDOW 權限需求的提示列" },
+
+  "overlayWindowDenied": "覆蓋視窗權限已被拒絕。",
+  "@overlayWindowDenied": { "description": "FlutterOverlayWindow 權限被拒的提示列" },
+
+  "overlaySampleShort": "適用於短文字",
+  "@overlaySampleShort": { "description": "字幕上方的範例文字" },
+
+  "overlaySampleLong": "適用於長文字",
+  "@overlaySampleLong": { "description": "字幕下方的範例文字" },
+
+  "fontPickerTitle": "選擇字型大小",
+  "@fontPickerTitle": { "description": "字型大小選擇模態視窗標題" },
+
+  "commonCancel": "取消",
+  "@commonCancel": { "description": "通用：取消" },
+
+  "commonOk": "確認",
+  "@commonOk": { "description": "通用：確認" },
+
+  "commonSave": "儲存",
+  "@commonSave": { "description": "通用：儲存" },
+
+  "commonChange": "變更",
+  "@commonChange": { "description": "通用：變更" },
+
+  "commonSettings": "設定",
+  "@commonSettings": { "description": "通用：設定標籤" },
+
+  "paletteFontLabel": "字型 {size}",
+  "@paletteFontLabel": {
+    "description": "調色盤：顯示目前字型大小",
+    "placeholders": { "size": {} }
+  },
+
+  "paletteLockCenterX": "X 軸置中鎖定",
+  "@paletteLockCenterX": { "description": "調色盤：X 軸置中鎖定開關標籤" },
+
+  "calibFixHint": "移除偏移（鎖定覆蓋層）",
+  "@calibFixHint": { "description": "校正第 1 階段說明" },
+
+  "calibMergeHint": "合併（儲存到 Δ 佇列）",
+  "@calibMergeHint": { "description": "校正第 2 階段說明" },
+
+  "calibFix": "移除偏移",
+  "@calibFix": { "description": "校正第 1 階段按鈕" },
+
+  "calibMerge": "合併",
+  "@calibMerge": { "description": "校正第 2 階段按鈕" },
+
+  "saveApplyDelta": "套用校正值後儲存",
+  "@saveApplyDelta": { "description": "調色盤：儲存標籤" },
+
+  "hudCenterSuffix": "（X 置中鎖定）",
+  "@hudCenterSuffix": { "description": "HUD：置中鎖定註記" },
+
+  "webBack": "返回",
+  "@webBack": { "description": "網址列工具列：返回" },
+
+  "webForward": "前進",
+  "@webForward": { "description": "網址列工具列：前進" },
+
+  "webReload": "重新整理",
+  "@webReload": { "description": "網址列工具列：重新整理" },
+
+  "webClose": "關閉",
+  "@webClose": { "description": "網址列工具列：關閉" },
+
+  "webAddressHint": "輸入或貼上位址",
+  "@webAddressHint": { "description": "位址輸入欄位提示" },
+
+  "emptyLyrics": "未收到歌詞。",
+  "@emptyLyrics": { "description": "無歌詞時的提示" },
+
+  "overlayHintDoubleTap": "＊ 輕觸兩下可關閉覆蓋層。",
+  "@overlayHintDoubleTap": { "description": "覆蓋層第一頁上方提示" },
+
+  "overlayHintSwipe": "＊ 滑動以切換頁面。",
+  "@overlayHintSwipe": { "description": "覆蓋層第一頁下方提示" },
+
+  "menuPrivacy": "隱私",
+  "menuPrivacyPolicy": "隱私權政策",
+  "menuPrivacyOptions": "廣告隱私選項",
+  "menuPrivacyOptionsSub": "變更個人化廣告的同意狀態",
+  "menuPrivacyOptionsNotRequired": "目前區域/工作階段無需顯示",
+  "openUrlFailed": "無法開啟 URL",
+  "privacyClosed": "已關閉隱私選項畫面",
+  "privacyNotAvailable": "隱私表單無法使用",
+  "privacyExplainer": "本應用使用廣告 SDK 投放廣告，於需要同意的地區提供同意管理畫面。",
+
+  "privacyOptionsRequiredLabel": "隱私選項（必須）",
+  "@privacyOptionsRequiredLabel": { "description": "右上角浮動按鈕標籤（必須地區）" },
+
+  "privacyOptionsNotRequiredLabel": "隱私選項（非必須）",
+  "@privacyOptionsNotRequiredLabel": { "description": "右上角浮動按鈕標籤（非必須地區）" },
+
+  "privacyOptionsUpdated": "已更新隱私選項",
+  "@privacyOptionsUpdated": { "description": "變更 UMP 選項後的提示列" },
+
+  "privacyOptionsNotRequiredSnack": "您所在區域無需顯示隱私選項",
+  "@privacyOptionsNotRequiredSnack": { "description": "不需 UMP 的地區之提示列" },
+
+  "openSource": "開放原始碼",
+  "@openSource": { "description": "開放原始碼資訊按鈕標籤" },
+
+  "openSourceGuideTitle": "開放原始碼說明",
+  "@openSourceGuideTitle": { "description": "開放原始碼說明對話框標題" },
+
+  "errorTitle": "錯誤",
+  "@errorTitle": { "description": "錯誤對話框標題" },
+
+  "readFileFailed": "無法讀取檔案：{error}",
+  "@readFileFailed": {
+    "description": "載入開放原始碼說明文字失敗的訊息",
+    "placeholders": { "error": {} }
+  },
+
+  "privacySettingsTitle": "隱私與廣告設定",
+  "@privacySettingsTitle": { "description": "設定畫面 AppBar 標題" },
+
+  "consentSectionTitle": "同意（CMP/UMP）",
+  "@consentSectionTitle": { "description": "同意區段標題" },
+
+  "entryRequiredChip": "需顯示",
+  "@entryRequiredChip": { "description": "同意區段右側晶片標籤" },
+
+  "openPrivacyOptionsButton": "開啟隱私選項",
+  "@openPrivacyOptionsButton": { "description": "開啟 UMP 選項的按鈕標籤" },
+
+  "consentRegionalNote": "EEA/UK/CH 使用者可在此管理同意。變更將自後續廣告請求起生效。",
+  "@consentRegionalNote": { "description": "同意區段底部說明" },
+
+  "adsPersonalizationTitle": "廣告個人化與區域資料",
+  "@adsPersonalizationTitle": { "description": "廣告個人化區段標題" },
+
+  "npaTitle": "一律使用非個人化廣告（NPA）",
+  "@npaTitle": { "description": "NPA 開關標題" },
+
+  "npaSubtitle": "一律請求 NPA",
+  "@npaSubtitle": { "description": "NPA 開關副標題" },
+
+  "rdpTitle": "美國限制性資料處理（RDP）",
+  "@rdpTitle": { "description": "RDP 開關標題" },
+
+  "rdpSubtitle": "符合美國各州法規：在 extras 加上 rdp=1",
+  "@rdpSubtitle": { "description": "RDP 開關副標題" },
+
+  "childFlagsSectionTitle": "兒童/未成年標記",
+  "@childFlagsSectionTitle": { "description": "兒童/未成年區段標題" },
+
+  "coppaTitle": "兒童取向服務（COPPA）",
+  "@coppaTitle": { "description": "COPPA 開關標題" },
+
+  "coppaSubtitle": "兒童取向服務標記",
+  "@coppaSubtitle": { "description": "COPPA 開關副標題" },
+
+  "uacTitle": "低於同意年齡（UAC）",
+  "@uacTitle": { "description": "UAC 開關標題" },
+
+  "uacSubtitle": "未成年（低於同意年齡）標記",
+  "@uacSubtitle": { "description": "UAC 開關副標題" },
+
+  "coppaNote": "COPPA/UAC 為 AdMob 全域設定，立即生效，並套用於之後載入的廣告。",
+  "@coppaNote": { "description": "兒童/未成年區段底部說明" },
+
+  "policySectionTitle": "隱私權政策",
+  "@policySectionTitle": { "description": "政策區段標題" },
+
+  "viewInAppButton": "以應用程式內檢視",
+  "@viewInAppButton": { "description": "應用程式內檢視政策的按鈕" },
+
+  "openStorePolicyButton": "開啟商店政策",
+  "@openStorePolicyButton": { "description": "開啟商店政策的按鈕" },
+
+  "policySectionNote": "請同時提供商店政策 URL 與應用程式內政策畫面。",
+  "@policySectionNote": { "description": "政策區段底部說明" },
+
+  "inAppPolicyTitle": "隱私權政策",
+  "@inAppPolicyTitle": { "description": "應用程式內政策畫面的 AppBar 標題" },
+
+  "inAppPolicyFallback": "請在此提供應用程式內政策。",
+  "@inAppPolicyFallback": { "description": "缺少政策 HTML 時的替代文字" },
+
+  "crossBorderTitle": "跨境資料傳輸通知",
+  "@crossBorderTitle": { "description": "국외이전(국제 데이터 이전) 안내 팝업 제목" },
+
+
+  "viewFullPolicy": "查看完整政策",
+  "@viewFullPolicy": { "description": "국외이전 팝업의 전체 정책 링크 버튼" },
+
+
+  "crossBorderFullText": "• 本應用程式為提供與衡量廣告而使用第三方服務（例如：Google AdMob），因此您的個人資料可能被傳輸至境外。\n\n— 接收方與聯絡方式\n  · 接收方：Google LLC 及其關係企業（AdMob 提供者）\n  · 服務/角色：廣告投放、提供廣告/衡量功能、處理相關記錄\n  · 網站：admob.google.com\n  · 備註：在 iOS 上，廣告識別碼（IDFA）的使用取決於平台政策與使用者同意狀態。\n\n— 傳輸目的地\n  · 美國，以及 Google 或其關係企業具備資料處理能力之國家/地區（例如：歐洲、亞洲）\n\n— 傳輸時間與方式\n  · 時間：啟動應用程式時，及於需要時進行廣告請求/曝光/點擊/衡量\n  · 方式：透過網路傳輸，並於傳輸途中加密（HTTPS/TLS）\n  · 保護措施：依適用之國際傳輸機制與契約性保障（例如：適足性決定、標準合約條款）進行處理\n\n— 目的與資料項目\n  · 目的：廣告投放、反映個人化選擇、績效衡量、統計分析、提升服務品質/穩定性\n  · 資料項目範例：廣告識別碼（AAID/IDFA）、應用程式版本/設定、裝置/網路基本資訊、類 Cookie 識別碼、使用記錄（含廣告互動與錯誤/當機）、地區（城市/國家層級）等\n\n— 保存期間\n  · 於達成目的或法律要求之期間屆滿前保存；之後刪除或去識別化\n\n— 拒絕與撤回同意之權利\n  · 您可於應用程式的「隱私選項」選擇非個人化廣告（NPA）。於 EEA/英國/瑞士等地區，可透過 CMP/UMP 同意畫面選擇個人化/非個人化並重新設定。\n\n— 聯絡方式\n  · 電子郵件：g.ns.0700g@gmail.com",
+
+  "warningTitle": "中繼資料編輯警示",
+  "metadataRiskBody": "除 MP3 外，部分格式對標籤／封面嵌入有所限制，或因播放器而相容性不同，可能導致編輯失敗。",
+  "metadataRiskFormatsDetail": "M4A/MP4 使用 iTunes atoms，Ogg/Opus 使用 Vorbis Comment（PICTURE 區塊），FLAC 使用 Vorbis Comment/PICTURE，WAV 使用 LIST-INFO。",
+  "doNotShowAgain": "不再顯示",
+  "continueLabel": "繼續",
+
+
+  "paletteWidthFactor": "寬度 {percent}%",
+  "@paletteWidthFactor": { "description": "寬度滑桿的百分比", "placeholders": { "percent": { "type": "String", "example": "75" } } },
+  "paletteHeightFactor": "高度 {percent}%",
+  "@paletteHeightFactor": { "description": "高度滑桿的百分比", "placeholders": { "percent": { "type": "String", "example": "10" } } }
+
+}

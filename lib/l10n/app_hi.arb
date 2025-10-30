@@ -1,0 +1,300 @@
+﻿{
+  "@@locale": "hi",
+
+  "exitDialogTitle": "क्या आप ऐप बंद करना चाहते हैं?",
+  "@exitDialogTitle": { "description": "ऐप 종료 확인 다이얼로그 제목" },
+
+  "adLabel": "विज्ञापन",
+  "@adLabel": { "description": "광고 컨테이너 상단 라벨" },
+
+  "cancel": "रद्द करें",
+  "@cancel": { "description": "다이얼로그 취소 버튼 텍스트" },
+
+  "exit": "बंद करें",
+  "@exit": { "description": "다이얼로그 확정/종료 버튼 텍스트" },
+
+  "adLoading": "विज्ञापन लोड हो रहा है...",
+  "@adLoading": { "description": "광고 로딩 동안 비활성 버튼 텍스트" },
+
+  "audioMetadataTitle": "ऑडियो मेटाडेटा — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "상단 AppBar 제목",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "अन्य नाम से सहेजें",
+  "@tooltipSaveAs": { "description": "저장 아이콘 툴팁(수정사항 있을 때)" },
+
+  "tooltipNoChanges": "कोई परिवर्तन नहीं",
+  "@tooltipNoChanges": { "description": "저장 아이콘 툴팁(수정사항 없을 때)" },
+
+  "tooltipReload": "फिर से लोड करें",
+  "@tooltipReload": { "description": "새로고침 아이콘 툴팁" },
+
+  "bannerCoverSelected": "कवर चुना गया: {fileName}",
+  "@bannerCoverSelected": {
+    "description": "커버 선택 후 안내 배너",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "बंद करें",
+  "@btnClose": { "description": "배너 버튼: 닫기" },
+
+  "saveDone": "सहेजा गया: {displayName}",
+  "@saveDone": {
+    "description": "저장 성공 배너 본문",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "सहेजना रद्द किया गया",
+  "@saveCancelled": { "description": "저장 취소 배너 본문" },
+
+  "saveFailed": "सहेजने में विफल: {error}",
+  "@saveFailed": {
+    "description": "저장 실패 배너 본문",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "(कोई नहीं)",
+  "@hintNone": { "description": "가사 입력 힌트 텍스트(없을 때)" },
+
+  "metaLabelTitle": "शीर्षक",
+  "@metaLabelTitle": { "description": "메타 라벨: 제목" },
+
+  "metaLabelArtist": "कलाकार",
+  "@metaLabelArtist": { "description": "메타 라벨: 아티스트" },
+
+  "metaLabelAlbum": "एल्बम",
+  "@metaLabelAlbum": { "description": "메타 라벨: 앨범" },
+
+  "metaLabelGenre": "शैली",
+  "@metaLabelGenre": { "description": "메타 라벨: 장르" },
+
+  "metaLabelYear": "वर्ष",
+  "@metaLabelYear": { "description": "메타 라벨: 연도" },
+
+  "metaLabelTrack": "ट्रैक",
+  "@metaLabelTrack": { "description": "메타 라벨: 트랙 번호" },
+
+  "metaLabelDisc": "डिस्क",
+  "@metaLabelDisc": { "description": "메타 라벨: 디스크 번호" },
+
+  "chooseActionTitle": "आप कौन सी क्रिया चलाना चाहेंगे?",
+  "@chooseActionTitle": { "description": "오버레이/편집 동작 선택 다이얼로그 제목" },
+
+  "chooseActionBody": "चयन करते ही यह तुरंत चल जाएगा।",
+  "@chooseActionBody": { "description": "오버레이/편집 동작 선택 다이얼로그 본문" },
+
+  "actionEditOverlay": "आकार और स्थिति सेट करें",
+  "@actionEditOverlay": { "description": "오버레이 편집 화면으로 이동 버튼" },
+
+  "actionLoadSubtitles": "सबटाइटल लोड करें",
+  "@actionLoadSubtitles": { "description": "자막 오버레이 실행 버튼" },
+
+  "overlayPermissionNeeded": "ओवरले अनुमति आवश्यक है। कृपया सेटिंग्स में अनुमति दें।",
+  "@overlayPermissionNeeded": { "description": "SYSTEM_ALERT_WINDOW 권한 필요 스낵바" },
+
+  "overlayWindowDenied": "ओवरले विंडो की अनुमति अस्वीकृत की गई।",
+  "@overlayWindowDenied": { "description": "FlutterOverlayWindow 권한 거부 스낵바" },
+
+  "overlaySampleShort": "छोटे पाठ के लिए",
+  "@overlaySampleShort": { "description": "자막 상단 샘플 텍스트" },
+
+  "overlaySampleLong": "लंबे पाठ के लिए",
+  "@overlaySampleLong": { "description": "자막 하단 샘플 텍스트" },
+
+  "fontPickerTitle": "फ़ॉन्ट आकार चुनें",
+  "@fontPickerTitle": { "description": "폰트 크기 선택 모달 제목" },
+
+  "commonCancel": "रद्द करें",
+  "@commonCancel": { "description": "공통: 취소" },
+
+  "commonOk": "ठीक",
+  "@commonOk": { "description": "공통: 확인" },
+
+  "commonSave": "सहेजें",
+  "@commonSave": { "description": "공통: 저장" },
+
+  "commonChange": "बदलें",
+  "@commonChange": { "description": "공통: 변경" },
+
+  "commonSettings": "सेटिंग्स",
+  "@commonSettings": { "description": "공통: 설정 라벨" },
+
+  "paletteFontLabel": "फ़ॉन्ट {size}",
+  "@paletteFontLabel": {
+    "description": "팔레트: 현재 폰트 크기 표시",
+    "placeholders": { "size": {} }
+  },
+
+  "paletteLockCenterX": "X-अक्ष केंद्र लॉक करें",
+  "@paletteLockCenterX": { "description": "팔레트: X축 중앙 고정 스위치 라벨" },
+
+  "calibFixHint": "ऑफ़सेट हटाएँ (ओवरले लॉक)",
+  "@calibFixHint": { "description": "보정 1단계 설명" },
+
+  "calibMergeHint": "मर्ज करें (Δ कतार में सहेजें)",
+  "@calibMergeHint": { "description": "보정 2단계 설명" },
+
+  "calibFix": "ऑफ़सेट हटाएँ",
+  "@calibFix": { "description": "보정 1단계 버튼" },
+
+  "calibMerge": "मर्ज करें",
+  "@calibMerge": { "description": "보정 2단계 버튼" },
+
+  "saveApplyDelta": "सुधार लागू कर सहेजें",
+  "@saveApplyDelta": { "description": "팔레트: 저장 라벨" },
+
+  "hudCenterSuffix": "(X केंद्र लॉक)",
+  "@hudCenterSuffix": { "description": "HUD: 중앙 고정 표기" },
+
+  "webBack": "पीछे",
+  "@webBack": { "description": "웹 주소창 툴바: 뒤로" },
+
+  "webForward": "आगे",
+  "@webForward": { "description": "웹 주소창 툴바: 앞으로" },
+
+  "webReload": "रीलोड करें",
+  "@webReload": { "description": "웹 주소창 툴바: 새로고침" },
+
+  "webClose": "बंद करें",
+  "@webClose": { "description": "웹 주소창 툴바: 닫기" },
+
+  "webAddressHint": "पता दर्ज करें या पेस्ट करें",
+  "@webAddressHint": { "description": "주소 입력 필드 힌트" },
+
+  "emptyLyrics": "गीत के बोल प्राप्त नहीं हुए।",
+  "@emptyLyrics": { "description": "가사 없음 안내" },
+
+  "overlayHintDoubleTap": "* ओवरले बंद करने के लिए दो बार टैप करें।",
+  "@overlayHintDoubleTap": { "description": "오버레이 첫 페이지 상단 안내" },
+
+  "overlayHintSwipe": "* पेज बदलने के लिए स्वाइप करें।",
+  "@overlayHintSwipe": { "description": "오버레이 첫 페이지 하단 안내" },
+
+  "menuPrivacy": "गोपनीयता",
+  "menuPrivacyPolicy": "गोपनीयता नीति",
+  "menuPrivacyOptions": "विज्ञापन गोपनीयता विकल्प",
+  "menuPrivacyOptionsSub": "व्यक्तिगत विज्ञापनों की सहमति स्थिति बदलें",
+  "menuPrivacyOptionsNotRequired": "वर्तमान क्षेत्र/सत्र में प्रदर्शित करना आवश्यक नहीं",
+  "openUrlFailed": "URL खोला नहीं जा सका",
+  "privacyClosed": "गोपनीयता विकल्प स्क्रीन बंद कर दी गई",
+  "privacyNotAvailable": "गोपनीयता फ़ॉर्म उपलब्ध नहीं है",
+  "privacyExplainer": "यह ऐप विज्ञापन दिखाने के लिए विज्ञापन SDK का उपयोग करता है और जिन क्षेत्रों में सहमति आवश्यक है वहाँ सहमति प्रबंधन स्क्रीन प्रदान करता है।",
+
+  "privacyOptionsRequiredLabel": "गोपनीयता विकल्प (आवश्यक)",
+  "@privacyOptionsRequiredLabel": { "description": "우상단 플로팅 버튼 라벨(필요 지역)" },
+
+  "privacyOptionsNotRequiredLabel": "गोपनीयता विकल्प (आवश्यक नहीं)",
+  "@privacyOptionsNotRequiredLabel": { "description": "우상단 플로팅 버튼 라벨(불필요 지역)" },
+
+  "privacyOptionsUpdated": "गोपनीयता विकल्प अपडेट किए गए",
+  "@privacyOptionsUpdated": { "description": "UMP 옵션 변경 후 스낵바" },
+
+  "privacyOptionsNotRequiredSnack": "आपके क्षेत्र में गोपनीयता विकल्प दिखाना आवश्यक नहीं है",
+  "@privacyOptionsNotRequiredSnack": { "description": "UMP 옵션 불필요 지역 스낵바" },
+
+  "openSource": "ओपन सोर्स",
+  "@openSource": { "description": "오픈 소스 안내 버튼 라벨" },
+
+  "openSourceGuideTitle": "ओपन सोर्स 안내",
+  "@openSourceGuideTitle": { "description": "오픈 소스 안내 다이얼로그 제목" },
+
+  "errorTitle": "त्रुटि",
+  "@errorTitle": { "description": "오류 다이얼로그 제목" },
+
+  "readFileFailed": "फ़ाइल पढ़ी नहीं जा सकी: {error}",
+  "@readFileFailed": {
+    "description": "오픈 소스 안내 텍스트 로드 실패 메시지",
+    "placeholders": { "error": {} }
+  },
+
+  "privacySettingsTitle": "गोपनीयता और विज्ञापन सेटिंग्स",
+  "@privacySettingsTitle": { "description": "설정 화면 AppBar 제목" },
+
+  "consentSectionTitle": "सहमति (CMP/UMP)",
+  "@consentSectionTitle": { "description": "동의 섹션 타이틀" },
+
+  "entryRequiredChip": "दिखाना आवश्यक",
+  "@entryRequiredChip": { "description": "동의 섹션 우측 칩" },
+
+  "openPrivacyOptionsButton": "गोपनीयता विकल्प खोलें",
+  "@openPrivacyOptionsButton": { "description": "UMP 옵션 열기 버튼 라벨" },
+
+  "consentRegionalNote": "EEA/UK/CH उपयोगकर्ता यहाँ सहमति प्रबंधित कर सकते हैं। परिवर्तन अगली विज्ञापन रिक्वेस्ट से लागू होगा।",
+  "@consentRegionalNote": { "description": "동의 섹션 하단 설명" },
+
+  "adsPersonalizationTitle": "विज्ञापन वैयक्तिकरण और क्षेत्रीय डेटा",
+  "@adsPersonalizationTitle": { "description": "광고 개인화 섹션 타이틀" },
+
+  "npaTitle": "हमेशा गैर-व्यक्तिगत विज्ञापन (NPA)",
+  "@npaTitle": { "description": "NPA 스위치 제목" },
+
+  "npaSubtitle": "हमेशा NPA का अनुरोध करें",
+  "@npaSubtitle": { "description": "NPA 스위치 부제" },
+
+  "rdpTitle": "US Restricted Data Processing (RDP)",
+  "@rdpTitle": { "description": "RDP 스위치 제목" },
+
+  "rdpSubtitle": "अमेरिकी राज्य क़ानून अनुपालन: extras में rdp=1 जोड़ें",
+  "@rdpSubtitle": { "description": "RDP 스위치 부제" },
+
+  "childFlagsSectionTitle": "बाल/नाबालिग टैग",
+  "@childFlagsSectionTitle": { "description": "아동/미성년 섹션 타이틀" },
+
+  "coppaTitle": "बच्चों को लक्षित सेवा (COPPA)",
+  "@coppaTitle": { "description": "COPPA 스위치 제목" },
+
+  "coppaSubtitle": "बच्चों को लक्षित सेवा टैग",
+  "@coppaSubtitle": { "description": "COPPA 스위치 부제" },
+
+  "uacTitle": "आयु-सहमति से कम (UAC)",
+  "@uacTitle": { "description": "UAC 스위치 제목" },
+
+  "uacSubtitle": "नाबालिग (आयु-सहमति से कम) टैग",
+  "@uacSubtitle": { "description": "UAC 스위치 부제" },
+
+  "coppaNote": "COPPA/UAC, AdMob की वैश्विक सेटिंग है और तुरंत प्रभावी होती है। इसके बाद लोड होने वाले विज्ञापनों पर लागू होगा।",
+  "@coppaNote": { "description": "아동/미성년 섹션 하단 안내" },
+
+  "policySectionTitle": "गोपनीयता नीति",
+  "@policySectionTitle": { "description": "정책 섹션 타이틀" },
+
+  "viewInAppButton": "ऐप में देखें",
+  "@viewInAppButton": { "description": "인앱 정책 보기 버튼" },
+
+  "openStorePolicyButton": "स्टोर नीति खोलें",
+  "@openStorePolicyButton": { "description": "스토어 정책 열기 버튼" },
+
+  "policySectionNote": "कृपया स्टोर नीति URL और इन-ऐप नीति स्क्रीन दोनों प्रदान करें।",
+  "@policySectionNote": { "description": "정책 섹션 하단 안내" },
+
+  "inAppPolicyTitle": "गोपनीयता नीति",
+  "@inAppPolicyTitle": { "description": "인앱 정책 화면 AppBar 제목" },
+
+  "inAppPolicyFallback": "यहाँ इन-ऐप नीति प्रदान करें।",
+  "@inAppPolicyFallback": { "description": "정책 HTML이 없을 때 대체 문구" },
+
+  "crossBorderTitle": "सीमापार डेटा हस्तांतरण सूचना",
+  "@crossBorderTitle": { "description": "국외이전(국제 데이터 이전) 안내 팝업 제목" },
+
+  "viewFullPolicy": "पूर्ण नीति देखें",
+  "@viewFullPolicy": { "description": "국외이전 팝업의 전체 정책 링크 버튼" },
+
+  "crossBorderFullText": "• यह ऐप विज्ञापन प्रदाय और मापन के लिए तृतीय-पक्ष सेवाओं (उदा., Google AdMob) का उपयोग करता है; परिणामस्वरूप, आपका व्यक्तिगत डेटा आपके देश के बाहर स्थानांतरित किया जा सकता है।\n\n— प्राप्तकर्ता और संपर्क\n  · प्राप्तकर्ता: Google LLC और इसकी संबद्ध कंपनियां (AdMob प्रदाता)\n  · सेवा/भूमिका: विज्ञापन प्रदाय, विज्ञापन/मापन सुविधाओं का प्रावधान, संबंधित लॉग का प्रसंस्करण\n  · वेबसाइट: admob.google.com\n  · टिप्पणी: iOS पर विज्ञापन पहचानकर्ता (IDFA) का उपयोग प्लेटफ़ॉर्म नीतियों और उपयोगकर्ता की सहमति स्थिति पर निर्भर करता है।\n\n— गंतव्य देश\n  · संयुक्त राज्य अमेरिका तथा वे देश जहाँ Google या उसकी संबद्ध कंपनियों के पास डेटा प्रसंस्करण की क्षमता है (उदा., यूरोप, एशिया)\n\n— हस्तांतरण का समय और तरीका\n  · समय: ऐप लॉन्च होने पर और जब भी विज्ञापन अनुरोध/प्रदर्शन/क्लिक/मापन की आवश्यकता हो\n  · तरीका: नेटवर्क के माध्यम से प्रेषण, ट्रांज़िट एन्क्रिप्शन सहित (HTTPS/TLS)\n  · सुरक्षा उपाय: लागू अंतरराष्ट्रीय ट्रांसफ़र ढाँचों और संविदात्मक सुरक्षा (उदा., पर्याप्तता निर्णय, मानक संविदात्मक खंड) के अनुसार प्रसंस्करण\n\n— उद्देश्य और डेटा मदें\n  · उद्देश्य: विज्ञापन प्रदाय, निजीकरण विकल्प का सम्मान, प्रदर्शन मापन, सांख्यिकीय विश्लेषण, सेवा गुणवत्ता/स्थिरता में सुधार\n  · उदाहरण डेटा: विज्ञापन पहचानकर्ता (AAID/IDFA), ऐप संस्करण/सेटिंग्स, डिवाइस/नेटवर्क की मूलभूत जानकारी, कुकी-सदृश पहचानकर्ता, उपयोग लॉग (विज्ञापन अंतःक्रियाएँ तथा त्रुटियाँ/क्रैश सहित), क्षेत्र (शहर/देश स्तर) इत्यादि\n\n— भंडारण अवधि\n  · उद्देश्य की पूर्ति तक या लागू कानून द्वारा आवश्यक अवधि तक संग्रहीत, उसके बाद हटाया या डी-आईडेंटिफाई किया जाएगा\n\n— सहमति अस्वीकार/वापस लेने का अधिकार\n  · ऐप की “गोपनीयता विकल्प” में आप Non-Personalized Ads (NPA) चुन सकते हैं। EEA/UK/CH जैसी क्षेत्रों में CMP/UMP सहमति स्क्रीन के माध्यम से निजीकरण/गैर-निजीकरण का चयन और रीसेट संभव है।\n\n— संपर्क\n  · ई-मेल: g.ns.0700g@gmail.com",
+
+  "warningTitle": "मेटाडेटा संपादन चेतावनी",
+  "metadataRiskBody": "MP3 के अलावा कुछ फ़ॉर्मैट में टैग/कवर एम्बेडिंग सीमित हो सकती है या प्लेयर के अनुसार अनुकूलता बदल सकती है, जिससे संपादन विफल हो सकता है।",
+  "metadataRiskFormatsDetail": "M4A/MP4 iTunes atoms का उपयोग करते हैं, Ogg/Opus Vorbis Comment (PICTURE ब्लॉक) का उपयोग करते हैं, FLAC Vorbis Comment/PICTURE का उपयोग करता है, और WAV LIST-INFO का उपयोग करता है।",
+  "doNotShowAgain": "दोबारा न दिखाएँ",
+  "continueLabel": "जारी रखें",
+
+
+  "paletteWidthFactor": "चौड़ाई {percent}%",
+  "@paletteWidthFactor": { "description": "चौड़ाई स्लाइडर का प्रतिशत", "placeholders": { "percent": { "type": "String", "example": "75" } } },
+  "paletteHeightFactor": "ऊँचाई {percent}%",
+  "@paletteHeightFactor": { "description": "ऊँचाई स्लाइडर का प्रतिशत", "placeholders": { "percent": { "type": "String", "example": "10" } } }
+
+
+
+}

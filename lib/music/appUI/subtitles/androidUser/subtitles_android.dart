@@ -16,30 +16,6 @@ const String _kY = 'overlay_box_y';
 class ANdroidLyricsOverlay implements LYricsOverlay {
   @override
   Future<void> SHow({required String filePath, BuildContext? context}) async {
-    /*// 1) SYSTEM_ALERT_WINDOW 권한
-    if (!await Permission.systemAlertWindow.isGranted) {
-      final status = await Permission.systemAlertWindow.request();
-      if (!status.isGranted) {
-        if (context != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('오버레이 권한이 필요합니다. 설정에서 허용해주세요.')),
-          );
-        }
-        return;
-      }
-    }
-
-    // 2) OverlayWindow 권한
-    final granted = await FlutterOverlayWindow.isPermissionGranted()
-        || (await FlutterOverlayWindow.requestPermission() ?? false);
-    if (!granted) {
-      if (context != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Overlay Window 권한이 거부되었습니다.')),
-        );
-      }
-      return;
-    }*/
 
     // 3) 오버레이 크기(px) 계산
     final view = WidgetsBinding.instance.platformDispatcher.views.first;
@@ -117,14 +93,5 @@ Future<Offset> LOadSavedOverlayOffset() async {
   return Offset(xDp, yDp); // 변환 없음: dp 그대로 유지
 }
 
-/*// 참고: 이제 startPosition을 쓰므로 이동 함수는 사용하지 않음
-Future<void> MOveOverlayToSavedOrZero() async {
-  try {
-    final pos = await LOadSavedOverlayOffset();
-    await FlutterOverlayWindow.moveOverlay(
-      OverlayPosition(pos.dx, pos.dy),
-    );
-  } catch (_) {
-    // 오버레이 미실행 등: 조용히 무시
-  }
-}*/
+// lib/music/appUI/subtitles/androidUser/android_lyrics_overlay.dart
+// — 오버레이 실행자: 저장된 w/h factor를 읽어 showOverlay(width,height)에 반영

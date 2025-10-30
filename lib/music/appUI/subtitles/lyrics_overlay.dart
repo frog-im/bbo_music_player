@@ -2,7 +2,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/widgets.dart';
 import 'package:bbo_music_player/music/appUI/subtitles/androidUser/subtitles_android.dart' as android_impl;
-import 'package:bbo_music_player/music/appUI/subtitles/iphoneUser/subtitles_ios.dart' as ios_impl;
+import 'package:bbo_music_player/music/appUI/subtitles/iosUser/subtitles_ios.dart' as ios_impl;
 
 import '../../admob/ad_orchestrator.dart';
 

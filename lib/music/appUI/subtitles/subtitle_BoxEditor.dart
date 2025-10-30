@@ -543,3 +543,6 @@ class _GridPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
+// lib/music/appUI/subtitles/subtitle_BoxEditor.dart (예시 경로)
+// — 박스 에디터: 박스 위치, 폰트, 가로/세로 비율(%) 편집 및 저장 + 오버레이 즉시 반영(resizeOverlay)
+// lib/music/appUI/subtitles/subtitle_BoxEditor.dart

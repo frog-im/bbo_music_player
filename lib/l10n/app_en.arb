@@ -2,38 +2,38 @@
   "@@locale": "en",
 
   "exitDialogTitle": "Do you want to exit the app?",
-  "@exitDialogTitle": { "description": "Title of the confirm-exit dialog" },
+  "@exitDialogTitle": { "description": "Confirm-exit dialog title" },
 
-  "adLabel": "Advertisement",
-  "@adLabel": { "description": "Label shown above the ad container" },
+  "adLabel": "Ad",
+  "@adLabel": { "description": "Label at the top of the ad container" },
 
   "cancel": "Cancel",
-  "@cancel": { "description": "Cancel button text in dialogs" },
+  "@cancel": { "description": "Dialog cancel button text" },
 
   "exit": "Exit",
-  "@exit": { "description": "Exit/confirm button text in dialogs" },
+  "@exit": { "description": "Dialog confirm/exit button text" },
 
   "adLoading": "Loading ad...",
-  "@adLoading": { "description": "Disabled button text while ad is loading" },
+  "@adLoading": { "description": "Disabled button text while the ad is loading" },
 
   "audioMetadataTitle": "Audio metadata — {fileName}",
   "@audioMetadataTitle": {
-    "description": "AppBar title with file name",
+    "description": "AppBar title",
     "placeholders": { "fileName": {} }
   },
 
-  "tooltipSaveAs": "Save as…",
-  "@tooltipSaveAs": { "description": "Save icon tooltip when there are changes" },
+  "tooltipSaveAs": "Save as",
+  "@tooltipSaveAs": { "description": "Save icon tooltip (when there are changes)" },
 
   "tooltipNoChanges": "No changes",
-  "@tooltipNoChanges": { "description": "Save icon tooltip when there are no changes" },
+  "@tooltipNoChanges": { "description": "Save icon tooltip (when there are no changes)" },
 
   "tooltipReload": "Reload",
   "@tooltipReload": { "description": "Refresh icon tooltip" },
 
   "bannerCoverSelected": "Cover selected: {fileName}",
   "@bannerCoverSelected": {
-    "description": "Banner after selecting cover image",
+    "description": "Info banner after selecting a cover",
     "placeholders": { "fileName": {} }
   },
 
@@ -42,136 +42,266 @@
 
   "saveDone": "Saved: {displayName}",
   "@saveDone": {
-    "description": "Banner body for save success",
+    "description": "Save success banner body",
     "placeholders": { "displayName": {} }
   },
 
-  "saveCancelled": "Save cancelled",
-  "@saveCancelled": { "description": "Banner body for save cancellation" },
+  "saveCancelled": "Save canceled",
+  "@saveCancelled": { "description": "Save canceled banner body" },
 
   "saveFailed": "Save failed: {error}",
   "@saveFailed": {
-    "description": "Banner body for save failure",
+    "description": "Save failed banner body",
     "placeholders": { "error": {} }
   },
 
-  "hintNone": "(none)",
-  "@hintNone": { "description": "Hint text for empty lyrics field" },
+  "hintNone": "(None)",
+  "@hintNone": { "description": "Lyrics input hint text (when empty)" },
 
   "metaLabelTitle": "Title",
-  "@metaLabelTitle": { "description": "Label for title" },
+  "@metaLabelTitle": { "description": "Meta label: title" },
 
   "metaLabelArtist": "Artist",
-  "@metaLabelArtist": { "description": "Label for artist" },
+  "@metaLabelArtist": { "description": "Meta label: artist" },
 
   "metaLabelAlbum": "Album",
-  "@metaLabelAlbum": { "description": "Label for album" },
+  "@metaLabelAlbum": { "description": "Meta label: album" },
 
   "metaLabelGenre": "Genre",
-  "@metaLabelGenre": { "description": "Label for genre" },
+  "@metaLabelGenre": { "description": "Meta label: genre" },
 
   "metaLabelYear": "Year",
-  "@metaLabelYear": { "description": "Label for year" },
+  "@metaLabelYear": { "description": "Meta label: year" },
 
   "metaLabelTrack": "Track",
-  "@metaLabelTrack": { "description": "Label for track number" },
+  "@metaLabelTrack": { "description": "Meta label: track number" },
 
   "metaLabelDisc": "Disc",
-  "@metaLabelDisc": { "description": "Label for disc number" },
+  "@metaLabelDisc": { "description": "Meta label: disc number" },
 
-   "chooseActionTitle": "What would you like to do?",
-    "@chooseActionTitle": { "description": "Dialog title for choosing overlay/edit action" },
+  "chooseActionTitle": "What would you like to do?",
+  "@chooseActionTitle": { "description": "Overlay/edit action selection dialog title" },
 
-    "chooseActionBody": "Choose one and it will run immediately.",
-    "@chooseActionBody": { "description": "Dialog body for choosing overlay/edit action" },
+  "chooseActionBody": "Selecting one will run it immediately.",
+  "@chooseActionBody": { "description": "Overlay/edit action selection dialog body" },
 
-    "actionEditOverlay": "Edit size & position",
-    "@actionEditOverlay": { "description": "Button to open overlay editor" },
+  "actionEditOverlay": "Adjust size and position",
+  "@actionEditOverlay": { "description": "Button to go to the overlay edit screen" },
 
-    "actionLoadSubtitles": "Load subtitles",
-    "@actionLoadSubtitles": { "description": "Button to start lyrics overlay" },
+  "actionLoadSubtitles": "Load subtitles",
+  "@actionLoadSubtitles": { "description": "Button to run the subtitle overlay" },
 
-    "overlayPermissionNeeded": "Overlay permission is required. Please allow it in Settings.",
-    "@overlayPermissionNeeded": { "description": "SnackBar for SYSTEM_ALERT_WINDOW permission" },
+  "overlayPermissionNeeded": "Overlay permission is required. Please allow it in Settings.",
+  "@overlayPermissionNeeded": { "description": "SYSTEM_ALERT_WINDOW permission required snackbar" },
 
-    "overlayWindowDenied": "Overlay Window permission was denied.",
-    "@overlayWindowDenied": { "description": "SnackBar for FlutterOverlayWindow permission denied" },
+  "overlayWindowDenied": "Overlay Window permission was denied.",
+  "@overlayWindowDenied": { "description": "FlutterOverlayWindow permission denied snackbar" },
 
-    "overlaySampleShort": "For short lines",
-      "@overlaySampleShort": { "description": "Sample text top line" },
+  "overlaySampleShort": "For short text",
+  "@overlaySampleShort": { "description": "Sample text for the top line of the overlay" },
 
-      "overlaySampleLong": "When the subtitle is a long sentence",
-      "@overlaySampleLong": { "description": "Sample text bottom line" },
+  "overlaySampleLong": "For long text",
+  "@overlaySampleLong": { "description": "Sample text for the bottom line of the overlay" },
 
-      "fontPickerTitle": "Choose font size",
-      "@fontPickerTitle": { "description": "Font size picker title" },
+  "fontPickerTitle": "Select font size",
+  "@fontPickerTitle": { "description": "Font size picker modal title" },
 
-      "commonCancel": "Cancel",
-      "@commonCancel": { "description": "Common: Cancel" },
+  "commonCancel": "Cancel",
+  "@commonCancel": { "description": "Common: Cancel" },
 
-      "commonOk": "OK",
-      "@commonOk": { "description": "Common: OK" },
+  "commonOk": "OK",
+  "@commonOk": { "description": "Common: OK" },
 
-      "commonSave": "Save",
-      "@commonSave": { "description": "Common: Save" },
+  "commonSave": "Save",
+  "@commonSave": { "description": "Common: Save" },
 
-      "commonChange": "Change",
-      "@commonChange": { "description": "Common: Change" },
+  "commonChange": "Change",
+  "@commonChange": { "description": "Common: Change" },
 
-      "commonSettings": "Settings",
-      "@commonSettings": { "description": "Common: Settings label" },
+  "commonSettings": "Settings",
+  "@commonSettings": { "description": "Common: Settings label" },
 
-      "paletteFontLabel": "Font {size}",
-      "@paletteFontLabel": {
-        "description": "Palette: current font size",
-        "placeholders": { "size": {} }
+  "paletteFontLabel": "Font {size}",
+  "@paletteFontLabel": {
+    "description": "Palette: current font size display",
+    "placeholders": { "size": {} }
+  },
+
+  "paletteLockCenterX": "Lock center X",
+  "@paletteLockCenterX": { "description": "Palette: lock X-axis center switch label" },
+
+  "calibFixHint": "Remove offset (lock overlay)",
+  "@calibFixHint": { "description": "Calibration step 1 description" },
+
+  "calibMergeHint": "Merge (save to Δ queue)",
+  "@calibMergeHint": { "description": "Calibration step 2 description" },
+
+  "calibFix": "Remove offset",
+  "@calibFix": { "description": "Calibration step 1 button" },
+
+  "calibMerge": "Merge",
+  "@calibMerge": { "description": "Calibration step 2 button" },
+
+  "saveApplyDelta": "Apply correction then save",
+  "@saveApplyDelta": { "description": "Palette: save label" },
+
+  "hudCenterSuffix": "(X center locked)",
+  "@hudCenterSuffix": { "description": "HUD: center-locked suffix" },
+
+  "webBack": "Back",
+  "@webBack": { "description": "Web address bar toolbar: Back" },
+
+  "webForward": "Forward",
+  "@webForward": { "description": "Web address bar toolbar: Forward" },
+
+  "webReload": "Reload",
+  "@webReload": { "description": "Web address bar toolbar: Reload" },
+
+  "webClose": "Close",
+  "@webClose": { "description": "Web address bar toolbar: Close" },
+
+  "webAddressHint": "Enter or paste address",
+  "@webAddressHint": { "description": "Address input field hint" },
+
+  "emptyLyrics": "No lyrics received.",
+  "@emptyLyrics": { "description": "No lyrics message" },
+
+  "overlayHintDoubleTap": "* Double tap to close the overlay.",
+  "@overlayHintDoubleTap": { "description": "Overlay first page: top hint" },
+
+  "overlayHintSwipe": "* Swipe to change pages.",
+  "@overlayHintSwipe": { "description": "Overlay first page: bottom hint" },
+
+  "menuPrivacy": "Privacy",
+  "menuPrivacyPolicy": "Privacy Policy",
+  "menuPrivacyOptions": "Ad privacy options",
+  "menuPrivacyOptionsSub": "Change your consent for personalized ads",
+  "menuPrivacyOptionsNotRequired": "Not required in the current region/session",
+  "openUrlFailed": "Cannot open URL",
+  "privacyClosed": "Closed the privacy options screen",
+  "privacyNotAvailable": "Privacy form is not available",
+  "privacyExplainer": "This app uses an advertising SDK to serve ads and provides a consent screen in regions where consent is required.",
+
+  "privacyOptionsRequiredLabel": "Privacy options (required)",
+  "@privacyOptionsRequiredLabel": { "description": "Top-right floating button label (required region)" },
+
+  "privacyOptionsNotRequiredLabel": "Privacy options (not required)",
+  "@privacyOptionsNotRequiredLabel": { "description": "Top-right floating button label (not required region)" },
+
+  "privacyOptionsUpdated": "Privacy options updated",
+  "@privacyOptionsUpdated": { "description": "Snackbar after UMP option change" },
+
+  "privacyOptionsNotRequiredSnack": "Privacy options are not required in your region",
+  "@privacyOptionsNotRequiredSnack": { "description": "Snackbar for regions where UMP is not required" },
+
+  "openSource": "Open source",
+  "@openSource": { "description": "Open source info button label" },
+
+  "openSourceGuideTitle": "Open source notice",
+  "@openSourceGuideTitle": { "description": "Open source info dialog title" },
+
+  "errorTitle": "Error",
+  "@errorTitle": { "description": "Error dialog title" },
+
+  "readFileFailed": "Failed to read file: {error}",
+  "@readFileFailed": {
+    "description": "Open source info text load failure message",
+    "placeholders": { "error": {} }
+  },
+   "privacySettingsTitle": "Privacy & Ads Settings",
+    "@privacySettingsTitle": { "description": "Settings screen AppBar title" },
+
+    "consentSectionTitle": "Consent (CMP/UMP)",
+    "@consentSectionTitle": { "description": "Consent section title" },
+
+    "entryRequiredChip": "Entry required",
+    "@entryRequiredChip": { "description": "Right chip in the consent section" },
+
+    "openPrivacyOptionsButton": "Open privacy options",
+    "@openPrivacyOptionsButton": { "description": "Button label: open UMP options" },
+
+    "consentRegionalNote": "Users in the EEA/UK/CH can manage consent here. Changes take effect on subsequent ad requests.",
+    "@consentRegionalNote": { "description": "Consent section helper text" },
+
+    "adsPersonalizationTitle": "Ads personalization & regional data",
+    "@adsPersonalizationTitle": { "description": "Ads personalization section title" },
+
+    "npaTitle": "Always non-personalized ads (NPA)",
+    "@npaTitle": { "description": "NPA switch title" },
+
+    "npaSubtitle": "Always request non-personalized ads",
+    "@npaSubtitle": { "description": "NPA switch subtitle" },
+
+    "rdpTitle": "US Restricted Data Processing (RDP)",
+    "@rdpTitle": { "description": "RDP switch title" },
+
+    "rdpSubtitle": "Compliance for U.S. state laws: attach rdp=1 extras",
+    "@rdpSubtitle": { "description": "RDP switch subtitle" },
+
+    "childFlagsSectionTitle": "Child/under-age tags",
+    "@childFlagsSectionTitle": { "description": "Child/under-age section title" },
+
+    "coppaTitle": "Child-directed service (COPPA)",
+    "@coppaTitle": { "description": "COPPA switch title" },
+
+    "coppaSubtitle": "Tag as child-directed",
+    "@coppaSubtitle": { "description": "COPPA switch subtitle" },
+
+    "uacTitle": "Under the age of consent (UAC)",
+    "@uacTitle": { "description": "UAC switch title" },
+
+    "uacSubtitle": "Tag as under the age of consent",
+    "@uacSubtitle": { "description": "UAC switch subtitle" },
+
+    "coppaNote": "COPPA/UAC are global AdMob settings and take effect immediately for subsequently loaded ads.",
+    "@coppaNote": { "description": "Helper text under the child/under-age section" },
+
+    "policySectionTitle": "Privacy Policy",
+    "@policySectionTitle": { "description": "Policy section title" },
+
+    "viewInAppButton": "View in-app",
+    "@viewInAppButton": { "description": "Button: view in-app policy" },
+
+    "openStorePolicyButton": "Open store policy",
+    "@openStorePolicyButton": { "description": "Button: open store policy" },
+
+    "policySectionNote": "Provide both the store policy URL and the in-app policy screen.",
+    "@policySectionNote": { "description": "Helper text under the policy section" },
+
+    "inAppPolicyTitle": "Privacy Policy",
+    "@inAppPolicyTitle": { "description": "In-app policy screen AppBar title" },
+
+    "inAppPolicyFallback": "Provide your in-app policy here.",
+    "@inAppPolicyFallback": { "description": "Fallback text when the policy HTML is missing" },
+
+    "crossBorderTitle": "Cross-Border Data Transfer Notice",
+    "@crossBorderTitle": { "description": "국외이전(국제 데이터 이전) 안내 팝업 제목" },
+
+    "viewFullPolicy": "View full policy",
+    "@viewFullPolicy": { "description": "국외이전 팝업의 전체 정책 링크 버튼" },
+
+    "crossBorderFullText": "• This app uses third-party services (e.g., Google AdMob) to provide and measure advertising. As a result, your personal data may be transferred outside your country.\n\n— Recipient(s) and contact\n  · Recipient: Google LLC and its affiliates (provider of AdMob)\n  · Service/Role: Ad serving, provision of ads/measurement features, processing of related logs\n  · Website: admob.google.com\n  · Note: On iOS, the use of the advertising identifier (IDFA) depends on platform policy and the user's consent status.\n\n— Destination countries\n  · The United States and countries where Google or its affiliates have data-processing capabilities (e.g., Europe, Asia, etc.)\n\n— Timing and method of transfer\n  · Timing: When the app launches and when ad requests/impressions/clicks/measurement occur as needed\n  · Method: Network transmission with in-transit encryption (HTTPS/TLS)\n  · Safeguards: Processed under applicable international transfer frameworks and contractual protections (e.g., adequacy decisions, Standard Contractual Clauses)\n\n— Purposes and data items\n  · Purposes: Ad delivery, honoring personalization choices, performance measurement, statistical analysis, improvement of service quality/stability\n  · Examples of data items: Advertising identifiers (AAID/IDFA), app version/settings, basic device/network information, cookie-like identifiers, usage logs (including ad interactions and errors/crashes), region (city/country level), etc.\n\n— Retention period\n  · Retained until the purposes are achieved or for the period required by applicable laws, then deleted or de-identified\n\n— Right to refuse or withdraw consent\n  · You can choose Non-Personalized Ads (NPA) in the app's “Privacy options.” In regions such as the EEA/UK/CH, the CMP/UMP consent screen allows choosing personalized/non-personalized ads and resetting choices.\n\n— Contact\n  · Email: g.ns.0700g@gmail.com",
+
+    "warningTitle": "Metadata Editing Warning",
+
+    "metadataRiskBody": "Some formats other than MP3 may restrict tag/cover embedding or differ in player compatibility, which can cause editing to fail.",
+
+    "metadataRiskFormatsDetail": "M4A/MP4 use iTunes atoms, Ogg/Opus use Vorbis Comment (PICTURE block), FLAC uses Vorbis Comment/PICTURE, and WAV uses LIST-INFO.",
+
+    "doNotShowAgain": "Don't show again",
+
+    "continueLabel": "Continue",
+
+
+      "paletteWidthFactor": "Width {percent}%",
+      "@paletteWidthFactor": {
+        "description": "Label for width slider showing percentage",
+        "placeholders": { "percent": { "type": "String", "example": "75" } }
       },
 
-      "paletteLockCenterX": "Lock center on X",
-      "@paletteLockCenterX": { "description": "Palette: X-axis center lock" },
-
-      "calibFixHint": "Fix offset (overlay fixed)",
-      "@calibFixHint": { "description": "Calibration step 1 hint" },
-
-      "calibMergeHint": "Merge (queue Δ)",
-      "@calibMergeHint": { "description": "Calibration step 2 hint" },
-
-      "calibFix": "Fix",
-      "@calibFix": { "description": "Calibration step 1 button" },
-
-      "calibMerge": "Merge",
-      "@calibMerge": { "description": "Calibration step 2 button" },
-
-      "saveApplyDelta": "Save with correction",
-      "@saveApplyDelta": { "description": "Palette: save label" },
-
-      "hudCenterSuffix": "(X-centered)",
-
-      "webBack": "Back",
-        "@webBack": { "description": "Web toolbar: back" },
-
-        "webForward": "Forward",
-        "@webForward": { "description": "Web toolbar: forward" },
-
-        "webReload": "Reload",
-        "@webReload": { "description": "Web toolbar: reload" },
-
-        "webClose": "Close",
-        "@webClose": { "description": "Web toolbar: close" },
-
-        "webAddressHint": "Enter address or paste",
-        "@webAddressHint": { "description": "Address field hint" },
-
-        "emptyLyrics": "Lyrics not received.",
-        "@emptyLyrics": { "description": "Empty lyrics notice" },
-
-        "overlayHintDoubleTap": "* Double-tap to close the overlay.",
-          "@overlayHintDoubleTap": { "description": "Overlay first page top hint" },
-
-          "overlayHintSwipe": "* Swipe to change pages.",
-          "@overlayHintSwipe": { "description": "Overlay first page bottom hint" }
-
-
-
-
+      "paletteHeightFactor": "Height {percent}%",
+      "@paletteHeightFactor": {
+        "description": "Label for height slider showing percentage",
+        "placeholders": { "percent": { "type": "String", "example": "10" } }
+      }
 }

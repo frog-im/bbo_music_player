@@ -1,0 +1,300 @@
+﻿{
+  "@@locale": "vi",
+
+  "exitDialogTitle": "Bạn có muốn thoát ứng dụng không?",
+  "@exitDialogTitle": { "description": "Tiêu đề hộp thoại xác nhận thoát ứng dụng" },
+
+  "adLabel": "Quảng cáo",
+  "@adLabel": { "description": "Nhãn ở đầu vùng chứa quảng cáo" },
+
+  "cancel": "Hủy",
+  "@cancel": { "description": "Văn bản nút Hủy trong hộp thoại" },
+
+  "exit": "Thoát",
+  "@exit": { "description": "Văn bản nút Xác nhận/Thoát trong hộp thoại" },
+
+  "adLoading": "Đang tải quảng cáo...",
+  "@adLoading": { "description": "Văn bản nút bị vô hiệu khi đang tải quảng cáo" },
+
+  "audioMetadataTitle": "Siêu dữ liệu âm thanh — {fileName}",
+  "@audioMetadataTitle": {
+    "description": "Tiêu đề AppBar phía trên",
+    "placeholders": { "fileName": {} }
+  },
+
+  "tooltipSaveAs": "Lưu dưới dạng",
+  "@tooltipSaveAs": { "description": "Tooltip biểu tượng Lưu (khi có thay đổi)" },
+
+  "tooltipNoChanges": "Không có thay đổi",
+  "@tooltipNoChanges": { "description": "Tooltip biểu tượng Lưu (khi không có thay đổi)" },
+
+  "tooltipReload": "Tải lại",
+  "@tooltipReload": { "description": "Tooltip biểu tượng Tải lại" },
+
+  "bannerCoverSelected": "Đã chọn bìa: {fileName}",
+  "@bannerCoverSelected": {
+    "description": "Biểu ngữ thông báo sau khi chọn bìa",
+    "placeholders": { "fileName": {} }
+  },
+
+  "btnClose": "Đóng",
+  "@btnClose": { "description": "Nút trên biểu ngữ: Đóng" },
+
+  "saveDone": "Đã lưu: {displayName}",
+  "@saveDone": {
+    "description": "Nội dung biểu ngữ khi lưu thành công",
+    "placeholders": { "displayName": {} }
+  },
+
+  "saveCancelled": "Đã hủy lưu",
+  "@saveCancelled": { "description": "Nội dung biểu ngữ khi hủy lưu" },
+
+  "saveFailed": "Lưu thất bại: {error}",
+  "@saveFailed": {
+    "description": "Nội dung biểu ngữ khi lưu thất bại",
+    "placeholders": { "error": {} }
+  },
+
+  "hintNone": "(Không có)",
+  "@hintNone": { "description": "Gợi ý nhập lời bài hát (khi trống)" },
+
+  "metaLabelTitle": "Tiêu đề",
+  "@metaLabelTitle": { "description": "Nhãn meta: tiêu đề" },
+
+  "metaLabelArtist": "Nghệ sĩ",
+  "@metaLabelArtist": { "description": "Nhãn meta: nghệ sĩ" },
+
+  "metaLabelAlbum": "Album",
+  "@metaLabelAlbum": { "description": "Nhãn meta: album" },
+
+  "metaLabelGenre": "Thể loại",
+  "@metaLabelGenre": { "description": "Nhãn meta: thể loại" },
+
+  "metaLabelYear": "Năm",
+  "@metaLabelYear": { "description": "Nhãn meta: năm" },
+
+  "metaLabelTrack": "Track",
+  "@metaLabelTrack": { "description": "Nhãn meta: số track" },
+
+  "metaLabelDisc": "Đĩa",
+  "@metaLabelDisc": { "description": "Nhãn meta: số đĩa" },
+
+  "chooseActionTitle": "Bạn muốn thực hiện thao tác nào?",
+  "@chooseActionTitle": { "description": "Tiêu đề hộp thoại chọn thao tác overlay/chỉnh sửa" },
+
+  "chooseActionBody": "Chọn một tùy chọn và thao tác sẽ chạy ngay.",
+  "@chooseActionBody": { "description": "Nội dung hộp thoại chọn thao tác overlay/chỉnh sửa" },
+
+  "actionEditOverlay": "Thiết lập kích thước và vị trí",
+  "@actionEditOverlay": { "description": "Nút đi đến màn hình chỉnh sửa overlay" },
+
+  "actionLoadSubtitles": "Tải phụ đề",
+  "@actionLoadSubtitles": { "description": "Nút chạy overlay phụ đề" },
+
+  "overlayPermissionNeeded": "Cần quyền hiển thị phủ nổi. Vui lòng cho phép trong Cài đặt.",
+  "@overlayPermissionNeeded": { "description": "Snackbar yêu cầu quyền SYSTEM_ALERT_WINDOW" },
+
+  "overlayWindowDenied": "Quyền Overlay Window đã bị từ chối.",
+  "@overlayWindowDenied": { "description": "Snackbar: quyền FlutterOverlayWindow bị từ chối" },
+
+  "overlaySampleShort": "Với đoạn ngắn",
+  "@overlaySampleShort": { "description": "Văn bản mẫu dòng trên của overlay" },
+
+  "overlaySampleLong": "Với đoạn dài",
+  "@overlaySampleLong": { "description": "Văn bản mẫu dòng dưới của overlay" },
+
+  "fontPickerTitle": "Chọn cỡ chữ",
+  "@fontPickerTitle": { "description": "Tiêu đề modal chọn cỡ chữ" },
+
+  "commonCancel": "Hủy",
+  "@commonCancel": { "description": "Chung: Hủy" },
+
+  "commonOk": "OK",
+  "@commonOk": { "description": "Chung: OK" },
+
+  "commonSave": "Lưu",
+  "@commonSave": { "description": "Chung: Lưu" },
+
+  "commonChange": "Thay đổi",
+  "@commonChange": { "description": "Chung: Thay đổi" },
+
+  "commonSettings": "Cài đặt",
+  "@commonSettings": { "description": "Chung: nhãn Cài đặt" },
+
+  "paletteFontLabel": "Phông chữ {size}",
+  "@paletteFontLabel": {
+    "description": "Bảng: hiển thị cỡ chữ hiện tại",
+    "placeholders": { "size": {} }
+  },
+
+  "paletteLockCenterX": "Khóa tâm trục X",
+  "@paletteLockCenterX": { "description": "Bảng: nhãn công tắc khóa giữa trục X" },
+
+  "calibFixHint": "Loại bỏ sai lệch (khóa overlay)",
+  "@calibFixHint": { "description": "Hiệu chỉnh bước 1: mô tả" },
+
+  "calibMergeHint": "Chồng khớp (lưu vào hàng đợi Δ)",
+  "@calibMergeHint": { "description": "Hiệu chỉnh bước 2: mô tả" },
+
+  "calibFix": "Loại bỏ sai lệch",
+  "@calibFix": { "description": "Hiệu chỉnh bước 1: nút" },
+
+  "calibMerge": "Chồng khớp",
+  "@calibMerge": { "description": "Hiệu chỉnh bước 2: nút" },
+
+  "saveApplyDelta": "Áp dụng giá trị hiệu chỉnh rồi lưu",
+  "@saveApplyDelta": { "description": "Bảng: nhãn Lưu" },
+
+  "hudCenterSuffix": "(Khóa tâm X)",
+  "@hudCenterSuffix": { "description": "HUD: ghi chú khóa tâm" },
+
+  "webBack": "Quay lại",
+  "@webBack": { "description": "Thanh địa chỉ: Quay lại" },
+
+  "webForward": "Tiếp",
+  "@webForward": { "description": "Thanh địa chỉ: Tiếp" },
+
+  "webReload": "Tải lại",
+  "@webReload": { "description": "Thanh địa chỉ: Tải lại" },
+
+  "webClose": "Đóng",
+  "@webClose": { "description": "Thanh địa chỉ: Đóng" },
+
+  "webAddressHint": "Nhập hoặc dán địa chỉ",
+  "@webAddressHint": { "description": "Gợi ý cho trường nhập địa chỉ" },
+
+  "emptyLyrics": "Không nhận được lời bài hát.",
+  "@emptyLyrics": { "description": "Thông báo không có lời bài hát" },
+
+  "overlayHintDoubleTap": "* Chạm hai lần để đóng overlay.",
+  "@overlayHintDoubleTap": { "description": "Overlay trang đầu: gợi ý phía trên" },
+
+  "overlayHintSwipe": "* Vuốt để chuyển trang.",
+  "@overlayHintSwipe": { "description": "Overlay trang đầu: gợi ý phía dưới" },
+
+  "menuPrivacy": "Quyền riêng tư",
+  "menuPrivacyPolicy": "Chính sách quyền riêng tư",
+  "menuPrivacyOptions": "Tùy chọn quyền riêng tư cho quảng cáo",
+  "menuPrivacyOptionsSub": "Thay đổi trạng thái đồng ý với quảng cáo cá nhân hóa",
+  "menuPrivacyOptionsNotRequired": "Không cần hiển thị trong khu vực/phiên hiện tại",
+  "openUrlFailed": "Không thể mở URL",
+  "privacyClosed": "Đã đóng màn hình tùy chọn quyền riêng tư",
+  "privacyNotAvailable": "Không có biểu mẫu quyền riêng tư",
+  "privacyExplainer": "Ứng dụng này sử dụng SDK quảng cáo để phân phối quảng cáo và cung cấp màn hình quản lý đồng ý tại các khu vực yêu cầu đồng ý.",
+
+  "privacyOptionsRequiredLabel": "Tùy chọn quyền riêng tư (bắt buộc)",
+  "@privacyOptionsRequiredLabel": { "description": "Nhãn nút nổi góc trên bên phải (khu vực bắt buộc)" },
+
+  "privacyOptionsNotRequiredLabel": "Tùy chọn quyền riêng tư (không bắt buộc)",
+  "@privacyOptionsNotRequiredLabel": { "description": "Nhãn nút nổi góc trên bên phải (khu vực không bắt buộc)" },
+
+  "privacyOptionsUpdated": "Đã cập nhật tùy chọn quyền riêng tư",
+  "@privacyOptionsUpdated": { "description": "Snackbar sau khi thay đổi tùy chọn UMP" },
+
+  "privacyOptionsNotRequiredSnack": "Khu vực của bạn không cần hiển thị tùy chọn quyền riêng tư",
+  "@privacyOptionsNotRequiredSnack": { "description": "Snackbar cho khu vực không yêu cầu UMP" },
+
+  "openSource": "Mã nguồn mở",
+  "@openSource": { "description": "Nhãn nút thông tin mã nguồn mở" },
+
+  "openSourceGuideTitle": "Thông báo mã nguồn mở",
+  "@openSourceGuideTitle": { "description": "Tiêu đề hộp thoại thông tin mã nguồn mở" },
+
+  "errorTitle": "Lỗi",
+  "@errorTitle": { "description": "Tiêu đề hộp thoại lỗi" },
+
+  "readFileFailed": "Không thể đọc tệp: {error}",
+  "@readFileFailed": {
+    "description": "Thông báo lỗi khi tải văn bản thông tin mã nguồn mở",
+    "placeholders": { "error": {} }
+  },
+
+  "privacySettingsTitle": "Quyền riêng tư và cài đặt quảng cáo",
+  "@privacySettingsTitle": { "description": "Tiêu đề AppBar của màn hình Cài đặt" },
+
+  "consentSectionTitle": "Đồng ý (CMP/UMP)",
+  "@consentSectionTitle": { "description": "Tiêu đề phần Đồng ý" },
+
+  "entryRequiredChip": "Cần hiển thị",
+  "@entryRequiredChip": { "description": "Chip ở bên phải của phần Đồng ý" },
+
+  "openPrivacyOptionsButton": "Mở tùy chọn quyền riêng tư",
+  "@openPrivacyOptionsButton": { "description": "Nhãn nút để mở tùy chọn UMP" },
+
+  "consentRegionalNote": "Người dùng EEA/UK/CH có thể quản lý đồng ý tại đây. Thay đổi sẽ áp dụng từ các yêu cầu quảng cáo tiếp theo.",
+  "@consentRegionalNote": { "description": "Ghi chú ở cuối phần Đồng ý" },
+
+  "adsPersonalizationTitle": "Cá nhân hóa quảng cáo và dữ liệu theo khu vực",
+  "@adsPersonalizationTitle": { "description": "Tiêu đề phần cá nhân hóa quảng cáo" },
+
+  "npaTitle": "Luôn dùng quảng cáo không cá nhân hóa (NPA)",
+  "@npaTitle": { "description": "Tiêu đề công tắc NPA" },
+
+  "npaSubtitle": "Luôn yêu cầu NPA",
+  "@npaSubtitle": { "description": "Phụ đề công tắc NPA" },
+
+  "rdpTitle": "US Restricted Data Processing (RDP)",
+  "@rdpTitle": { "description": "Tiêu đề công tắc RDP" },
+
+  "rdpSubtitle": "Tuân thủ luật tiểu bang Hoa Kỳ: thêm rdp=1 vào extras",
+  "@rdpSubtitle": { "description": "Phụ đề công tắc RDP" },
+
+  "childFlagsSectionTitle": "Thẻ trẻ em/vị thành niên",
+  "@childFlagsSectionTitle": { "description": "Tiêu đề phần trẻ em/vị thành niên" },
+
+  "coppaTitle": "Dịch vụ hướng đến trẻ em (COPPA)",
+  "@coppaTitle": { "description": "Tiêu đề công tắc COPPA" },
+
+  "coppaSubtitle": "Thẻ dịch vụ hướng đến trẻ em",
+  "@coppaSubtitle": { "description": "Phụ đề công tắc COPPA" },
+
+  "uacTitle": "Dưới độ tuổi đồng ý (UAC)",
+  "@uacTitle": { "description": "Tiêu đề công tắc UAC" },
+
+  "uacSubtitle": "Thẻ vị thành niên (dưới độ tuổi đồng ý)",
+  "@uacSubtitle": { "description": "Phụ đề công tắc UAC" },
+
+  "coppaNote": "COPPA/UAC là cấu hình toàn cục của AdMob, có hiệu lực ngay và áp dụng cho các quảng cáo được tải sau đó.",
+  "@coppaNote": { "description": "Ghi chú ở cuối phần trẻ em/vị thành niên" },
+
+  "policySectionTitle": "Chính sách quyền riêng tư",
+  "@policySectionTitle": { "description": "Tiêu đề phần chính sách" },
+
+  "viewInAppButton": "Xem trong ứng dụng",
+  "@viewInAppButton": { "description": "Nút xem chính sách trong ứng dụng" },
+
+  "openStorePolicyButton": "Mở chính sách trên Store",
+  "@openStorePolicyButton": { "description": "Nút mở chính sách trên Store" },
+
+  "policySectionNote": "Vui lòng cung cấp cả URL chính sách trên Store và màn hình chính sách trong ứng dụng.",
+  "@policySectionNote": { "description": "Ghi chú ở cuối phần chính sách" },
+
+  "inAppPolicyTitle": "Chính sách quyền riêng tư",
+  "@inAppPolicyTitle": { "description": "Tiêu đề AppBar của màn hình chính sách trong ứng dụng" },
+
+  "inAppPolicyFallback": "Cung cấp chính sách trong ứng dụng tại đây.",
+  "@inAppPolicyFallback": { "description": "Văn bản thay thế khi không có HTML của chính sách" },
+
+  "crossBorderTitle": "Thông báo chuyển dữ liệu xuyên biên giới",
+  "@crossBorderTitle": { "description": "국외이전(국제 데이터 이전) 안내 팝업 제목" },
+
+
+  "viewFullPolicy": "Xem chính sách đầy đủ",
+  "@viewFullPolicy": { "description": "국외이전 팝업의 전체 정책 링크 버튼" },
+
+
+  "crossBorderFullText": "• Ứng dụng này sử dụng dịch vụ của bên thứ ba (ví dụ: Google AdMob) để phân phát và đo lường quảng cáo; do đó dữ liệu cá nhân của bạn có thể được chuyển ra ngoài quốc gia của bạn.\n\n— Bên nhận và liên hệ\n  · Bên nhận: Google LLC và các công ty liên kết (nhà cung cấp AdMob)\n  · Dịch vụ/Vai trò: Phân phát quảng cáo, cung cấp chức năng quảng cáo/đo lường, xử lý nhật ký liên quan\n  · Trang web: admob.google.com\n  · Lưu ý: Trên iOS, việc sử dụng định danh quảng cáo (IDFA) phụ thuộc vào chính sách nền tảng và trạng thái đồng ý của người dùng.\n\n— Quốc gia/vùng lãnh thổ đích\n  · Hoa Kỳ và các quốc gia nơi Google hoặc công ty liên kết có năng lực xử lý dữ liệu (ví dụ: Châu Âu, Châu Á)\n\n— Thời điểm và phương thức chuyển\n  · Thời điểm: Khi khởi động ứng dụng và khi phát sinh yêu cầu/hiển thị/nhấp/đo lường quảng cáo theo nhu cầu\n  · Phương thức: Truyền qua mạng với mã hóa trong quá trình truyền (HTTPS/TLS)\n  · Biện pháp bảo vệ: Xử lý theo các khuôn khổ chuyển dữ liệu quốc tế áp dụng và các biện pháp bảo vệ theo hợp đồng (ví dụ: quyết định tương xứng, Điều khoản Hợp đồng Mẫu)\n\n— Mục đích và hạng mục dữ liệu\n  · Mục đích: Phân phát quảng cáo, tôn trọng lựa chọn cá nhân hóa, đo lường hiệu suất, phân tích thống kê, cải thiện chất lượng/độ ổn định dịch vụ\n  · Ví dụ dữ liệu: Định danh quảng cáo (AAID/IDFA), phiên bản/cài đặt ứng dụng, thông tin cơ bản về thiết bị/mạng, định danh tương tự cookie, nhật ký sử dụng (bao gồm tương tác quảng cáo và lỗi/sập), khu vực (cấp thành phố/quốc gia), v.v.\n\n— Thời hạn lưu trữ\n  · Lưu trữ cho đến khi đạt mục đích hoặc theo thời hạn do luật áp dụng quy định; sau đó xóa hoặc ẩn danh\n\n— Quyền từ chối và rút lại sự đồng ý\n  · Bạn có thể chọn Quảng cáo không cá nhân hóa (NPA) trong “Tùy chọn quyền riêng tư” của ứng dụng. Ở các khu vực như EEA/Vương quốc Anh/Thụy Sĩ, màn hình xin đồng ý CMP/UMP cho phép chọn quảng cáo cá nhân hóa/không cá nhân hóa và đặt lại lựa chọn.\n\n— Liên hệ\n  · Email: g.ns.0700g@gmail.com",
+
+  "warningTitle": "Cảnh báo chỉnh sửa siêu dữ liệu",
+  "metadataRiskBody": "Một số định dạng ngoài MP3 có thể giới hạn việc nhúng thẻ/bìa hoặc có khả năng tương thích khác nhau tùy trình phát, khiến việc chỉnh sửa có thể thất bại.",
+  "metadataRiskFormatsDetail": "M4A/MP4 dùng iTunes atoms, Ogg/Opus dùng Vorbis Comment (khối PICTURE), FLAC dùng Vorbis Comment/PICTURE và WAV dùng LIST-INFO.",
+  "doNotShowAgain": "Không hiển thị lại",
+  "continueLabel": "Tiếp tục",
+
+
+  "paletteWidthFactor": "Chiều rộng {percent}%",
+  "@paletteWidthFactor": { "description": "Phần trăm của thanh trượt chiều rộng", "placeholders": { "percent": { "type": "String", "example": "75" } } },
+  "paletteHeightFactor": "Chiều cao {percent}%",
+  "@paletteHeightFactor": { "description": "Phần trăm của thanh trượt chiều cao", "placeholders": { "percent": { "type": "String", "example": "10" } } }
+
+}
